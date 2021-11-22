@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Welcome adventurer!\nWhat is your name?"
         android:gravity="center"
-        android:textSize="24sp"
+        android:text="Welcome adventurer!\nWhat is your name?"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:id="@+id/editTextUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -36,9 +36,9 @@
         android:id="@+id/textViewChooseProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="What type of hero are you?"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
@@ -47,7 +47,7 @@
     <ImageView
         android:id="@+id/imageViewKnight"
         android:layout_width="128dp"
-        android:layout_height="256dp"
+        android:layout_height="192dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
     <ImageView
         android:id="@+id/imageViewMage"
         android:layout_width="128dp"
-        android:layout_height="256dp"
+        android:layout_height="192dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/imageViewKnight"
@@ -69,7 +69,7 @@
     <ImageView
         android:id="@+id/imageViewRanger"
         android:layout_width="128dp"
-        android:layout_height="256dp"
+        android:layout_height="192dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
@@ -122,6 +122,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Are you ready to begin your journey\nto raise your Productivity Level\nand conquer the Dungeon of Responsibilities?\n\n(Your name and class cannot be changed after this point!)"
+        android:textSize="14sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,5 +140,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewConfirmCharacter"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.100000024" />
 </androidx.constraintlayout.widget.ConstraintLayout>
