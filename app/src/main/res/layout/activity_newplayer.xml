@@ -14,7 +14,9 @@
         android:fontFamily="@font/medievalsharp"
         android:gravity="center"
         android:text="Welcome adventurer!\nWhat is your name?"
-        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +43,9 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/medievalsharp"
         android:text="What type of hero are you?"
-        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
@@ -52,11 +56,13 @@
         android:layout_width="128dp"
         android:layout_height="192dp"
         android:layout_marginStart="8dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/imageViewMage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
-        app:srcCompat="@drawable/placeholder_character" />
+        app:srcCompat="@drawable/knight_human" />
 
 <!-- drawing for the mage character-->
     <ImageView
@@ -65,10 +71,12 @@
         android:layout_height="192dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
         app:layout_constraintEnd_toStartOf="@+id/imageViewRanger"
         app:layout_constraintStart_toEndOf="@+id/imageViewKnight"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
-        app:srcCompat="@drawable/placeholder_character" />
+        app:srcCompat="@drawable/mage_human" />
 
 <!-- drawing for the ranger character-->
     <ImageView
@@ -77,10 +85,12 @@
         android:layout_height="192dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:scaleX="1.25"
+        android:scaleY="1.25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewMage"
         app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
-        app:srcCompat="@drawable/placeholder_character" />
+        app:srcCompat="@drawable/ranger_elf" />
 
 <!-- button that lets the user choose the knight profession-->
     <Button
