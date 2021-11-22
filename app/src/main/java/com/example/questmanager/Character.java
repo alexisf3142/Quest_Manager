@@ -1,6 +1,7 @@
 package com.example.questmanager;
+import java.io.Serializable;
 
-public class Character {
+public class Character implements Serializable {
     private String name,title,profession,weapon;
     private int str,dex,lck,smt,power,exp,lvl,gold,dmg,finQ,finT;
 
@@ -23,7 +24,7 @@ public class Character {
     public Character(String name, String profession) {
         this.name = name;
         this.profession = profession;
-        this.title = "the Beginner";
+        this.title = "Beginner";
         this.weapon = "a solid stick";
         this.str = 5;
         this.dex = 5;
@@ -31,7 +32,7 @@ public class Character {
         this.smt = 5;
         this.power = 25;
         this.exp = 0;
-        this.lvl = 0;
+        this.lvl = 1;
         this.gold = 0;
         this.dmg = 3;
         this.finQ = 0;

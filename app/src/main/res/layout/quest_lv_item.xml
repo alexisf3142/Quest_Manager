@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/questNumTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="1."
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/questNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="questName"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="0"
+            android:id="@+id/questDueDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Due Date"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/questDescriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="questDescription"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginLeft="28dp"/>
+
+        <TextView
+            android:layout_weight="0"
+            android:id="@+id/questDueTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Due Time"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/questEditButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="20dp"
+            android:onClick="buttonEdit"
+            android:text="Edit"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/questDeselectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:onClick="buttonDeselect"
+            android:text="Deselect"
+            android:textSize="14sp"
+            />
+
+        <Button
+            android:id="@+id/questCompleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="buttonComplete"
+            android:text="Complete"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/questMovePosTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Move to position:"
+            android:textSize="16sp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/questMovePosET"
+            android:hint="#"
+            android:textSize="16sp"
+            android:layout_marginRight="4dp"/>
+
+        <Button
+            android:id="@+id/questMoveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Move"
+            android:onClick="buttonMove"
+            android:textSize="14sp"
+            android:layout_marginRight="20dp"/>
+
+        <Button
+            android:id="@+id/questDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:onClick="buttonDelete"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>
