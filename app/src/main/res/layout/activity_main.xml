@@ -179,6 +179,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/medievalsharp"
+        android:onClick="buttonQuest"
         android:paddingHorizontal="0dp"
         android:text="Quest"
         android:textAlignment="center"

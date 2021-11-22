@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,5 +63,10 @@ public class MainActivity extends AppCompatActivity {
             Intent newPlayerScreen = new Intent(this, NewPlayerActivity.class);
             startActivity(newPlayerScreen);
         }
+    }
+
+    public void buttonQuest(View view){
+        Intent questScreenIntent = new Intent(this,QuestScreenActivity.class);
+        startActivity(questScreenIntent);
     }
 }
