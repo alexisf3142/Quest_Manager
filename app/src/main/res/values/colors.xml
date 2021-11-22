@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="cream">#DED4BC</color>
     <color name="gray_blue">#34414c</color>
+    <color name="gray_blue_dark">#222b32</color>
+    <color name="dark_green">#38432f</color>
+    <color name="maroon">#472b27</color>
+    <color name="brown">#403634</color>
 </resources>
