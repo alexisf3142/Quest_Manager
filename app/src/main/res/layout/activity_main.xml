@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:fontFamily="@font/medievalsharp"
-        android:text='"name" the "title"'
+        android:text="name the title"
         android:textAlignment="viewStart"
         android:textColor="#000000"
         android:textSize="34sp"
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/medievalsharp"
-        android:text="12"
+        android:text="0"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
