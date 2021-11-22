@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
                 nameTitleTV.setText(playerCharacter.getName() + " the " + playerCharacter.getTitle());
 
-                 // next two lines makes the level textview display the proper number
+                // next two lines makes the level textview display the proper number
                 TextView levelTV = findViewById(R.id.levelNumberTextView);
                 levelTV.setText(String.valueOf(playerCharacter.getLvl()));
 
