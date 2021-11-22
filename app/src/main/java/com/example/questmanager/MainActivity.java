@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,7 +36,17 @@ public class MainActivity extends AppCompatActivity {
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 // allows us to read an object from the file, according to stack overflow
                 Character playerCharacter = (Character) ois.readObject();
-                // reads playerCharacter object from the file. next two lines close the read mode file
+                // reads playerCharacter object from the file.
+
+                // next two lines set the name and title text to the player's name and title
+                TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
+                nameTitleTV.setText(playerCharacter.getName() + " the " + playerCharacter.getTitle());
+
+                /* // next two lines makes the level textview display the proper number
+                TextView levelTV = findViewById(R.id.levelNumberTextView);
+                nameTitleTV.setText(playerCharacter.getLvl());*/
+
+                // next two lines close the read mode file
                 ois.close();
                 fis.close();
 

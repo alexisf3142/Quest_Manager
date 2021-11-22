@@ -24,7 +24,7 @@ public class Character implements Serializable {
     public Character(String name, String profession) {
         this.name = name;
         this.profession = profession;
-        this.title = "the Beginner";
+        this.title = "Beginner";
         this.weapon = "a solid stick";
         this.str = 5;
         this.dex = 5;
@@ -32,7 +32,7 @@ public class Character implements Serializable {
         this.smt = 5;
         this.power = 25;
         this.exp = 0;
-        this.lvl = 0;
+        this.lvl = 1;
         this.gold = 0;
         this.dmg = 3;
         this.finQ = 0;
