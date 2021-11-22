@@ -1,6 +1,7 @@
 package com.example.questmanager;
+import java.io.Serializable;
 
-public class Character {
+public class Character implements Serializable {
     private String name,title,profession,weapon;
     private int str,dex,lck,smt,power,exp,lvl,gold,dmg,finQ,finT;
 
