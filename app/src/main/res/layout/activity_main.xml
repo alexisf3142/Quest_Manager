@@ -33,7 +33,7 @@
         android:background="@drawable/buttonshape"
         android:backgroundTint="@color/dark_green"
         android:fontFamily="@font/medievalsharp"
-        android:text="?"
+        android:text="\?"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/mainQuestTextView"

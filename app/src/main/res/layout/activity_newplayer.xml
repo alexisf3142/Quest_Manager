@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!-- intro text greeting the user and asking for their name-->
+    <TextView
+        android:id="@+id/textViewGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Welcome adventurer!\nWhat is your name?"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!-- edit text that gets the user's name-->
+    <EditText
+        android:id="@+id/editTextUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGreeting" />
+
+<!-- text letting the user know that the image + button combos below let them choose their profession-->
+    <TextView
+        android:id="@+id/textViewChooseProf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="What type of hero are you?"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserName" />
+
+<!-- drawing for the knight character-->
+    <ImageView
+        android:id="@+id/imageViewKnight"
+        android:layout_width="128dp"
+        android:layout_height="256dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
+        app:srcCompat="@drawable/placeholder_character" />
+
+<!-- drawing for the mage character-->
+    <ImageView
+        android:id="@+id/imageViewMage"
+        android:layout_width="128dp"
+        android:layout_height="256dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewKnight"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
+        app:srcCompat="@drawable/placeholder_character" />
+
+<!-- drawing for the ranger character-->
+    <ImageView
+        android:id="@+id/imageViewRanger"
+        android:layout_width="128dp"
+        android:layout_height="256dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewMage"
+        app:layout_constraintTop_toBottomOf="@+id/textViewChooseProf"
+        app:srcCompat="@drawable/placeholder_character" />
+
+<!-- button that lets the user choose the knight profession-->
+    <Button
+        android:id="@+id/buttonKnight"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="setProfToKnight"
+        android:text="KNIGHT"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewKnight"
+        app:layout_constraintStart_toStartOf="@+id/imageViewKnight"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewKnight" />
+
+<!-- button that lets the user choose the mage profession-->
+    <Button
+        android:id="@+id/buttonMage"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="setProfToMage"
+        android:text="MAGE"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewMage"
+        app:layout_constraintStart_toStartOf="@+id/imageViewMage"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewMage" />
+
+<!-- button that lets the user choose the ranger profession-->
+    <Button
+        android:id="@+id/buttonRanger"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:onClick="setProfToRanger"
+        android:text="RANGER"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewRanger"
+        app:layout_constraintStart_toStartOf="@+id/imageViewRanger"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRanger" />
+
+<!-- text giving the user some context for the game and asking if they're set on their choice of name and profession-->
+    <TextView
+        android:id="@+id/textViewConfirmCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Are you ready to begin your journey\nto raise your Productivity Level\nand conquer the Dungeon of Responsibilities?\n\n(Your name and class cannot be changed after this point!)"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonMage" />
+
+<!-- button the user presses to save their choices and generate their character -->
+    <Button
+        android:id="@+id/buttonConfirmCharacter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="buttonConfirmCharacter"
+        android:text="Confirm"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewConfirmCharacter"
+        app:layout_constraintVertical_bias="0.2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
