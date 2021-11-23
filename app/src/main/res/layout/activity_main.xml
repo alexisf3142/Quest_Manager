@@ -44,13 +44,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/characterImageView"
+        android:id="@+id/mageImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="220dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,6 +59,40 @@
         app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/mage_human" />
+
+    <ImageView
+        android:id="@+id/knightImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="220dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/knight_human" />
+
+    <ImageView
+        android:id="@+id/rangerImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="220dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ranger_elf" />
 
     <TextView
         android:id="@+id/nameTitleTextView"
@@ -73,7 +108,7 @@
         app:layout_constraintBottom_toTopOf="@+id/levelTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/characterImageView" />
+        app:layout_constraintStart_toEndOf="@+id/mageImageView" />
 
     <TextView
         android:id="@+id/levelTextView"
@@ -155,7 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/characterImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/mageImageView" />
 
     <TextView
         android:id="@+id/expTextView"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
                 // allows us to read an object from the file, according to stack overflow
                 Character playerCharacter = (Character) ois.readObject();
                 // reads playerCharacter object from the file.
+
+                /* following if set determines which character drawing is visible
+                 based on the class the player chose at the start */
+
+                if (playerCharacter.getProfession().equals("Knight")) {
+                    ImageView knightIV = findViewById(R.id.knightImageView); // calls knight image
+                    knightIV.setVisibility(View.VISIBLE); // makes knight image visible
+                }
+                else if (playerCharacter.getProfession().equals("Mage")) {
+                    ImageView mageIV = findViewById(R.id.mageImageView); // calls mage image
+                    mageIV.setVisibility(View.VISIBLE); // makes mage image visible
+                }
+                else { // since we only have three options rn this covers the ranger profession
+                    ImageView rangerIV = findViewById(R.id.rangerImageView); // calls ranger image
+                    rangerIV.setVisibility(View.VISIBLE); // makes ranger image visible
+                }
 
                 // next two lines set the name and title text to the player's name and title
                 TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
