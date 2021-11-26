@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Quest Manager</string>
+
+    Underneath here are the string resources that are used by the dungeon.
+    <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use all of your strength and abilities to make it through. However while the danger is areal and constant threat there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
+    <string name="level_1">You go further into the decrepit dungeon. The smell of mildew permeates the torch lit corridors, and you hear a soft squelch as you move across the moss covered ground. You begin to almost become calm as you round a corner and see glowing red eyes in the darkness. You ready your weapons and prepare for the encounter.</string>
 </resources>

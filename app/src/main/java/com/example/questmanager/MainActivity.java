@@ -88,4 +88,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(questScreenIntent);
     }
 
+    public void buttonDungeon(View view){
+        Intent dungeonScreenIntent = new Intent(this,DungeonActivity.class);
+        startActivity(dungeonScreenIntent);
+    }
+
+
+
 }
