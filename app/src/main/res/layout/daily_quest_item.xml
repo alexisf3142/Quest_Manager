@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dailyQuestNumTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="1."
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/dailyQuestNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="questName"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_weight="0"
+            android:id="@+id/dailyQuestCompleteTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete:"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"/>
+
+        <CheckBox
+            android:id="@+id/dailyQuestCompleteCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkBoxDQComplete" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="buttonDQDeselect"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dailyQuestDeleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="20dp"
+            android:onClick="buttonDQDelete"
+            android:text="Delete"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/dailyQuestDeselectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0"
+            android:onClick="buttonDQDeselect"
+            android:text="Deselect"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

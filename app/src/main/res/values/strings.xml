@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Quest Manager</string>
 
-<!--Following block of strings are the section headings for the help screen-->
+    <!--Following block of strings are the section headings for the help screen-->
     <string name="qGeneral">General Information</string>
     <string name="qHome">Home Screen</string>
     <string name="qQuest">Quest Screen</string>
