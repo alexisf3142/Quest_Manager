@@ -44,16 +44,20 @@
 
     <string name="aQuest"><![CDATA[
     <p>The Quest Screen is where you make and view <b>Quests</b>; aka, the tasks you have to complete.
-    It is divided into three sections: Current Quests, Daily Tasks, and Completed Quests.</p>
+    It is divided into three sections: Current Quests, Daily Quests, and Completed Quests.</p>
     <p>The <b>Current Quests</b> tab lets you see the tasks you have signed up for and have yet to complete.
     Every Quest has a Name, Description, Due Date, Due Time, and Difficulty (from 1 to 5).
     You can make a new Quest by pressing the <b>New Quest</b> button at the bottom of this screen.</p>
-    <p>You can edit an existing Quest or mark it as complete by clicking on it in the list.
+    <p>You can edit an existing Quest, delete it, move its position in the list,
+    or mark it as complete by clicking on it.
+    The Quest you have at the top of your list will be set as your <b>Main Quest</b>.
+    It will appear at the top of the Home Screen.
     Completing a Quest will earn you EXP (amount depending on its Difficulty)
     and move it to the <b>Completed Quests</b> tab, where you can view everything you have accomplished :)</p>
     <p><b>Daily Tasks</b> are chores that are auto-generated and refresh every day.
     They are reminders to do things like eat, drink water, take care of your personal hygiene,
     keep your space clean, and get some rest.
+    You can add some of your own as well with the New Daily Quest button.
     They are a smaller but reliable source of EXP and Power, and they are important to do,
     so be sure to do them and check them off the list!</p>]]></string>
 
@@ -69,14 +73,16 @@
     <string name="aShop"><![CDATA[
     <p>The <b>Shop Screen</b> is where you spend the money you earn in the <b>Dungeon</b>.</p>
     <p>The weapons you buy here can give an additional boost to your stats,
-    which are viewable on the <b>Profile Screen.</b></p>]]></string>
+    which are viewable on the <b>Profile Screen.</b>
+    You can also buy potions that will temporarily boos your stats.</p>]]></string>
 
     <string name="aDungeon"><![CDATA[
     <p>The <b>Dungeon of Responsibilities</b> is where you put your <b>Power</b> to use.
     Entering will inevitably lead to an encounter with a monster!</p>
     <p>The monster will attack you (or at least try to) on its turn, lowering your Power.
     Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
-    <p>On your turn, you can either attack the monster,
+    <p>On your turn, you can either attack the monster, defend,
+    power yourself up to make the next attack hit harder,
     or retreat to save your Power and try again next time.</p>
     <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
     and it will allow you to progress deeper into the dungeon.</p>
