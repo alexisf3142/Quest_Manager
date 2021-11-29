@@ -33,6 +33,7 @@
         android:background="@drawable/buttonshape"
         android:backgroundTint="@color/dark_green"
         android:fontFamily="@font/medievalsharp"
+        android:onClick="buttonHelp"
         android:text="\?"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
