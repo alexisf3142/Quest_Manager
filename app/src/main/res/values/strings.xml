@@ -25,8 +25,7 @@
 
     <string name="aHome"><![CDATA[
     <p>The home screen can be thought of as your adventuring hub.</p>
-    <p>At the top you will see your current <b>Main Quest</b> if you have designated one
-    (you can do this on the <b>Quest screen</b>).</p>
+    <p>At the top you will see your current <b>Main Quest</b> (set on the <b>Quest screen</b>).</p>
     <p>Next to your character image is your <b>Name</b>
     (as entered when you first made your character; it unfortunately cannot be changed)
     and your currently set Title.
@@ -48,10 +47,10 @@
     <p>The <b>Current Quests</b> tab lets you see the tasks you have signed up for and have yet to complete.
     Every Quest has a Name, Description, Due Date, Due Time, and Difficulty (from 1 to 5).
     You can make a new Quest by pressing the <b>New Quest</b> button at the bottom of this screen.</p>
-    <p>You can edit an existing Quest, delete it, move its position in the list,
-    or mark it as complete by clicking on it.
-    The Quest you have at the top of your list will be set as your <b>Main Quest</b>.
-    It will appear at the top of the Home Screen.
+    <p>If you click on a Quest in the list,
+    you can edit it, delete it, move its position, or mark it as complete.
+    The Quest you have at the top of your list will be set as your <b>Main Quest</b>
+    and appear at the top of the Home Screen.
     Completing a Quest will earn you EXP (amount depending on its Difficulty)
     and move it to the <b>Completed Quests</b> tab, where you can view everything you have accomplished :)</p>
     <p><b>Daily Tasks</b> are chores that are auto-generated and refresh every day.
@@ -81,8 +80,8 @@
     Entering will inevitably lead to an encounter with a monster!</p>
     <p>The monster will attack you (or at least try to) on its turn, lowering your Power.
     Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
-    <p>On your turn, you can either attack the monster, defend,
-    power yourself up to make the next attack hit harder,
+    <p>On your turn, you can either attack the monster, defend yourself so you take less damage,
+    power yourself up to make your next attack hit harder,
     or retreat to save your Power and try again next time.</p>
     <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
     and it will allow you to progress deeper into the dungeon.</p>

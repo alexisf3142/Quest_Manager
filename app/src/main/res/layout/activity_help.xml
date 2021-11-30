@@ -11,7 +11,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/medievalsharp"
         android:text="Help and FAQ"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
