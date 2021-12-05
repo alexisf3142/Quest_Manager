@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:fontFamily="@font/medievalsharp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold">
     </TextView>
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:fontFamily="@font/medievalsharp"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:visibility="gone">
     </TextView>
 

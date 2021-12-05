@@ -19,6 +19,15 @@
             android:name=".QuestScreenActivity"
             android:exported="false" />
         <activity
+            android:name=".ShopScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewPlayerActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".HelpActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -27,8 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewPlayerActivity" />
-        <activity android:name=".HelpActivity" />
     </application>
 
 </manifest>

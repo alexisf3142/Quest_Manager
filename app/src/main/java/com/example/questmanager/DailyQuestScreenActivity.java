@@ -52,6 +52,7 @@ public class DailyQuestScreenActivity extends AppCompatActivity {
                 lastAccessDate = newDate;
                 resetDailyQuests();
                 dailyQuestAdapter.notifyDataSetChanged();
+                updateDQFile();
             }
         }
     }

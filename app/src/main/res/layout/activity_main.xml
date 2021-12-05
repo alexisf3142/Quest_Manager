@@ -253,6 +253,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/medievalsharp"
+        android:onClick="buttonShop"
         android:paddingHorizontal="0dp"
         android:text="Shop"
         android:textAlignment="center"
