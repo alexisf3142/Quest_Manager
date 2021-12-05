@@ -236,6 +236,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/medievalsharp"
+        android:onClick="buttonProfile"
         android:paddingHorizontal="2dp"
         android:text="Profile"
         android:textAlignment="center"

@@ -9,26 +9,26 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class CharacterStatsFragment extends Fragment {
+public class AchievementsFragment extends Fragment {
 
     View rootView;
 
-    View.OnClickListener characterStatsButtonListener = new View.OnClickListener() {
+    View.OnClickListener achievementsButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
         }
     };
 
-    public CharacterStatsFragment() { }
+    public AchievementsFragment() { }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.character_stats_layout, container, false);
+        rootView = inflater.inflate(R.layout.achievements_layout, container, false);
 
-        Button charStatsButton = rootView.findViewById(R.id.characterStatsButton);
-        charStatsButton.setOnClickListener(characterStatsButtonListener);
+        Button achievementsButton = rootView.findViewById(R.id.achievementsButton);
+        achievementsButton.setOnClickListener(achievementsButtonListener);
 
         return rootView;
     }
