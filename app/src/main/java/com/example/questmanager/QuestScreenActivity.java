@@ -25,9 +25,11 @@ import java.util.ArrayList;
 public class QuestScreenActivity extends AppCompatActivity {
 
     int size = 0; //Keeps track of the amount of quests
+    int compSize = 0;
     int mostRecentElement = -1; //Holds position in the ListView of the most recently clicked element;
     View mostRecentView; //Holds the most recently clicked element of the ListView
 
+    ArrayList<Quest> compQuestArray;
     ArrayList<Quest> questArray; //Array of the list names
     QuestScreenAdapter questAdapter;
     @Override
@@ -35,7 +37,12 @@ public class QuestScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_screen);
 
+        questArray = new ArrayList<Quest>();
         getQuestArrayFromFile(); //Load from file
+
+        compQuestArray = new ArrayList<Quest>();
+        getCompQuestArrayFromFile();
+
         questAdapter = new QuestScreenAdapter(this,questArray);
         ListView questListView = findViewById(R.id.questLV);
         questListView.setAdapter(questAdapter); //assign questAdapter to the listView
@@ -329,6 +336,9 @@ public class QuestScreenActivity extends AppCompatActivity {
     }
 
     public void buttonComplete(View view){
+        compQuestArray.add(0,questArray.get(mostRecentElement));
+        compSize++;
+        updateCompFile();
         buttonDelete(view);
         /** Add code to resolve experience and power gains */
     }
@@ -381,9 +391,8 @@ public class QuestScreenActivity extends AppCompatActivity {
      * Read the file of list names. Get the size from file and put the names into questArray
      */
     public void getQuestArrayFromFile(){
-        questArray = new ArrayList<Quest>();
-        File mainFile =getBaseContext().getFileStreamPath("questList.txt");
-        if (mainFile.exists()){
+        File theFile =getBaseContext().getFileStreamPath("questList.txt");
+        if (theFile.exists()){
             try {
                 FileInputStream fis = this.openFileInput("questList.txt");
                 InputStreamReader isReader = new InputStreamReader(fis);
@@ -418,4 +427,72 @@ public class QuestScreenActivity extends AppCompatActivity {
         }
     }
 
+    public void getCompQuestArrayFromFile(){
+        File theFile =getBaseContext().getFileStreamPath("compQuestList.txt");
+        if (theFile.exists()) {
+            try {
+                FileInputStream fis = this.openFileInput("compQuestList.txt");
+                InputStreamReader isReader = new InputStreamReader(fis);
+                BufferedReader bufferedReader = new BufferedReader(isReader);
+                String theLine = bufferedReader.readLine();
+                compSize = Integer.parseInt(theLine); //Get size from file
+                for (int i = 0; i < compSize; i++) { //Get quests from file
+                    String name, dueDate, dueTime, description;
+                    int difficulty;
+                    //get quest data
+                    theLine = bufferedReader.readLine();
+                    name = theLine;
+                    theLine = bufferedReader.readLine();
+                    dueDate = theLine;
+                    theLine = bufferedReader.readLine();
+                    dueTime = theLine;
+                    theLine = bufferedReader.readLine();
+                    description = theLine;
+                    theLine = bufferedReader.readLine();
+                    difficulty = Integer.parseInt(theLine);
+                    //Create quest with read data and add to list
+                    Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty);
+                    compQuestArray.add(newQuest);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error loading quests", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void updateCompFile (){
+        String writeString;
+        writeString = String.valueOf(compSize);
+        for (int i = 0; i < compSize; i++){ //Construct string to be written to the file
+            writeString += "\n";
+            writeString += compQuestArray.get(i).getName();
+            writeString += "\n";
+            writeString += compQuestArray.get(i).getDueDate();
+            writeString += "\n";
+            writeString += compQuestArray.get(i).getDueTime();
+            writeString += "\n";
+            writeString += compQuestArray.get(i).getDescription();
+            writeString += "\n";
+            writeString += String.valueOf(compQuestArray.get(i).getDifficulty());
+        }
+        try {//write string to file
+            FileOutputStream fos = this.openFileOutput("compQuestList.txt", Context.MODE_PRIVATE);
+            fos.write(writeString.getBytes());
+        } catch (IOException e) {//Catch exceptions
+            e.printStackTrace();
+            Toast.makeText(this,"Problem with output file",Toast.LENGTH_SHORT).show();
+        }
+    }
+    /** REMOVE AFTER ADDING TABS **/
+
+    public void buttonCompletedQuests(View view){
+        Intent compQuestScreenIntent = new Intent(this,CompQuestScreenActivity.class);
+        startActivity(compQuestScreenIntent);
+    }
+
+    public void buttonDailyQuests(View view){
+        Intent dailyQuestScreenIntent = new Intent(this,DailyQuestScreenActivity.class);
+        startActivity(dailyQuestScreenIntent);
+    }
 }

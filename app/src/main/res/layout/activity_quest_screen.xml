@@ -25,6 +25,7 @@
         android:layout_marginBottom="8dp"
         android:onClick="newQuestButton"
         android:text="New Quest"
+        android:theme="@style/Button.Brown"
         app:layout_constraintBottom_toTopOf="@+id/questNameET"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -129,4 +130,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/qsTopLineTV" />
+
+    <Button
+        android:id="@+id/completedQuestButton"
+        android:layout_width="83dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:onClick="buttonCompletedQuests"
+        android:text="Completed Quests"
+        app:layout_constraintStart_toEndOf="@+id/dailyQuestButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/dailyQuestButton"
+        android:layout_width="83dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:onClick="buttonDailyQuests"
+        android:text="Daily Quests"
+        app:layout_constraintStart_toEndOf="@+id/qsTopLineTV"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
