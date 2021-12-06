@@ -1,15 +1,20 @@
 package com.example.questmanager;
 
+import androidx.annotation.Nullable;
+
 public class ShopItem {
     private int price;
     public String itemName;
-    private boolean purchased;
+    private boolean purchased = false;
     private String achievementName;
+    private String weaponType; //basic, fancy, extravagant
+    private String profession; //Knight, Mage, Ranger
 
-    public ShopItem(int price, String itemName, boolean purchased, String achievementName) {
+    public ShopItem(int price, String itemName, String weaponType, String profession, @Nullable String achievementName) {
         this.price = price;
         this.itemName = itemName;
-        this.purchased = purchased;
+        this.weaponType = weaponType;
+        this.profession = profession;
         this.achievementName = achievementName;
     }
 
@@ -43,6 +48,22 @@ public class ShopItem {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public String getWeaponType() {
+        return weaponType;
+    }
+
+    public void setWeaponType(String weaponType) {
+        this.weaponType = weaponType;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 }
 

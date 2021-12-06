@@ -29,7 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/medievalsharp"
-        android:text="Gold:"
+        android:text="your gold:"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -68,10 +68,37 @@
 
     <ListView
         android:id="@+id/shopListView"
-        android:layout_width="409dp"
-        android:layout_height="613dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nitramImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coinImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/coinImageView">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/backFromShopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medievalsharp"
+        android:onClick="buttonBackFromHelp"
+        android:text="home"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/shopTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/shopTextView"
+        app:layout_constraintTop_toTopOf="@+id/shopTextView" />
+
+    <ImageView
+        android:id="@+id/nitramImageView"
+        android:layout_width="363dp"
+        android:layout_height="216dp"
+        android:layout_marginStart="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/nitram_hi" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

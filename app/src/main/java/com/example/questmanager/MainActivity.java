@@ -15,15 +15,10 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent firstTimeIntent = getIntent();
-        // this is for when the button to make new character is pressed
-        // and the player is brought to the home screen for the first time
 
         readFile(); // calls the function below
     }
@@ -83,9 +78,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // following method takes player to the quest screen when they press the quest button
     public void buttonQuest(View view){
         Intent questScreenIntent = new Intent(this,QuestScreenActivity.class);
         startActivity(questScreenIntent);
+    }
+
+    // following method takes player to the quest screen when they press the quest button
+    public void buttonShop(View view){
+        Intent shopScreenIntent = new Intent(this,ShopScreenActivity.class);
+        startActivity(shopScreenIntent);
+    }
+
+    // following method takes player to the help screen when they press the help button
+    public void buttonHelp(View view){
+        Intent helpScreenIntent = new Intent(MainActivity.this, HelpActivity.class);
+        MainActivity.this.startActivity(helpScreenIntent);
     }
 
 }

@@ -15,8 +15,8 @@ public class HelpActivity extends AppCompatActivity {
     private HelpAdapter helpAdapter; // used to add and organize items in the list
 
     /* following calls method from helpAdapter that sets whichever list item was last clicked on
-    * as the most recently clicked item, and updates the listView as a whole
-    * this will be used to make the answer text visible only for the most recently clicked question*/
+     * as the most recently clicked item, and updates the listView as a whole
+     * this will be used to make the answer text visible only for the most recently clicked question*/
     AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
