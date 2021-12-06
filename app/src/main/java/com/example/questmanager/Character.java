@@ -25,7 +25,7 @@ public class Character implements Serializable {
         this.name = name;
         this.profession = profession;
         this.title = "Beginner";
-        this.weapon = "a solid stick";
+        this.weapon = "basic";
         this.str = 5;
         this.dex = 5;
         this.lck = 5;
@@ -101,6 +101,7 @@ public class Character implements Serializable {
         return finT;
     }
 
+
     // All of the setters start here
 
     public void setName(String name) {
@@ -158,6 +159,7 @@ public class Character implements Serializable {
     public void setFinT(int finT) {
         this.finT = finT;
     }
+
 }
 
 
