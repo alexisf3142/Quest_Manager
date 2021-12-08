@@ -17,7 +17,6 @@ import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Character playerCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 FileInputStream fis = this.openFileInput("playerData.txt"); // opens file in read mode
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 // allows us to read an object from the file, according to stack overflow
-                playerCharacter = (Character) ois.readObject();
+                Character playerCharacter = (Character) ois.readObject();
 
                 // reads playerCharacter object from the file.
 
@@ -90,16 +89,21 @@ public class MainActivity extends AppCompatActivity {
 
                 // next two lines set the name and title text to the player's name and title
                 TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
-                nameTitleTV.setText(playerCharacter.getName() + " the " + playerCharacter.getTitle());
+                nameTitleTV.setText(playerCharacter.getName() + "\nthe\n" + playerCharacter.getTitle());
 
                 // next two lines makes the level textview display the proper number
-                TextView levelTV = findViewById(R.id.levelNumberTextView);
-                levelTV.setText(String.valueOf(playerCharacter.getLvl()));
+                TextView levelTV = findViewById(R.id.levelTextView);
+                levelTV.setText("Level " + playerCharacter.getLvl());
 
                 //setting the progress bars
                 ProgressBar powerPB = findViewById(R.id.powerProgressBar);
+                float curpower = playerCharacter.getCurpower();
+                float maxpower = playerCharacter.getMaxpower();
+                powerPB.setProgress((int)(curpower/maxpower*100));
                 ProgressBar expPB = findViewById(R.id.expProgressBar);
-                powerPB.setProgress(playerCharacter.getCurpower());
+                /*float curexp = playerCharacter.getCurpower();
+                float maxexp = playerCharacter.getMaxpower();
+                powerPB.setProgress((int)(curpower/maxpower*100));*/
                 expPB.setProgress(playerCharacter.getExp());
 
                 // next two lines close the read mode file

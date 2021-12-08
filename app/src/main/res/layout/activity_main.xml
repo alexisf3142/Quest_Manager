@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/cream">
+    android:background="@color/cream"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/mainQuestTextView"
@@ -50,11 +50,11 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="200dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginBottom="220dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
@@ -67,11 +67,11 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="200dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="220dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
@@ -80,9 +80,12 @@
 
     <TextView
         android:id="@+id/nameTitleTextView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/medievalsharp"
         android:text="name the title"
         android:textAlignment="viewStart"
@@ -92,13 +95,16 @@
         app:layout_constraintBottom_toTopOf="@+id/levelTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/characterImageView" />
+        app:layout_constraintStart_toEndOf="@+id/guidelineV"
+        app:layout_constraintTop_toTopOf="@+id/characterImageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
         android:fontFamily="@font/medievalsharp"
         android:text="Level"
         android:textAlignment="center"
@@ -109,70 +115,52 @@
         app:layout_constraintBottom_toTopOf="@+id/powerProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nameTitleTextView" />
-
-    <TextView
-        android:id="@+id/levelNumberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/medievalsharp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/levelTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/levelTextView"
-        app:layout_constraintTop_toTopOf="@+id/levelTextView" />
+        app:layout_constraintStart_toStartOf="@+id/nameTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTitleTextView" />
 
     <ProgressBar
         android:id="@+id/powerProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="270dp"
+        android:layout_width="256dp"
         android:layout_height="94dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:progress="50"
         android:progressTint="#3C613B"
         android:scaleY="6"
         app:layout_constraintBottom_toBottomOf="@+id/powerTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toEndOf="@+id/powerTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/guidelineV2"
         app:layout_constraintTop_toTopOf="@+id/powerTextView"
         app:layout_constraintVertical_bias="0.372" />
 
     <ProgressBar
         android:id="@+id/expProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="270dp"
+        android:layout_width="256dp"
         android:layout_height="94dp"
-        android:layout_marginEnd="8dp"
         android:progress="50"
         android:progressTint="#3C613B"
         android:scaleY="6"
         app:layout_constraintBottom_toBottomOf="@+id/expTextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/powerProgressBar"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/powerProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV2"
         app:layout_constraintTop_toTopOf="@+id/expTextView" />
 
     <TextView
         android:id="@+id/powerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/medievalsharp"
         android:text="Power"
         android:textColor="#000000"
-        android:textSize="34sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterImageView" />
 
@@ -181,12 +169,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/medievalsharp"
         android:text="EXP"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/powerTextView"
         app:layout_constraintTop_toBottomOf="@+id/powerTextView"
@@ -196,8 +186,7 @@
         android:id="@+id/questButton"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/medievalsharp"
         android:onClick="buttonQuest"
@@ -227,6 +216,7 @@
         android:textStyle="bold"
         android:theme="@style/Button.Brown"
         app:layout_constraintBottom_toBottomOf="@+id/questButton"
+        app:layout_constraintEnd_toStartOf="@+id/shopButton"
         app:layout_constraintStart_toEndOf="@+id/questButton"
         app:layout_constraintTop_toTopOf="@+id/questButton" />
 
@@ -244,15 +234,16 @@
         android:textStyle="bold"
         android:theme="@style/Button.Maroon"
         app:layout_constraintBottom_toBottomOf="@+id/profileButton"
+        app:layout_constraintEnd_toStartOf="@+id/dungeonButton"
         app:layout_constraintStart_toEndOf="@+id/profileButton"
         app:layout_constraintTop_toTopOf="@+id/profileButton" />
 
     <Button
         android:id="@+id/dungeonButton"
-        android:layout_width="wrap_content"
+        android:layout_width="106dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/medievalsharp"
         android:onClick="buttonDungeon"
         android:paddingHorizontal="2dp"
@@ -265,6 +256,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/shopButton"
         app:layout_constraintTop_toTopOf="@+id/shopButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
