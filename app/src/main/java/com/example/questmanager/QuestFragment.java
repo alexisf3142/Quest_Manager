@@ -48,6 +48,13 @@ public class QuestFragment extends Fragment {
         rootView = inflater.inflate(R.layout.activity_quest_screen, container, false);
 
         fragContext = getActivity();
+        //Set button onClickListeners
+        Button newQuestButton = rootView.findViewById(R.id.newQuestButton);
+        newQuestButton.setOnClickListener(newQuestButtonListener);
+        Button addQuestButton = rootView.findViewById(R.id.addQuestButton);
+        addQuestButton.setOnClickListener(addQuestButtonListener);
+        Button confirmButton = rootView.findViewById(R.id.confirmQuestChangesButton);
+        confirmButton.setOnClickListener(confirmChangesButtonListener);
 
         questArray = new ArrayList<Quest>();
         getQuestArrayFromFile(); //Load from file
@@ -55,13 +62,63 @@ public class QuestFragment extends Fragment {
         compQuestArray = new ArrayList<Quest>();
         getCompQuestArrayFromFile();
 
-        questAdapter = new QuestScreenAdapter(fragContext,questArray);
+        questAdapter = new QuestScreenAdapter(fragContext,questArray,this);
         ListView questListView = rootView.findViewById(R.id.questLV);
         questListView.setAdapter(questAdapter); //assign questAdapter to the listView
         questListView.setOnItemClickListener(questLVListener); //assign OnItemClickListener to ListView
         
         return rootView;
     }
+
+    View.OnClickListener newQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            newQuestButton(view);
+        }
+    };
+    View.OnClickListener addQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            addQuestButton(view);
+        }
+    };
+    View.OnClickListener confirmChangesButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonConfirm(view);
+        }
+    };
+    View.OnClickListener editQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonEdit(view);
+        }
+    };
+    View.OnClickListener deselectQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonDeselect(view);
+        }
+    };
+    View.OnClickListener completeQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonComplete(view);
+        }
+    };
+    View.OnClickListener moveQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonMove(view);
+        }
+    };
+    View.OnClickListener deleteQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonDelete(view);
+        }
+    };
+
     
     AdapterView.OnItemClickListener questLVListener = new AdapterView.OnItemClickListener() {
         /**

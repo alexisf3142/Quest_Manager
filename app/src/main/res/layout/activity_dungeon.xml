@@ -72,11 +72,12 @@
 
             <Button
                 android:id="@+id/attackButton"
-                android:layout_margin="8sp"
-                android:fontFamily="@font/medievalsharp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8sp"
                 android:layout_weight="1"
+                android:fontFamily="@font/medievalsharp"
+                android:onClick="attackButton"
                 android:text="Attack" />
 
             <Button

@@ -80,7 +80,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
             android:layout_marginRight="20dp"
-            android:onClick="buttonEdit"
             android:text="Edit"
             android:textSize="14sp" />
 
@@ -89,7 +88,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:onClick="buttonDeselect"
             android:text="Deselect"
             android:textSize="14sp"
             />
@@ -98,7 +96,6 @@
             android:id="@+id/questCompleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="buttonComplete"
             android:text="Complete"
             android:textSize="14sp" />
 
@@ -130,7 +127,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Move"
-            android:onClick="buttonMove"
             android:textSize="14sp"
             android:layout_marginRight="20dp"/>
 
@@ -139,7 +135,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
-            android:onClick="buttonDelete"
             android:textSize="14sp" />
 
     </LinearLayout>

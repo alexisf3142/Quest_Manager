@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Character implements Serializable {
     private String name,title,profession,weapon;
-    private int str,dex,lck,smt,power,exp,lvl,gold,dmg,finQ,finT;
+    private int str,dex,lck,smt,curpower,maxpower,exp,lvl,gold,dmg,finQ,finT;
     // private ShopItem weapon;
 
     /*
@@ -26,12 +26,13 @@ public class Character implements Serializable {
         this.name = name;
         this.profession = profession;
         this.title = "Beginner";
-        this.weapon = "basic";
+        this.weapon = "a solid stick";
         this.str = 5;
         this.dex = 5;
         this.lck = 5;
         this.smt = 5;
-        this.power = 25;
+        this.maxpower = 25;
+        this.curpower = 25;
         this.exp = 0;
         this.lvl = 1;
         this.gold = 0;
@@ -58,6 +59,14 @@ public class Character implements Serializable {
         return weapon;
     }
 
+    public int getCurpower() {
+        return curpower;
+    }
+
+    public int getMaxpower() {
+        return maxpower;
+    }
+
     public int getStr() {
         return str;
     }
@@ -72,10 +81,6 @@ public class Character implements Serializable {
 
     public int getSmt() {
         return smt;
-    }
-
-    public int getPower() {
-        return power;
     }
 
     public int getExp() {
@@ -101,7 +106,6 @@ public class Character implements Serializable {
     public int getFinT() {
         return finT;
     }
-
 
     // All of the setters start here
 
@@ -133,12 +137,16 @@ public class Character implements Serializable {
         this.smt = smt;
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
-
     public void setExp(int exp) {
         this.exp = exp;
+    }
+
+    public void setCurpower(int curpower) {
+        this.curpower = curpower;
+    }
+
+    public void setMaxpower(int maxpower) {
+        this.maxpower = maxpower;
     }
 
     public void setLvl(int lvl) {
@@ -175,7 +183,6 @@ public class Character implements Serializable {
         this.lvl = lvl;
         this.exp = exp;
     }
-
 }
 
 

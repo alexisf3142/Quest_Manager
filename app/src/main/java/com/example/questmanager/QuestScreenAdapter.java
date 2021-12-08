@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class QuestScreenAdapter extends ArrayAdapter<Quest> {
+    QuestFragment parentFragment;
     private int mostRecentlyClickedPosition;
     /**
      * Constructor for Element Adapter. Calls super constructor and sets MostRecentlyClickedPosition
@@ -21,9 +22,10 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
      * @param context Activity the method is called from
      * @param questList The ArrayList to get the data from for the ArrayAdapter
      */
-    public QuestScreenAdapter(Activity context, ArrayList<Quest> questList){
+    public QuestScreenAdapter(Activity context, ArrayList<Quest> questList,QuestFragment parent){
         super(context, 0, questList);
         mostRecentlyClickedPosition = -1;
+        parentFragment = parent;
     }
 
     /**
@@ -64,6 +66,11 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
         TextView movePosTV = questItemView.findViewById(R.id.questMovePosTV);
         TextView movePosET = questItemView.findViewById(R.id.questMovePosET);
         Button deleteButton = questItemView.findViewById(R.id.questDeleteButton);
+        editButton.setOnClickListener(parentFragment.editQuestButtonListener);
+        deselectButton.setOnClickListener(parentFragment.deselectQuestButtonListener);
+        completeButton.setOnClickListener(parentFragment.completeQuestButtonListener);
+        moveButton.setOnClickListener(parentFragment.moveQuestButtonListener);
+        deleteButton.setOnClickListener(parentFragment.deleteQuestButtonListener);
         if (position == mostRecentlyClickedPosition){
             editButton.setVisibility(View.VISIBLE);
             deselectButton.setVisibility(View.VISIBLE);
@@ -92,4 +99,5 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
     public void setMostRecentlyClickedPosition(int mostRecentlyClickedPosition) {
         this.mostRecentlyClickedPosition = mostRecentlyClickedPosition;
     }
+
 }

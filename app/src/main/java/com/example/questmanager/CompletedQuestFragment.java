@@ -32,7 +32,7 @@ public class CompletedQuestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.activity_quest_screen, container, false);
+        rootView = inflater.inflate(R.layout.activity_comp_quest_screen, container, false);
 
         fragContext = getActivity();
 
@@ -40,7 +40,7 @@ public class CompletedQuestFragment extends Fragment {
         getCompQuestArrayFromFile();
 
         compQuestAdapter = new CompQuestScreenAdapter(fragContext,compQuestArray);
-        ListView questListView = fragContext.findViewById(R.id.compQuestLV);
+        ListView questListView = rootView.findViewById(R.id.compQuestLV);
         questListView.setAdapter(compQuestAdapter); //assign compQuestAdapter to the listView
         compQuestAdapter.notifyDataSetChanged();
 
