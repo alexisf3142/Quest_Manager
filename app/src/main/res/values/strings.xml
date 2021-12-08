@@ -1,3 +1,105 @@
 <resources>
     <string name="app_name">Quest Manager</string>
+
+    <!--Following block of strings are the section headings for the help screen-->
+    <string name="qGeneral">General Information</string>
+    <string name="qHome">Home Screen</string>
+    <string name="qQuest">Quest Screen</string>
+    <string name="qProfile">Profile Screen</string>
+    <string name="qShop">Shop Screen</string>
+    <string name="qDungeon">Dungeon Screen</string>
+    <string name="qCredits">Credits</string>
+
+    <!-- Following is the dungeon screen strings -->
+    <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use all of your strength and abilities to make it through. However while the danger is real and constant threat there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
+    <string name="level_1">You go further into the decrepit dungeon. The smell of mildew permeates the torch lit corridors, and you hear a soft squelch as you move across the moss covered ground. You begin to almost become calm as you round a corner and see glowing red eyes in the darkness. You ready your weapons and prepare for the encounter.</string>
+    <string name="level_2">Having bested your first foe. You continue undaunted forward. The squelching continues, and turns into wet sloshing as you begin to start moving through first ankle deep and then eventually knee deep water. Bright blue flickering lights dance around you</string>
+
+
+
+    <!--And this is all the explanatory text for the help screen.-->
+    <string name="aGeneral"><![CDATA[
+    <p>Thank you for downloading Quest Manager!</p>
+    <p>Your goal, hero, is simple: complete enough <b>Quests</b>
+    to both raise your <b>Productivity Level</b> high enough
+    that you can conquer the <b>Dungeon of Responsibilities</b>,
+    and simultaneously, thanks to the prior motivation,
+    become better at completing your tasks in the real world!</p>
+    <p>Below you will find explanations of how each of the screens of this app functions.</p>
+    <p>We wish you luck, hero!</p>
+    <p><i>You guys should let me know if there is anything I should put here
+    that is not covered by the other sections.</i></p>]]></string>
+
+    <string name="aHome"><![CDATA[
+    <p>The home screen can be thought of as your adventuring hub.</p>
+    <p>At the top you will see your current <b>Main Quest</b> (set on the <b>Quest screen</b>).</p>
+    <p>Next to your character image is your <b>Name</b>
+    (as entered when you first made your character; it unfortunately cannot be changed)
+    and your currently set Title.
+    <b>Titles</b> are earned as <b>achievements</b> for completing specific tasks or a certain number of tasks
+    (see the <b>Profile Screen</b> section of this page).</p>
+    <p>Below that is your Level, Power, and EXP (experience points).
+    <b>Power</b> and <b>EXP</b> are both increased by completing <b>Quests</b>.
+    Earning enough EXP ups your <b>Level</b>. It represents how much your productivity has increased!</p>
+    <p>Power is used to enter the <b>Dungeon</b>.
+    To do well in the Dungeon, you will want to increase your stats.
+    This is done by leveling up (see the <b>Profile Screen</b>),
+    and by buying weapons with the money you earn from the Dungeon at the <b>Shop</b>.</p>
+    <p>At the bottom are buttons to take you the Quest, Profile, Shop, and Dungeon screens,
+    which each have their own sections on this page if you have questions about them.</p>]]></string>
+
+    <string name="aQuest"><![CDATA[
+    <p>The Quest Screen is where you make and view <b>Quests</b>; aka, the tasks you have to complete.
+    It is divided into three sections: Current Quests, Daily Quests, and Completed Quests.</p>
+    <p>The <b>Current Quests</b> tab lets you see the tasks you have signed up for and have yet to complete.
+    Every Quest has a Name, Description, Due Date, Due Time, and Difficulty (from 1 to 5).
+    You can make a new Quest by pressing the <b>New Quest</b> button at the bottom of this screen.</p>
+    <p>If you click on a Quest in the list,
+    you can edit it, delete it, move its position, or mark it as complete.
+    The Quest you have at the top of your list will be set as your <b>Main Quest</b>
+    and appear at the top of the Home Screen.
+    Completing a Quest will earn you EXP (amount depending on its Difficulty)
+    and move it to the <b>Completed Quests</b> tab, where you can view everything you have accomplished :)</p>
+    <p><b>Daily Tasks</b> are chores that are auto-generated and refresh every day.
+    They are reminders to do things like eat, drink water, take care of your personal hygiene,
+    keep your space clean, and get some rest.
+    You can add some of your own as well with the New Daily Quest button.
+    They are a smaller but reliable source of EXP and Power, and they are important to do,
+    so be sure to do them and check them off the list!</p>]]></string>
+
+    <string name="aProfile"><![CDATA[
+    <p>The <b>Profile Screen</b> is where you can view your player stats and achievements.</p>
+    <p>Stats are earned by increasing your Productivity Level via EXP from finished <b>Quests</b>.
+    They improve your performance in the <b>Dungeon</b>, so assign your points wisely!</p>
+    <p><i>Maybe have a description of each stat here? Unless that will be on the profile screen.</i></p>
+    <p><b>Achievements</b> are earned from completing specific tasks, or a certain number of tasks.
+    Each achievement gets you a <b>Title</b>
+    that you can set to appear alongside your name on the <b>Home Screen</b>.</p>]]></string>
+
+    <string name="aShop"><![CDATA[
+    <p>The <b>Shop Screen</b> is where you spend the money you earn in the <b>Dungeon</b>.</p>
+    <p>The weapons you buy here can give an additional boost to your stats,
+    which are viewable on the <b>Profile Screen.</b>
+    You can also buy potions that will temporarily boos your stats.</p>]]></string>
+
+    <string name="aDungeon"><![CDATA[
+    <p>The <b>Dungeon of Responsibilities</b> is where you put your <b>Power</b> to use.
+    Entering will inevitably lead to an encounter with a monster!</p>
+    <p>The monster will attack you (or at least try to) on its turn, lowering your Power.
+    Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
+    <p>On your turn, you can either attack the monster, defend yourself so you take less damage,
+    power yourself up to make your next attack hit harder,
+    or retreat to save your Power and try again next time.</p>
+    <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
+    and it will allow you to progress deeper into the dungeon.</p>
+    <p>The higher you raise your <b>Productivity Level</b> via completing <b>Quests</b>,
+    the stronger the foes you face will be.
+    And there may be someone extra powerful waiting for you a ways down…</p>]]></string>
+
+    <string name="aCredits"><![CDATA[
+    <p>"Quest Manager" application created by
+    Alexis Francis, Jenna Denomme, John Proctor, Alex Roberts, and Jeffrey Stewart.</p>
+    <p>Art by Alexis Francis.</p>
+    <p>Copyright Wheaton College Fall 2021</p>]]></string>
+
 </resources>
