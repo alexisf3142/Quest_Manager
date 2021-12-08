@@ -49,11 +49,16 @@ public class DailyQuestFragment extends Fragment{
         fragContext = getActivity();
         dailyQuestArray = new ArrayList<DailyQuest>();
         getDailyQuestArrayFromFile(); //Load from file
-
-        dailyQuestAdapter = new DailyQuestScreenAdapter(fragContext,dailyQuestArray);
+//
+        dailyQuestAdapter = new DailyQuestScreenAdapter(fragContext,dailyQuestArray,this);
         ListView dailyQuestListView = rootView.findViewById(R.id.dailyQuestLV);
         dailyQuestListView.setAdapter(dailyQuestAdapter); //assign questAdapter to the listView
         dailyQuestListView.setOnItemClickListener(dailyQuestLVListener); //assign OnItemClickListener to ListView
+
+        Button newDailyQuestButton = rootView.findViewById(R.id.newDailyQuestButton);
+        newDailyQuestButton.setOnClickListener(newDailyQuestButtonListener);
+        Button addDailyQuestButton = rootView.findViewById(R.id.addDailyQuestButton);
+        addDailyQuestButton.setOnClickListener(addDailyQuestButtonListener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String newDate = getDate();
@@ -66,6 +71,37 @@ public class DailyQuestFragment extends Fragment{
         }
         return rootView;
     }
+
+    View.OnClickListener newDailyQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonNewDQ(view);
+        }
+    };
+    View.OnClickListener addDailyQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonAddDQ(view);
+        }
+    };
+    View.OnClickListener deleteDailyQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonDQDelete(view);
+        }
+    };
+    View.OnClickListener deselectDailyQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonDQDeselect(view);
+        }
+    };
+    View.OnClickListener completeDailyQuestCBListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            checkBoxDQComplete(view);
+        }
+    };
 
 
     AdapterView.OnItemClickListener dailyQuestLVListener = new AdapterView.OnItemClickListener() {

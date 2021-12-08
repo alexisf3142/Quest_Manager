@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
+    DailyQuestFragment parentFragment;
     private int mostRecentlyClickedPosition;
     /**
      * Constructor for Element Adapter. Calls super constructor and sets MostRecentlyClickedPosition
@@ -21,9 +22,10 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
      * @param context Activity the method is called from
      * @param questList The ArrayList to get the data from for the ArrayAdapter
      */
-    public DailyQuestScreenAdapter(Activity context, ArrayList<DailyQuest> questList){
+    public DailyQuestScreenAdapter(Activity context, ArrayList<DailyQuest> questList,DailyQuestFragment parent){
         super(context, 0, questList);
         mostRecentlyClickedPosition = -1;
+        parentFragment = parent;
     }
 
     /**
@@ -50,6 +52,7 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
         TextView questName = questItemView.findViewById(R.id.dailyQuestNameTV);
         questName.setText(currentQuest.getName());
         CheckBox completeCB = questItemView.findViewById(R.id.dailyQuestCompleteCB);
+        completeCB.setOnClickListener(parentFragment.completeDailyQuestCBListener);
         if  (currentQuest.isCompleted()){
             completeCB.setChecked(true);
             completeCB.setClickable(false);
@@ -63,6 +66,8 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
         Button deselectButton = questItemView.findViewById(R.id.dailyQuestDeselectButton);
         Button deleteButton = questItemView.findViewById(R.id.dailyQuestDeleteButton);
         TextView completeTV = questItemView.findViewById(R.id.dailyQuestCompleteTV);
+        deselectButton.setOnClickListener(parentFragment.deselectDailyQuestButtonListener);
+        deleteButton.setOnClickListener(parentFragment.deleteDailyQuestButtonListener);
         if (position == mostRecentlyClickedPosition){
             deselectButton.setVisibility(View.VISIBLE);
             deleteButton.setVisibility(View.VISIBLE);
