@@ -39,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
                 // reads playerCharacter object from the file.
 
+
+                /* This is a test of the level up function which makes sure it works.
+                We won't actually be calling it here.
+                playerCharacter.setExp(120);
+                playerCharacter.levelUp(playerCharacter.getExp(), playerCharacter.getLvl());
+                */
+
                 /* following if set determines which character drawing is visible
                  based on the class the player chose at the start */
 
