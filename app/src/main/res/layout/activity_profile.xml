@@ -6,29 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/characterStatsButton"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="Character Stats" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/achievementsButton"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="80dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:text="Achieivements" />-->
+    <!--    </LinearLayout>-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/profileTabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/characterStatsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="Character Stats" />
-
-        <Button
-            android:id="@+id/achievementsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_weight="1"
-            android:text="Achieivements" />
-    </LinearLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profileViewPager"/>
+        android:id="@+id/profileViewPager">
+
+    </androidx.viewpager.widget.ViewPager>
 
 </LinearLayout>

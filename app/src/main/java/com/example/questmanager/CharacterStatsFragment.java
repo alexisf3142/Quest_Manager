@@ -13,12 +13,12 @@ public class CharacterStatsFragment extends Fragment {
 
     View rootView;
 
-    View.OnClickListener characterStatsButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-        }
-    };
+//    View.OnClickListener characterStatsButtonListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//
+//        }
+//    };
 
     public CharacterStatsFragment() { }
 
@@ -27,8 +27,8 @@ public class CharacterStatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.character_stats_layout, container, false);
 
-        Button charStatsButton = rootView.findViewById(R.id.characterStatsButton);
-        charStatsButton.setOnClickListener(characterStatsButtonListener);
+//        Button charStatsButton = rootView.findViewById(R.id.characterStatsButton);
+//        charStatsButton.setOnClickListener(characterStatsButtonListener);
 
         return rootView;
     }
