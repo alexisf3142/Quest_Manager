@@ -10,6 +10,13 @@
     <string name="qDungeon">Dungeon Screen</string>
     <string name="qCredits">Credits</string>
 
+    <!-- Following is the dungeon screen strings -->
+    <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use all of your strength and abilities to make it through. However while the danger is real and constant threat there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
+    <string name="level_1">You go further into the decrepit dungeon. The smell of mildew permeates the torch lit corridors, and you hear a soft squelch as you move across the moss covered ground. You begin to almost become calm as you round a corner and see glowing red eyes in the darkness. You ready your weapons and prepare for the encounter.</string>
+    <string name="level_2">Having bested your first foe. You continue undaunted forward. The squelching continues, and turns into wet sloshing as you begin to start moving through first ankle deep and then eventually knee deep water. Bright blue flickering lights dance around you</string>
+
+
+
     <!--And this is all the explanatory text for the help screen.-->
     <string name="aGeneral"><![CDATA[
     <p>Thank you for downloading Quest Manager!</p>

@@ -96,10 +96,4 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(helpScreenIntent);
     }
 
-    //following method takes player to the profile screen when they press the profile button
-    public void buttonProfile(View view){
-        Intent profileScreenIntent = new Intent(MainActivity.this, ProfileActivity.class);
-        startActivity(profileScreenIntent);
-    }
-
 }

@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 
 public class NewPlayerActivity extends AppCompatActivity {
 
-    String character_name, new_profession; // declares strings to save character's class and name
+    String character_name, new_profession, weapon_type; // declares strings to save character's class and name
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class NewPlayerActivity extends AppCompatActivity {
 
     public void setProfToKnight (View view) {
         new_profession = "Knight"; // sets player character's profession to Knight
+        weapon_type = "basic"; //sets the weapon to the default "basic" type
 
         character_name = getCharacterName(); // calls function that gets character's name from user
         if (!character_name.isEmpty()) {
@@ -51,6 +52,7 @@ public class NewPlayerActivity extends AppCompatActivity {
     }
     public void setProfToMage (View view) {
         new_profession = "Mage"; // sets player character's profession to Mage
+        weapon_type = "basic"; //sets the weapon to the default "basic" type
 
         character_name = getCharacterName(); // calls function that gets character's name from user
         if (!character_name.isEmpty()) {
@@ -60,6 +62,7 @@ public class NewPlayerActivity extends AppCompatActivity {
     }
     public void setProfToRanger (View view) {
         new_profession = "Ranger"; // sets player character's profession to Ranger
+        weapon_type = "basic"; //sets the weapon to the default "basic" type
 
         character_name = getCharacterName(); // calls function that gets character's name from user
         if (!character_name.isEmpty()) {
@@ -84,6 +87,7 @@ public class NewPlayerActivity extends AppCompatActivity {
     public void buttonConfirmCharacter (View view) {
         character_name = getCharacterName(); // this may be redundant, but to be safe...
         Character playerCharacter = new Character(character_name, new_profession);
+        playerCharacter.setWeapon("basic");
         // makes new character with the name the user entered and the class they chose
 
         try {

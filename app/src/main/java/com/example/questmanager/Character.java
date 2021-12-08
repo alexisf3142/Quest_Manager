@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class Character implements Serializable {
     private String name,title,profession,weapon;
     private int str,dex,lck,smt,power,exp,lvl,gold,dmg,finQ,finT;
+    // private ShopItem weapon;
 
     /*
         The name and the professional are the only two things that we need to have entered to create
@@ -25,7 +26,7 @@ public class Character implements Serializable {
         this.name = name;
         this.profession = profession;
         this.title = "Beginner";
-        this.weapon = "a solid stick";
+        this.weapon = "basic";
         this.str = 5;
         this.dex = 5;
         this.lck = 5;
@@ -101,6 +102,7 @@ public class Character implements Serializable {
         return finT;
     }
 
+
     // All of the setters start here
 
     public void setName(String name) {
@@ -158,6 +160,22 @@ public class Character implements Serializable {
     public void setFinT(int finT) {
         this.finT = finT;
     }
+
+
+    public void levelUp (int exp, int lvl) {
+        lvl += 1;
+        int extraEXP = exp - 100;
+        exp = Math.max(extraEXP, 0);
+        /*if (extraEXP >= 0) {
+            exp = extraEXP;
+        }
+        else {
+            exp = 0;
+        }*/
+        this.lvl = lvl;
+        this.exp = exp;
+    }
+
 }
 
 
