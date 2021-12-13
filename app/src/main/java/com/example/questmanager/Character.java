@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class Character implements Serializable {
     private String name,title,profession,weapon;
     private int str,dex,lck,smt,curpower,maxpower,exp,lvl,gold,dmg,finQ,finT;
+    private boolean charged;
     // private ShopItem weapon;
 
     /*
@@ -21,6 +22,7 @@ public class Character implements Serializable {
         dmg = damage, as in the most they can do at this point
         finQ = number of finished quests
         finT = number of finished tasks
+        charged = In dun. screen, if the character has a charged attack stored.
      */
     public Character(String name, String profession) {
         this.name = name;
@@ -39,6 +41,7 @@ public class Character implements Serializable {
         this.dmg = 3;
         this.finQ = 0;
         this.finT = 0;
+        this.charged = false;
     }
 
     //All of the getters start here
@@ -107,6 +110,10 @@ public class Character implements Serializable {
         return finT;
     }
 
+    public boolean isCharged() {
+        return charged;
+    }
+
     // All of the setters start here
 
     public void setName(String name) {
@@ -169,6 +176,9 @@ public class Character implements Serializable {
         this.finT = finT;
     }
 
+    public void setCharged(boolean charged) {
+        this.charged = charged;
+    }
 
     public void levelUp (int exp, int lvl) {
         lvl += 1;

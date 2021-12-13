@@ -81,13 +81,14 @@
                 android:text="Attack" />
 
             <Button
-                android:id="@+id/shootButton"
-                android:layout_margin="8sp"
-                android:fontFamily="@font/medievalsharp"
+                android:id="@+id/defendButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8sp"
                 android:layout_weight="1"
-                android:text="Shoot" />
+                android:fontFamily="@font/medievalsharp"
+                android:onClick="defendButton"
+                android:text="Defend" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,13 +97,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/zapButton"
-                android:layout_margin="8sp"
-                android:fontFamily="@font/medievalsharp"
+                android:id="@+id/chargeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8sp"
                 android:layout_weight="1"
-                android:text="Zap" />
+                android:fontFamily="@font/medievalsharp"
+                android:onClick="chargeButton"
+                android:text="Prepare Attack" />
 
             <Button
                 android:id="@+id/fleeButton"
