@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,12 @@ import java.util.ArrayList;
 
 public class achievementItemAdapter extends ArrayAdapter<Achievement> {
 
+    private int mostRecentPositionSelected;
+    LinearLayout achievementItemButtons;
+
     public achievementItemAdapter(Activity context, ArrayList<Achievement> achievements){
         super(context, 0, achievements);
+        mostRecentPositionSelected = -1;
     }
 
     @NonNull
@@ -31,6 +36,14 @@ public class achievementItemAdapter extends ArrayAdapter<Achievement> {
         String fullDescription = achievement.getAchTitle()+" - "+achievement.getDescription();
         achievementText.setText(fullDescription);
         //checkmark would be an image that's next to achievementItem in layout
+
+        achievementItemButtons = achievementView.findViewById(R.id.achievementItemButtonLayout);
+        if(position==mostRecentPositionSelected){
+            achievementItemButtons.setVisibility(View.VISIBLE);
+        }else{
+            achievementItemButtons.setVisibility(View.GONE);
+        }
+
         return achievementView;
     }
 }

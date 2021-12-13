@@ -17,7 +17,6 @@ import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Character playerCharacter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 FileInputStream fis = this.openFileInput("playerData.txt"); // opens file in read mode
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 // allows us to read an object from the file, according to stack overflow
-                playerCharacter = (Character) ois.readObject();
+                Character playerCharacter = (Character) ois.readObject();
 
                 // reads playerCharacter object from the file.
 
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 //setting the progress bars
                 ProgressBar powerPB = findViewById(R.id.powerProgressBar);
                 ProgressBar expPB = findViewById(R.id.expProgressBar);
-                powerPB.setProgress(playerCharacter.getCurpower());
+                powerPB.setProgress(playerCharacter.getPower());
                 expPB.setProgress(playerCharacter.getExp());
 
                 // next two lines close the read mode file
@@ -139,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonDungeon(View view) {
-        Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
-        MainActivity.this.startActivity(dungeonScreenIntent);
+        //Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
+        //MainActivity.this.startActivity(dungeonScreenIntent);
     }
 
     //following method takes player to the help screen when they press the help button
