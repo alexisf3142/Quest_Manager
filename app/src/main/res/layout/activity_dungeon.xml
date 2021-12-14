@@ -31,13 +31,14 @@
 
     <TextView
         android:id="@+id/mainTextView"
-        android:fontFamily="@font/medievalsharp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
-        android:text= "@string/introduction_text"
+        android:fontFamily="@font/medievalsharp"
+        android:text="@string/introduction_text"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTwoTextView" />
@@ -66,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/monsterView">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -178,5 +179,60 @@
             android:onClick="buttonMainScreen"
             android:text="Leave" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/heroTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Hero"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTwoTextView" />
+
+    <TextView
+        android:id="@+id/monsterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Monster"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/titleTwoTextView" />
+
+    <TextView
+        android:id="@+id/heroAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="Attack"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/monsterView"
+        app:layout_constraintEnd_toEndOf="@+id/heroTextView"
+        app:layout_constraintStart_toStartOf="@+id/heroTextView"
+        app:layout_constraintTop_toBottomOf="@+id/heroTextView" />
+
+    <TextView
+        android:id="@+id/monsterAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="Defend"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/monsterView"
+        app:layout_constraintEnd_toEndOf="@+id/monsterTextView"
+        app:layout_constraintStart_toStartOf="@+id/monsterTextView"
+        app:layout_constraintTop_toBottomOf="@+id/monsterTextView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="202dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

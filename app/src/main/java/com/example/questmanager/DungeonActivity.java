@@ -31,6 +31,7 @@ public class DungeonActivity extends AppCompatActivity {
     Random r = new Random(System.currentTimeMillis());
     int monsterKills, MartinKills;
     int mainStat = 0;
+    int dunLevel = 1; // int counter to keep track of the dungeon level
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class DungeonActivity extends AppCompatActivity {
         setHerProgress();
 
     }
+
+
 
     public void getMainStat(){
         String profession = playerCharacter.getProfession();
@@ -86,8 +89,7 @@ public class DungeonActivity extends AppCompatActivity {
         }
 
     }
-
-    int dunLevel = 1; // int counter to keep track of the dungeon level
+    
 
     /**
      * Changes from an initial introduction screen into the primary combat screen.
