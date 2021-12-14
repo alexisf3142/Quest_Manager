@@ -2,6 +2,7 @@ package com.example.questmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,7 +16,10 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
 
 public class DungeonActivity extends AppCompatActivity {
@@ -88,6 +92,35 @@ public class DungeonActivity extends AppCompatActivity {
             }
         }
 
+    }
+    /**
+     * this writes to the file that stores all the character data
+     */
+    public void updateCharacterFile() {
+        File playerData = getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+        if (playerData.exists()) {
+            try {
+                FileOutputStream fos = this.openFileOutput("playerData.txt", Context.MODE_PRIVATE);
+                // makes the file and opens it in write mode
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                // allows us to write an object to the file, according to stack overflow
+                os.writeObject(playerCharacter);
+                // writes playerCharacter object to the file. next two lines close the write mode file
+                os.close();
+                fos.close();
+
+                // Toast.makeText(this, "It worked!", Toast.LENGTH_SHORT).show();
+                // placeholder to move around and make sure each step works properly
+
+            } catch (IOException e) {
+                Toast.makeText(this, "Problem with output file", Toast.LENGTH_SHORT).show();
+                // placeholder error message
+            }
+        } else {
+            //CHANGE!!!!!
+            Toast.makeText(this, "this is impossible what did you do?", Toast.LENGTH_SHORT).show();
+        }
     }
     
 
