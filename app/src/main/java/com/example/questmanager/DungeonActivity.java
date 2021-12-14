@@ -250,6 +250,7 @@ public class DungeonActivity extends AppCompatActivity {
             curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
             deathScreen();
+            setMonProgress();
 
             //setMain();
             //header.setText(String.valueOf(dunLevel));
@@ -400,7 +401,9 @@ public class DungeonActivity extends AppCompatActivity {
         int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
         flavorText.setText(resourceId);
 
-        monsterIV.setImageResource(curMonster.);
+        monIV.setImageResource(curMonster.getDeathPic());
+        combatView.setVisibility(View.GONE);
+        initialView.setVisibility(View.VISIBLE);
 
     }
 }
