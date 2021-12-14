@@ -154,6 +154,7 @@ public class DungeonActivity extends AppCompatActivity {
         double herAtt = (r.nextInt(playerCharacter.getDmg()) + .5 * mainStat);
         if (playerCharacter.isCharged()){
             herAtt = herAtt *2;
+            playerCharacter.setCharged(false);
         }
         int herDmg = (int) herAtt;
 
@@ -163,6 +164,7 @@ public class DungeonActivity extends AppCompatActivity {
                 int monDmg = r.nextInt(curMonster.getMonDmg());
                 if (curMonster.isCharged()){
                     monDmg = monDmg * 2;
+                    curMonster.setCharged(false);
                 }
                 curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
                 setMonProgress();
@@ -186,26 +188,16 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void defendButton(View view) {
 
-
-
-        if (playerCharacter.getProfession().equals("Knight")) {
-
             String move = monsterMove();
 
             if (move.equals("attack")) {
-                Random r2 = new Random();
                 int dmg2;
+                dmg2 = r.nextInt(curMonster.getMonDmg());
                 if (curMonster.isCharged()){
-                    dmg2 = r2.nextInt(curMonster.getMonDmg()) * 2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
+                    dmg2 = dmg2 * 2;
+                    curMonster.setCharged(false);
                 }
-                else{
-                    dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
-                    setMonProgress();
-                }
+                curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
                 checkDeath();
             }
 
@@ -218,91 +210,20 @@ public class DungeonActivity extends AppCompatActivity {
                 curMonster.setCharged(true);
                 checkDeath();
             }
-        } else if (playerCharacter.getProfession().equals("Mage")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-                Random r2 = new Random();
-                int dmg2;
-                if (curMonster.isCharged()){
-                    dmg2 = r2.nextInt(curMonster.getMonDmg()) * 2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
-                }
-                else{
-                    dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
-                    setMonProgress();
-                }
-                checkDeath();
-            }
-
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You stare at each other", Toast.LENGTH_LONG).show();
-                checkDeath();
-            }
-
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                checkDeath();
-            }
-
-        } else if (playerCharacter.getProfession().equals("Ranger")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-                Random r2 = new Random();
-                int dmg2;
-                if (curMonster.isCharged()){
-                    dmg2 = r2.nextInt(curMonster.getMonDmg()) * 2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
-                }
-                else{
-                    dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
-                    setMonProgress();
-                }
-                checkDeath();
-            }
-
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You stare at each other", Toast.LENGTH_LONG).show();
-                checkDeath();
-            }
-
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                checkDeath();
-            }
-        }
     }
 
     public void chargeButton(View view) {
 
-
-        if (playerCharacter.getProfession().equals("Knight")) {
-
             String move = monsterMove();
-
+            playerCharacter.setCharged(true);
             if (move.equals("attack")) {
-                Random r2 = new Random();
                 int dmg2;
+                dmg2 = r.nextInt(curMonster.getMonDmg()) * 2;
                 if (curMonster.isCharged()){
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()) * 2)*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
+                    dmg2 = dmg2 * 2;
+                    curMonster.setCharged(false);
                 }
-                else{
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()))*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                }
+                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
                 checkDeath();
             }
 
@@ -316,66 +237,6 @@ public class DungeonActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "You stare at one another", Toast.LENGTH_LONG).show();
                 checkDeath();
             }
-        } else if (playerCharacter.getProfession().equals("Mage")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-                Random r2 = new Random();
-                int dmg2;
-                if (curMonster.isCharged()){
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()) * 2)*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
-                }
-                else{
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()))*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                }
-                checkDeath();
-            }
-
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You watch your opponent defend themselves", Toast.LENGTH_LONG).show();
-            }
-
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                Toast.makeText(getApplicationContext(), "You stare at one another", Toast.LENGTH_LONG).show();
-            }
-
-        } else if (playerCharacter.getProfession().equals("Ranger")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-                Random r2 = new Random();
-                int dmg2;
-                if (curMonster.isCharged()){
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()) * 2)*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-
-                }
-                else{
-                    dmg2 = (r2.nextInt(curMonster.getMonDmg()))*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                }
-                checkDeath();
-            }
-
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You watch your opponent defend themselves", Toast.LENGTH_LONG).show();
-            }
-
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                Toast.makeText(getApplicationContext(), "You stare at one another", Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     private void checkDeath() {
@@ -404,7 +265,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     private void generateMonster() {
 
-        int num = r.nextInt(3);
+        int num = r.nextInt(5);
         ImageView monsterIV = findViewById(R.id.monsterView);
 
         if (dunLevel % 10 == 0) {
@@ -474,7 +335,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void setMain(){
         TextView mainTextView = findViewById(R.id.mainTextView);
-        int num = r.nextInt(8);
+        int num = r.nextInt(9);
 
         if(num == 0){
             int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
