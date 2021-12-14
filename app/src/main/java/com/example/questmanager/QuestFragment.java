@@ -491,6 +491,8 @@ public class QuestFragment extends Fragment {
             writeString += questArray.get(i).getDescription();
             writeString += "\n";
             writeString += String.valueOf(questArray.get(i).getDifficulty());
+            writeString += "\n";
+            writeString += questArray.get(i).getCreationDate();
         }
         try {//write string to file
             FileOutputStream fos = fragContext.openFileOutput("questList.txt", Context.MODE_PRIVATE);
@@ -609,6 +611,8 @@ public class QuestFragment extends Fragment {
             writeString += compQuestArray.get(i).getDescription();
             writeString += "\n";
             writeString += String.valueOf(compQuestArray.get(i).getDifficulty());
+            writeString += "\n";
+            writeString += compQuestArray.get(i).getCreationDate();
         }
         try {//write string to file
             FileOutputStream fos = fragContext.openFileOutput("compQuestList.txt", Context.MODE_PRIVATE);

@@ -347,6 +347,7 @@ public class DailyQuestFragment extends Fragment{
     public void generatePresetDailyQuests(){
         DailyQuest makeBed = new DailyQuest("Make Bed",false);
         DailyQuest drinkWater = new DailyQuest("Drink water",false);
+        DailyQuest eat = new DailyQuest("Eat Something",false);
         DailyQuest bathe = new DailyQuest("Take a Shower or Bath",false);
         DailyQuest brushTeeth = new DailyQuest("Brush Teeth",false);
         DailyQuest floss = new DailyQuest("Floss Teeth",false);
@@ -354,11 +355,12 @@ public class DailyQuestFragment extends Fragment{
         DailyQuest socialize = new DailyQuest("Socialize",false);
         dailyQuestArray.add(makeBed);
         dailyQuestArray.add(drinkWater);
+        dailyQuestArray.add(eat);
         dailyQuestArray.add(bathe);
         dailyQuestArray.add(brushTeeth);
         dailyQuestArray.add(floss);
         dailyQuestArray.add(exercise);
         dailyQuestArray.add(socialize);
-        size = 7;
+        size = 8;
     }
 }
