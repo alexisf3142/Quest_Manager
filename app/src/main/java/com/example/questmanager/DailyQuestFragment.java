@@ -157,7 +157,7 @@ public class DailyQuestFragment extends Fragment{
         curpower += 5;
 
         if (experience >= maxexp) {
-            playerCharacter.levelUp(experience, maxexp, maxpower, playerCharacter.getLvl());
+            playerCharacter.levelUp(experience);
         }
         else {
             playerCharacter.setCurexp(experience);

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Character implements Serializable {
     private String name,title,profession,weapon;
-    private int str,dex,lck,smt,curpower,maxpower,curexp,maxexp,lvl,gold,dmg, weaponmod,finQ,finT;
+    private int str,dex,lck,smt,curpower,maxpower,curexp,maxexp,lvl,gold,dmg, weaponmod,finQ,finT,skillPoints;
     private boolean charged;
     // private ShopItem weapon;
 
@@ -44,11 +44,11 @@ public class Character implements Serializable {
         this.weaponmod = 0;
         this.finQ = 0;
         this.finT = 0;
+        this.skillPoints = 0;
         this.charged = false;
     }
 
     //All of the getters start here
-
     public String getName() {
         return name;
     }
@@ -199,14 +199,22 @@ public class Character implements Serializable {
         this.charged = charged;
     }
 
-    public void levelUp (int curexp, int maxexp, int maxpower, int lvl) {
-        lvl += 1;
-        int extraEXP = curexp - maxexp;
+    public int getSkillPoints() {
+        return skillPoints;
+    }
+
+    public void setSkillPoints(int skillPoints) {
+        this.skillPoints = skillPoints;
+    }
+
+    public void levelUp (int curexp) {
+        this.lvl += 1;
+        int extraEXP = curexp - this.maxexp;
         curexp = Math.max(extraEXP, 0);
-        this.lvl = lvl;
         this.curexp = curexp;
         this.maxexp = maxexp + 5;
         this.maxpower = maxpower + 5;
+        this.skillPoints++;
     }
 }
 

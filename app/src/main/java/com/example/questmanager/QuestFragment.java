@@ -458,7 +458,7 @@ public class QuestFragment extends Fragment {
         curpower += difficulty * 5;
 
         if (experience >= maxexp) {
-            playerCharacter.levelUp(experience, maxexp, maxpower, playerCharacter.getLvl());
+            playerCharacter.levelUp(experience);
         }
         else {
             playerCharacter.setCurexp(experience);
