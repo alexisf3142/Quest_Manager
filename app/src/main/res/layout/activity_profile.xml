@@ -26,6 +26,13 @@
     <!--            android:text="Achieivements" />-->
     <!--    </LinearLayout>-->
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="buttonBackFromProfile"
+        android:text="Home" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profileTabs"
         android:layout_width="match_parent"

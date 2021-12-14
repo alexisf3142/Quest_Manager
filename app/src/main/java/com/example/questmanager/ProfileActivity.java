@@ -1,5 +1,6 @@
 package com.example.questmanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,5 +45,11 @@ public class ProfileActivity extends AppCompatActivity {
 //        ListView theListOfAchievements = findViewById(R.id.listOfAchievements);
 //        theListOfAchievements.setAdapter(achievementsAdapter);
 //        theListOfAchievements.setOnItemClickListener(listener);
+    }
+
+    // following method brings user back to home screen if home button is pressed
+    public void buttonBackFromProfile (View view){
+        Intent backFromProfileIntent = new Intent(ProfileActivity.this, MainActivity.class);
+        ProfileActivity.this.startActivity(backFromProfileIntent);
     }
 }
