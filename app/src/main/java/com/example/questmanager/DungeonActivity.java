@@ -400,7 +400,7 @@ public class DungeonActivity extends AppCompatActivity {
         int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
         flavorText.setText(resourceId);
 
-        monsterIV.setImageResource(R.drawable.slime_monster);
+        monsterIV.setImageResource(curMonster.);
 
     }
 }

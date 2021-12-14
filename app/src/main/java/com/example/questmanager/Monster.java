@@ -44,4 +44,12 @@ public class Monster {
     public void setCharged(boolean charged) {
         this.charged = charged;
     }
+
+    public int getPic() {
+        return pic;
+    }
+
+    public int getDeathPic() {
+        return deathPic;
+    }
 }
