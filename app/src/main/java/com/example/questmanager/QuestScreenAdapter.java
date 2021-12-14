@@ -1,6 +1,7 @@
 package com.example.questmanager;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class QuestScreenAdapter extends ArrayAdapter<Quest> {
@@ -89,6 +92,10 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
             movePosET.setText("");
             deleteButton.setVisibility(View.GONE);
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String currentTime = getDateTime();
+        }
+
 
         return questItemView ;
     }
@@ -100,4 +107,11 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
         this.mostRecentlyClickedPosition = mostRecentlyClickedPosition;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    String getDateTime(){
+        Instant date = Instant.now();
+        String returnDate = date.toString();
+        returnDate = returnDate.substring(0,19);
+        return returnDate;
+    }
 }

@@ -1,15 +1,30 @@
 package com.example.questmanager;
 
 public class Quest {
-    private String name,dueDate,dueTime,description;
+    private String name,dueDate,dueTime,description,creationDate;
     private int difficulty;
+    private boolean completable;
 
-    public Quest(String name,String dueDate, String dueTime, String description, int difficulty){
+    public Quest(String name,String dueDate, String dueTime, String description, int difficulty,String creationDate){
         this.name = name;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.description = description;
         this.difficulty = difficulty;
+        this.creationDate = creationDate;
+        this.completable = false;
+    }
+
+    public boolean isCompletable() {
+        return completable;
+    }
+
+    public void setCompletable(boolean completable) {
+        this.completable = completable;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
     }
 
     public String getName() {

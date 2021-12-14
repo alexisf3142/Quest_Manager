@@ -1,6 +1,7 @@
 package com.example.questmanager;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -35,6 +38,7 @@ public class DailyQuestFragment extends Fragment{
     String lastAccessDate = "never";
     View rootView;
     Activity fragContext;
+    Character playerCharacter;
 
     ArrayList<DailyQuest> dailyQuestArray; //Array of the list names
     DailyQuestScreenAdapter dailyQuestAdapter;
@@ -49,7 +53,9 @@ public class DailyQuestFragment extends Fragment{
         fragContext = getActivity();
         dailyQuestArray = new ArrayList<DailyQuest>();
         getDailyQuestArrayFromFile(); //Load from file
-//
+
+        readCharacterFile();
+
         dailyQuestAdapter = new DailyQuestScreenAdapter(fragContext,dailyQuestArray,this);
         ListView dailyQuestListView = rootView.findViewById(R.id.dailyQuestLV);
         dailyQuestListView.setAdapter(dailyQuestAdapter); //assign questAdapter to the listView
@@ -59,6 +65,8 @@ public class DailyQuestFragment extends Fragment{
         newDailyQuestButton.setOnClickListener(newDailyQuestButtonListener);
         Button addDailyQuestButton = rootView.findViewById(R.id.addDailyQuestButton);
         addDailyQuestButton.setOnClickListener(addDailyQuestButtonListener);
+        Button backButton = rootView.findViewById(R.id.buttonBackFromDailyQuest);
+        backButton.setOnClickListener(homeDailyQuestButtonListener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String newDate = getDate();
@@ -102,6 +110,12 @@ public class DailyQuestFragment extends Fragment{
             checkBoxDQComplete(view);
         }
     };
+    View.OnClickListener homeDailyQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonBackFromDailyQuest(view);
+        }
+    };
 
 
     AdapterView.OnItemClickListener dailyQuestLVListener = new AdapterView.OnItemClickListener() {
@@ -124,9 +138,27 @@ public class DailyQuestFragment extends Fragment{
         }
     };
 
+    public void buttonBackFromDailyQuest (View view){
+        Intent backFromHelpIntent = new Intent(fragContext, MainActivity.class);
+        startActivity(backFromHelpIntent);
+    }
+
     public void checkBoxDQComplete(View view){
         dailyQuestArray.get(mostRecentElement).setCompleted(true);
         updateDQFile();
+
+        // resolve experience and power gains
+        int experience = playerCharacter.getExp();
+        int power = playerCharacter.getCurpower();
+        experience += 5;
+        power += 5;
+        if (power > 100) { //Check for power beyond maximum
+            power = 100;
+        }
+        playerCharacter.setExp(experience);
+        playerCharacter.setCurpower(power);
+        updateCharacterFile();
+
         dailyQuestAdapter.setMostRecentlyClickedPosition(-1);
         dailyQuestAdapter.notifyDataSetChanged();
     }
@@ -238,6 +270,9 @@ public class DailyQuestFragment extends Fragment{
                 Toast.makeText(fragContext,"Error loading quests",Toast.LENGTH_SHORT).show();
             }
         }
+        else{
+            generatePresetDailyQuests();
+        }
     }
 
     public void resetDailyQuests(){
@@ -254,4 +289,65 @@ public class DailyQuestFragment extends Fragment{
         return returnDate;
     }
 
+    public void readCharacterFile() {
+        File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+
+        if (playerData.exists()) {
+            //if the file is found, we will read the character object from it
+            try {
+                FileInputStream fis = fragContext.openFileInput("playerData.txt"); // opens file in read mode
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                // allows us to read an object from the file, according to stack overflow
+                playerCharacter = (Character) ois.readObject();
+
+                // next two lines close the read mode file
+                ois.close();
+                fis.close();
+
+            } catch (Exception e) { // error message
+                Toast.makeText(fragContext, "Player data was found, but there was an error reading the file", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    public void updateCharacterFile() {
+        File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+        if (playerData.exists()) {
+            try {
+                FileOutputStream fos = fragContext.openFileOutput("playerData.txt", Context.MODE_PRIVATE);
+                // makes the file and opens it in write mode
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                // allows us to write an object to the file, according to stack overflow
+                os.writeObject(playerCharacter);
+                // writes playerCharacter object to the file. next two lines close the write mode file
+                os.close();
+                fos.close();
+
+            } catch (IOException e) {
+                Toast.makeText(fragContext, "Problem with output file", Toast.LENGTH_SHORT).show();
+                // placeholder error message
+            }
+        }
+    }
+
+    public void generatePresetDailyQuests(){
+        DailyQuest makeBed = new DailyQuest("Make Bed",false);
+        DailyQuest drinkWater = new DailyQuest("Drink water",false);
+        DailyQuest bathe = new DailyQuest("Take a Shower or Bath",false);
+        DailyQuest brushTeeth = new DailyQuest("Brush Teeth",false);
+        DailyQuest floss = new DailyQuest("Floss Teeth",false);
+        DailyQuest exercise = new DailyQuest("Exercise",false);
+        DailyQuest socialize = new DailyQuest("Socialize",false);
+        dailyQuestArray.add(makeBed);
+        dailyQuestArray.add(drinkWater);
+        dailyQuestArray.add(bathe);
+        dailyQuestArray.add(brushTeeth);
+        dailyQuestArray.add(floss);
+        dailyQuestArray.add(exercise);
+        dailyQuestArray.add(socialize);
+        size = 7;
+    }
 }

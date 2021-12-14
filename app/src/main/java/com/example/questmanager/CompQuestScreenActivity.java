@@ -55,8 +55,8 @@ public class CompQuestScreenActivity extends AppCompatActivity {
                     theLine = bufferedReader.readLine();
                     difficulty = Integer.parseInt(theLine);
                     //Create quest with read data and add to list
-                    Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty);
-                    compQuestArray.add(newQuest);
+                    //Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty);
+                    //compQuestArray.add(newQuest);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

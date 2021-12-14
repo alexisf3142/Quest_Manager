@@ -2,6 +2,8 @@ package com.example.questmanager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import java.io.BufferedReader;
@@ -24,12 +27,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class QuestFragment extends Fragment {
 
     View rootView;
     Activity fragContext;
+    Character playerCharacter;
 
     int size = 0; //Keeps track of the amount of quests
     int compSize = 0;
@@ -55,7 +62,9 @@ public class QuestFragment extends Fragment {
         addQuestButton.setOnClickListener(addQuestButtonListener);
         Button confirmButton = rootView.findViewById(R.id.confirmQuestChangesButton);
         confirmButton.setOnClickListener(confirmChangesButtonListener);
-
+        Button backButton = rootView.findViewById(R.id.buttonBackFromQuest);
+        backButton.setOnClickListener(homeQuestButtonListener);
+        
         questArray = new ArrayList<Quest>();
         getQuestArrayFromFile(); //Load from file
 
@@ -66,7 +75,8 @@ public class QuestFragment extends Fragment {
         ListView questListView = rootView.findViewById(R.id.questLV);
         questListView.setAdapter(questAdapter); //assign questAdapter to the listView
         questListView.setOnItemClickListener(questLVListener); //assign OnItemClickListener to ListView
-        
+
+        readCharacterFile();
         return rootView;
     }
 
@@ -118,6 +128,12 @@ public class QuestFragment extends Fragment {
             buttonDelete(view);
         }
     };
+    View.OnClickListener homeQuestButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonBackFromQuest(view);
+        }
+    };
 
     
     AdapterView.OnItemClickListener questLVListener = new AdapterView.OnItemClickListener() {
@@ -135,10 +151,27 @@ public class QuestFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             mostRecentView = view;
             mostRecentElement = i;
+            if (!questArray.get(mostRecentElement).isCompletable()){
+                updateCompletable(i);
+            }
+            //Button completeButton = mostRecentView.findViewById(R.id.questCompleteButton);
             questAdapter.setMostRecentlyClickedPosition(i);
             questAdapter.notifyDataSetChanged();
         }
     };
+
+    public void updateCompletable(int position){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            String currentTime = getDateTime();
+            /** Compare times */
+        }
+
+    }
+
+    public void buttonBackFromQuest (View view){
+        Intent backFromHelpIntent = new Intent(fragContext, MainActivity.class);
+        startActivity(backFromHelpIntent);
+    }
 
     /**
      * Allows the user to add a new quest by setting the EditText for all quest parameters
@@ -186,8 +219,11 @@ public class QuestFragment extends Fragment {
                 String description = String.valueOf(questDescriptionET.getText());
                 EditText questDifficultyET = rootView.findViewById(R.id.questDifficultyET);
                 int difficulty = Integer.parseInt(String.valueOf(questDifficultyET.getText()));
-
-                Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty);
+                String createDate = "";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    createDate = getDateTime();
+                }
+                Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty,createDate);
                 questArray.add(newQuest);
                 size++;
                 if (size == 1) {
@@ -410,8 +446,19 @@ public class QuestFragment extends Fragment {
         compQuestArray.add(0,questArray.get(mostRecentElement));
         compSize++;
         updateCompFile();
+        // resolve experience and power gains
+        int experience = playerCharacter.getExp();
+        int power = playerCharacter.getCurpower();
+        int difficulty = questArray.get(mostRecentElement).getDifficulty();
+        experience += difficulty * 5;
+        power += difficulty * 5;
+        if (power > 100) { //Check for power beyond maximum
+            power = 100;
+        }
+        playerCharacter.setExp(experience);
+        playerCharacter.setCurpower(power);
         buttonDelete(view);
-        /** Add code to resolve experience and power gains */
+        updateCharacterFile();
     }
 
     /**
@@ -471,7 +518,7 @@ public class QuestFragment extends Fragment {
                 String theLine = bufferedReader.readLine();
                 size = Integer.parseInt(theLine); //Get size from file
                 for (int i = 0; i < size;i++){ //Get quests from file
-                    String name,dueDate,dueTime,description;
+                    String name,dueDate,dueTime,description,creationDate;
                     int difficulty;
                     //get quest data
                     theLine = bufferedReader.readLine();
@@ -484,8 +531,10 @@ public class QuestFragment extends Fragment {
                     description = theLine;
                     theLine = bufferedReader.readLine();
                     difficulty = Integer.parseInt(theLine);
+                    theLine = bufferedReader.readLine();
+                    creationDate = theLine;
                     //Create quest with read data and add to list
-                    Quest newQuest = new Quest(name,dueDate,dueTime,description,difficulty);
+                    Quest newQuest = new Quest(name,dueDate,dueTime,description,difficulty,creationDate);
                     questArray.add(newQuest);
                 }
             } catch (Exception e) {
@@ -508,7 +557,7 @@ public class QuestFragment extends Fragment {
                 String theLine = bufferedReader.readLine();
                 compSize = Integer.parseInt(theLine); //Get size from file
                 for (int i = 0; i < compSize; i++) { //Get quests from file
-                    String name, dueDate, dueTime, description;
+                    String name, dueDate, dueTime, description,creationDate;
                     int difficulty;
                     //get quest data
                     theLine = bufferedReader.readLine();
@@ -521,8 +570,10 @@ public class QuestFragment extends Fragment {
                     description = theLine;
                     theLine = bufferedReader.readLine();
                     difficulty = Integer.parseInt(theLine);
+                    theLine = bufferedReader.readLine();
+                    creationDate = theLine;
                     //Create quest with read data and add to list
-                    Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty);
+                    Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty,creationDate);
                     compQuestArray.add(newQuest);
                 }
             } catch (Exception e) {
@@ -556,4 +607,55 @@ public class QuestFragment extends Fragment {
         }
     }
 
+    public void readCharacterFile() {
+        File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+
+        if (playerData.exists()) {
+            //if the file is found, we will read the character object from it
+            try {
+                FileInputStream fis = fragContext.openFileInput("playerData.txt"); // opens file in read mode
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                // allows us to read an object from the file, according to stack overflow
+                playerCharacter = (Character) ois.readObject();
+
+                // next two lines close the read mode file
+                ois.close();
+                fis.close();
+
+            } catch (Exception e) { // error message
+                Toast.makeText(fragContext, "Player data was found, but there was an error reading the file", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    public void updateCharacterFile() {
+        File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+        if (playerData.exists()) {
+            try {
+                FileOutputStream fos = fragContext.openFileOutput("playerData.txt", Context.MODE_PRIVATE);
+                // makes the file and opens it in write mode
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                // allows us to write an object to the file, according to stack overflow
+                os.writeObject(playerCharacter);
+                // writes playerCharacter object to the file. next two lines close the write mode file
+                os.close();
+                fos.close();
+
+            } catch (IOException e) {
+                Toast.makeText(fragContext, "Problem with output file", Toast.LENGTH_SHORT).show();
+                // placeholder error message
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    String getDateTime(){
+        Instant date = Instant.now();
+        String returnDate = date.toString();
+        returnDate = returnDate.substring(0,19);
+        return returnDate;
+    }
 }

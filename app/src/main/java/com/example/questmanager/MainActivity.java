@@ -11,8 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         readFile(); //calls the function below
+        getMainQuestFromFile(); //Gets the main quest
     }
 
     public void readFile () {
@@ -150,6 +153,30 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(helpScreenIntent);
     }
 
+    public void getMainQuestFromFile(){
+        int size = 0;
+        File theFile = getBaseContext().getFileStreamPath("questList.txt");
+        TextView mainQuestTV = findViewById(R.id.mainQuestTextView);
+        if (theFile.exists()){
+            try {
+                FileInputStream fis = openFileInput("questList.txt");
+                InputStreamReader isReader = new InputStreamReader(fis);
+                BufferedReader bufferedReader = new BufferedReader(isReader);
+                String theLine = bufferedReader.readLine();
+                size = Integer.parseInt(theLine); //Get size from file
+                String mainQuest = bufferedReader.readLine();
+                if (size > 0){
+                    mainQuestTV.setText(mainQuest);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this,"Error loading main quest",Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (size == 0){
+            mainQuestTV.setText("No Main Quest");
+        }
+    }
 
 
 }
