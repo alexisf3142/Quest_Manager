@@ -148,15 +148,26 @@ public class DailyQuestFragment extends Fragment{
         updateDQFile();
 
         // resolve experience and power gains
-        int experience = playerCharacter.getExp();
-        int power = playerCharacter.getCurpower();
+        int experience = playerCharacter.getCurexp();
+        int maxexp = playerCharacter.getMaxexp();
+        int curpower = playerCharacter.getCurpower();
+        int maxpower = playerCharacter.getMaxpower();
+
         experience += 5;
-        power += 5;
-        if (power > 100) { //Check for power beyond maximum
-            power = 100;
+        curpower += 5;
+
+        if (experience >= maxexp) {
+            playerCharacter.levelUp(experience, maxexp, maxpower, playerCharacter.getLvl());
         }
-        playerCharacter.setExp(experience);
-        playerCharacter.setCurpower(power);
+        else {
+            playerCharacter.setCurexp(experience);
+        }
+
+        if (curpower > maxpower) { //Check for power beyond maximum
+            curpower = maxpower;
+        }
+        playerCharacter.setCurpower(curpower);
+
         updateCharacterFile();
 
         dailyQuestAdapter.setMostRecentlyClickedPosition(-1);

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Character implements Serializable {
     private String name,title,profession,weapon;
-    private int str,dex,lck,smt,curpower,maxpower,exp,lvl,gold,dmg,finQ,finT;
+    private int str,dex,lck,smt,curpower,maxpower,curexp,maxexp,lvl,gold,dmg, weaponmod,finQ,finT;
     private boolean charged;
     // private ShopItem weapon;
 
@@ -17,6 +17,7 @@ public class Character implements Serializable {
         dex = dexterity
         lck = luck
         smt = (smarts) or intelligence just couldn't be int
+        power = how much power the player has to spend in dungeons
         exp = experience points
         lvl = level
         dmg = damage, as in the most they can do at this point
@@ -34,11 +35,13 @@ public class Character implements Serializable {
         this.lck = 5;
         this.smt = 5;
         this.maxpower = 25;
-        this.curpower = 25;
-        this.exp = 0;
+        this.curpower = 20;
+        this.curexp = 0;
+        this.maxexp = 100;
         this.lvl = 1;
         this.gold = 0;
         this.dmg = 3;
+        this.weaponmod = 0;
         this.finQ = 0;
         this.finT = 0;
         this.charged = false;
@@ -86,8 +89,12 @@ public class Character implements Serializable {
         return smt;
     }
 
-    public int getExp() {
-        return exp;
+    public int getCurexp() {
+        return curexp;
+    }
+
+    public int getMaxexp() {
+        return maxexp;
     }
 
     public int getLvl() {
@@ -100,6 +107,10 @@ public class Character implements Serializable {
 
     public int getDmg() {
         return dmg;
+    }
+
+    public int getWeaponmod() {
+        return weaponmod;
     }
 
     public int getFinQ() {
@@ -144,8 +155,12 @@ public class Character implements Serializable {
         this.smt = smt;
     }
 
-    public void setExp(int exp) {
-        this.exp = exp;
+    public void setCurexp(int curexp) {
+        this.curexp = curexp;
+    }
+
+    public void setMaxexp(int maxexp) {
+        this.maxexp = maxexp;
     }
 
     public void setCurpower(int curpower) {
@@ -164,6 +179,10 @@ public class Character implements Serializable {
         this.gold = gold;
     }
 
+    public void setWeaponmod(int weaponmod) {
+        this.weaponmod = weaponmod;
+    }
+
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
@@ -180,18 +199,14 @@ public class Character implements Serializable {
         this.charged = charged;
     }
 
-    public void levelUp (int exp, int lvl) {
+    public void levelUp (int curexp, int maxexp, int maxpower, int lvl) {
         lvl += 1;
-        int extraEXP = exp - 100;
-        exp = Math.max(extraEXP, 0);
-        /*if (extraEXP >= 0) {
-            exp = extraEXP;
-        }
-        else {
-            exp = 0;
-        }*/
+        int extraEXP = curexp - maxexp;
+        curexp = Math.max(extraEXP, 0);
         this.lvl = lvl;
-        this.exp = exp;
+        this.curexp = curexp;
+        this.maxexp = maxexp + 5;
+        this.maxpower = maxpower + 5;
     }
 }
 

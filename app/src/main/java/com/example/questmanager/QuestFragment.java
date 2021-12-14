@@ -446,17 +446,29 @@ public class QuestFragment extends Fragment {
         compQuestArray.add(0,questArray.get(mostRecentElement));
         compSize++;
         updateCompFile();
+
         // resolve experience and power gains
-        int experience = playerCharacter.getExp();
-        int power = playerCharacter.getCurpower();
+        int experience = playerCharacter.getCurexp();
+        int maxexp = playerCharacter.getMaxexp();
+        int curpower = playerCharacter.getCurpower();
+        int maxpower = playerCharacter.getMaxpower();
         int difficulty = questArray.get(mostRecentElement).getDifficulty();
+
         experience += difficulty * 5;
-        power += difficulty * 5;
-        if (power > 100) { //Check for power beyond maximum
-            power = 100;
+        curpower += difficulty * 5;
+
+        if (experience >= maxexp) {
+            playerCharacter.levelUp(experience, maxexp, maxpower, playerCharacter.getLvl());
         }
-        playerCharacter.setExp(experience);
-        playerCharacter.setCurpower(power);
+        else {
+            playerCharacter.setCurexp(experience);
+        }
+
+        if (curpower > maxpower) { //Check for power beyond maximum
+            curpower = maxpower;
+        }
+        playerCharacter.setCurpower(curpower);
+
         buttonDelete(view);
         updateCharacterFile();
     }

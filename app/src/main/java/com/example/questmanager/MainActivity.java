@@ -44,10 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 /* This is a test of the level up function which makes sure it works.
-                We won't actually be calling it here.
-                playerCharacter.setExp(120);
-                playerCharacter.levelUp(playerCharacter.getExp(), playerCharacter.getLvl());
-                */
+                We won't actually be calling it here.*//*
+                playerCharacter.setCurexp(120);
+                playerCharacter.levelUp(playerCharacter.getCurexp(), playerCharacter.getMaxexp(), playerCharacter.getMaxpower(), playerCharacter.getLvl());*/
 
                 /* following if set determines which character drawing is visible
                  based on the class the player chose at the start */
@@ -104,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 float curpower = playerCharacter.getCurpower();
                 float maxpower = playerCharacter.getMaxpower();
                 powerPB.setProgress((int)(curpower/maxpower*100));
-                expPB.setProgress(playerCharacter.getExp());
+                float curexp = playerCharacter.getCurexp();
+                float maxexp = playerCharacter.getMaxexp();
+                expPB.setProgress((int)(curexp/maxexp*100));
 
                 // next two lines close the read mode file
                 ois.close();
