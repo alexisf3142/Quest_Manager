@@ -30,6 +30,7 @@ public class DungeonActivity extends AppCompatActivity {
     Character playerCharacter;// = readFile();
     Random r = new Random(System.currentTimeMillis());
     int monsterKills, MartinKills;
+    int mainStat = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,23 @@ public class DungeonActivity extends AppCompatActivity {
         Intent infoIntent = getIntent();
         playerCharacter = (Character) infoIntent.getSerializableExtra("Character");
         readFile();
+        getMainStat();
         setMonProgress();
         setHerProgress();
 
+    }
+
+    public void getMainStat(){
+        String profession = playerCharacter.getProfession();
+        if (profession.equals("Knight")){
+            mainStat = playerCharacter.getStr();
+        }
+        else if(profession.equals("Mage")){
+            mainStat = playerCharacter.getSmt();
+        }
+        else{
+            mainStat = playerCharacter.getDex();
+        }
     }
 
     public void readFile() {
@@ -101,242 +116,37 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void attackButton(View view) {
-
-
-
-        if (playerCharacter.getProfession().equals("Knight")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-
-                if(playerCharacter.isCharged() && curMonster.isCharged()){
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-                else if(playerCharacter.isCharged() && !curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();
-
-                }
-                else if(!playerCharacter.isCharged() && curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();
-
-                }
-                else{
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();
-
-                }
-            }
-
-            if (move.equals("defend")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr());
-                int dmg = (int) temp;
-                setMonProgress();
-
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg);
-                setHerProgress();
-                checkDeath();
-            }
-
-            if (move.equals("charge")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getStr()) * 2;
-                int dmg = (int) temp;
-                curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                setMonProgress();
-                checkDeath();
-            }
+        double herAtt = (r.nextInt(playerCharacter.getDmg()) + .5 * mainStat);
+        if (playerCharacter.isCharged()){
+            herAtt = herAtt *2;
         }
-        else if (playerCharacter.getProfession().equals("Mage")) {
+        int herDmg = (int) herAtt;
 
             String move = monsterMove();
 
             if (move.equals("attack")) {
-                if(playerCharacter.isCharged() && curMonster.isCharged()){
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-                else if(playerCharacter.isCharged() && !curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath(); }
-
-                else if(!playerCharacter.isCharged() && curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-                else{
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-            }
-
-            if (move.equals("defend")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt());
-                int dmg = (int) temp;
-                setMonProgress();
-
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg);
-                setHerProgress();
-                checkDeath(); }
-
-            if (move.equals("charge")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getSmt()) * 2;
-                int dmg = (int) temp;
-                curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                setMonProgress();
-                checkDeath(); } }
-
-        else if (playerCharacter.getProfession().equals("Ranger")) {
-
-            String move = monsterMove();
-
-            if (move.equals("attack")) {
-
-                if(playerCharacter.isCharged() && curMonster.isCharged()){
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-                else if(playerCharacter.isCharged() && !curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex())*2;
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();}
-
-                else if(!playerCharacter.isCharged() && curMonster.isCharged()){
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg())*2;
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();
-
+                int monDmg = r.nextInt(curMonster.getMonDmg());
+                if (curMonster.isCharged()){
+                    monDmg = monDmg * 2;
                 }
-                else{
-
-                    double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex());
-                    int dmg = (int) temp;
-                    curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
-                    setMonProgress();
-
-                    Random r2 = new Random();
-                    int dmg2 = r2.nextInt(curMonster.getMonDmg());
-                    playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                    setHerProgress();
-                    checkDeath();
-
-                }
-            }
-
-            if (move.equals("defend")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex());
-                int dmg = (int) temp;
+                curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
                 setMonProgress();
-
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg);
+                playerCharacter.setCurpower(playerCharacter.getCurpower() - monDmg);
                 setHerProgress();
                 checkDeath();
             }
 
+            if (move.equals("defend")) {
+                playerCharacter.setCurpower(playerCharacter.getCurpower() - herDmg);
+                setHerProgress();
+                checkDeath();
+            }
             if (move.equals("charge")) {
-                double temp = (r.nextInt(playerCharacter.getDmg()) + .5 * playerCharacter.getDex()) * 2;
-                int dmg = (int) temp;
-                curMonster.setCurPow(curMonster.getMonCurPow() - dmg);
+                herDmg = herDmg * 2;
+                curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
                 setMonProgress();
                 checkDeath();
             }
-        }
     }
 
     public void defendButton(View view) {

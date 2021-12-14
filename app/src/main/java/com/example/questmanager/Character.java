@@ -30,10 +30,10 @@ public class Character implements Serializable {
         this.profession = profession;
         this.title = "Beginner";
         this.weapon = "a solid stick";
-        this.str = 5;
-        this.dex = 5;
-        this.lck = 5;
-        this.smt = 5;
+        this.str = 5; //Strength affects charge
+        this.dex = 5; //Dex affects defense
+        this.lck = 5; //Luck affects coins
+        this.smt = 5; //Smarts affects Experience
         this.maxpower = 25;
         this.curpower = 20;
         this.curexp = 0;
