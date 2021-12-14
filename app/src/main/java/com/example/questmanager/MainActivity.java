@@ -89,16 +89,18 @@ public class MainActivity extends AppCompatActivity {
 
                 // next two lines set the name and title text to the player's name and title
                 TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
-                nameTitleTV.setText(playerCharacter.getName() + " the " + playerCharacter.getTitle());
+                nameTitleTV.setText(playerCharacter.getName() + "\nthe\n" + playerCharacter.getTitle());
 
                 // next two lines makes the level textview display the proper number
-                TextView levelTV = findViewById(R.id.levelNumberTextView);
-                levelTV.setText(String.valueOf(playerCharacter.getLvl()));
+                TextView levelTV = findViewById(R.id.levelTextView);
+                levelTV.setText("Level " + playerCharacter.getLvl());
 
                 //setting the progress bars
                 ProgressBar powerPB = findViewById(R.id.powerProgressBar);
                 ProgressBar expPB = findViewById(R.id.expProgressBar);
-                powerPB.setProgress(playerCharacter.getPower());
+                float curpower = playerCharacter.getCurpower();
+                float maxpower = playerCharacter.getMaxpower();
+                powerPB.setProgress((int)(curpower/maxpower*100));
                 expPB.setProgress(playerCharacter.getExp());
 
                 // next two lines close the read mode file
@@ -127,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
     //following method takes player to the profile screen when they press the profile button
     public void buttonProfile(View view) {
-        //Intent profileScreenIntent = new Intent(MainActivity.this, ProfileActivity.class);
-        //MainActivity.this.startActivity(profileScreenIntent);
+        Intent profileScreenIntent = new Intent(MainActivity.this, ProfileActivity.class);
+        MainActivity.this.startActivity(profileScreenIntent);
     }
 
     //following method takes player to the quest screen when they press the quest button
@@ -138,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonDungeon(View view) {
-        //Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
-        //MainActivity.this.startActivity(dungeonScreenIntent);
+        Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
+        MainActivity.this.startActivity(dungeonScreenIntent);
     }
 
     //following method takes player to the help screen when they press the help button
