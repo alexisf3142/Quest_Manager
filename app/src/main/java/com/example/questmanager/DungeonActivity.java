@@ -21,22 +21,25 @@ import java.util.Random;
 public class DungeonActivity extends AppCompatActivity {
 
     Monster slime; //= new Monster("slime",4,10);
-    Monster goblin; //= new Monster("goblin",3,15);
+    Monster toothBrush; //= new Monster("toothBrush",3,15);
     Monster waterCup; //= new Monster("water cup",6,5);
     Monster dragon; //= new Monster("dragon",10,25);
+    Monster washingMachine; //=new Monster("washingMachine",5,10);
     Monster martin; //= new Monster("martin",12,40);
     Monster curMonster; //= null;
     Character playerCharacter;// = readFile();
+    Random r = new Random(System.currentTimeMillis());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon);
         slime = new Monster("slime", 4, 10);
-        goblin = new Monster("goblin", 3, 15);
+        toothBrush = new Monster("goblin", 3, 15);
         waterCup = new Monster("water cup", 6, 5);
         dragon = new Monster("dragon", 10, 25);
         martin = new Monster("martin", 12, 40);
+        washingMachine = new Monster("washingMachine", 5, 10);
         curMonster = slime;
         Intent infoIntent = getIntent();
         playerCharacter = (Character) infoIntent.getSerializableExtra("Character");
@@ -68,7 +71,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     }
 
-    int dunLevel = 0; // int counter to keep track of the dungeon level
+    int dunLevel = 1; // int counter to keep track of the dungeon level
 
     /**
      * Changes from an initial introduction screen into the primary combat screen.
@@ -78,7 +81,6 @@ public class DungeonActivity extends AppCompatActivity {
     public void continueButton(View view) {
         LinearLayout actionLayout = findViewById(R.id.actionLinearLayout);
         LinearLayout initialLayout = findViewById(R.id.initialLinearLayout);
-        TextView mainTextView = findViewById(R.id.mainTextView);
         TextView titleOne = findViewById(R.id.titleOneTextView);
         TextView titleTwo = findViewById(R.id.titleTwoTextView);
         ProgressBar enemyHealth = findViewById(R.id.enemyHealthBar);
@@ -89,19 +91,17 @@ public class DungeonActivity extends AppCompatActivity {
         enemyHealth.setVisibility(View.VISIBLE);
         heroHealth.setVisibility(View.VISIBLE);
 
-        int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
-        mainTextView.setText(resourceId);
+        setMain();
 
-        dunLevel = dunLevel + 1;
         titleOne.setText("Dungeon Level");
         titleTwo.setText(String.valueOf(dunLevel));
-        curMonster = goblin;
+        generateMonster();
 
     }
 
     public void attackButton(View view) {
 
-        Random r = new Random();
+        
 
         if (playerCharacter.getProfession().equals("Knight")) {
 
@@ -339,7 +339,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void defendButton(View view) {
 
-        Random r = new Random();
+        
 
         if (playerCharacter.getProfession().equals("Knight")) {
 
@@ -430,7 +430,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void chargeButton(View view) {
-        Random r = new Random();
+        
 
         if (playerCharacter.getProfession().equals("Knight")) {
 
@@ -525,12 +525,17 @@ public class DungeonActivity extends AppCompatActivity {
 
     private void checkDeath() {
         if (playerCharacter.getCurpower() <= 0) {
+            playerCharacter.setCharged(false);
             returnMainScreen();
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         } else if (curMonster.getMonCurPow() <= 0) {
             playerCharacter.setGold(playerCharacter.getGold() + 5);
+            curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
             TextView header = findViewById(R.id.titleTwoTextView);
+            TextView body = findViewById(R.id.mainTextView);
+            setMain();
+
             header.setText(String.valueOf(dunLevel));
             generateMonster();
             ProgressBar monHealth = findViewById(R.id.enemyHealthBar);
@@ -540,8 +545,9 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void generateMonster() {
-        Random r = new Random();
+        
         int num = r.nextInt(3);
+        ImageView monsterIV = findViewById(R.id.monsterView);
 
         if (dunLevel % 10 == 0) {
             curMonster = martin;
@@ -549,18 +555,26 @@ public class DungeonActivity extends AppCompatActivity {
         } else {
             if (num == 0) {
                 curMonster = slime;
+                monsterIV.setImageResource(R.drawable.slime_monster);
                 setMonProgress();
             } else if (num == 1) {
-                curMonster = goblin;
+                curMonster = toothBrush;
+                monsterIV.setImageResource(R.drawable.toothbrush_monster);
                 setMonProgress();
             } else if (num == 2) {
                 curMonster = waterCup;
+                monsterIV.setImageResource(R.drawable.water_monster);
                 setMonProgress();
             } else if (num == 3) {
                 curMonster = dragon;
-
+                monsterIV.setImageResource(R.drawable.tiny_dragon_monster);
                 setMonProgress();
-            } else
+            }else if (num == 4) {
+                curMonster = washingMachine;
+                monsterIV.setImageResource(R.drawable.washing_machine_monster);
+                setMonProgress();
+            }
+            else
                 Toast.makeText(getApplicationContext(), "Something Broke", Toast.LENGTH_SHORT).show();
         }
 
@@ -582,17 +596,6 @@ public class DungeonActivity extends AppCompatActivity {
         startActivity(mainScreenIntent);
     }
 
-    //public void getImage(String name){
-    //ImageView monster = findViewById(R.id.monsterView);
-    //Switch(name){
-    //  case "monOne":
-    //    int monId = this.getResources().getIdentifier("@drawable/monOne",null,this.getPackageName());
-    //  Drawable res = getResources().getDrawable(monId);
-    //monster.setImageDrawable(res);
-    //break;
-    //}
-    // }
-
     public void setMonProgress() {
         ProgressBar enemyHealth = findViewById(R.id.enemyHealthBar);
         enemyHealth.setMax(100);
@@ -611,10 +614,58 @@ public class DungeonActivity extends AppCompatActivity {
         heroHealth.setProgress(progress);
     }
 
-    private String monsterMove() {
-        Random r = new Random();
+    public void setMain(){
+        TextView mainTextView = findViewById(R.id.mainTextView);
+        int num = r.nextInt(8);
+
+        if(num == 0){
+            int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 1){
+            int resourceId = this.getResources().getIdentifier("@string/level_2", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 2){
+            int resourceId = this.getResources().getIdentifier("@string/level_3", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 3){
+            int resourceId = this.getResources().getIdentifier("@string/level_4", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 4){
+            int resourceId = this.getResources().getIdentifier("@string/level_5", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 5){
+            int resourceId = this.getResources().getIdentifier("@string/level_6", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 6){
+            int resourceId = this.getResources().getIdentifier("@string/level_7", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 7){
+            int resourceId = this.getResources().getIdentifier("@string/level_8", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else if(num == 8){
+            int resourceId = this.getResources().getIdentifier("@string/level_9", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "OH GOD NO", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+
+    private String monsterMove(){
+        
         String Move;
-        int num = r.nextInt(10);
+        int num = r.nextInt(10)+1;
         if (num <= 4) {
             Move = "attack";
         } else if (num <= 7) {

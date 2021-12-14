@@ -11,9 +11,22 @@
     <string name="qCredits">Credits</string>
 
     <!-- Following is the dungeon screen strings -->
-    <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use all of your strength and abilities to make it through. However while the danger is real and constant threat there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
-    <string name="level_1">You go further into the decrepit dungeon. The smell of mildew permeates the torch lit corridors, and you hear a soft squelch as you move across the moss covered ground. You begin to almost become calm as you round a corner and see glowing red eyes in the darkness. You ready your weapons and prepare for the encounter.</string>
-    <string name="level_2">Having bested your first foe. You continue undaunted forward. The squelching continues, and turns into wet sloshing as you begin to start moving through first ankle deep and then eventually knee deep water. Bright blue flickering lights dance around you</string>
+    <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use your Power and skills to make it through. While the danger is real and constant, there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
+    <string name="level_end">With the battle over, you press on, further into the dungeon…</string>
+
+    <string name="level_1">You go further into the decrepit dungeon. The smell of mildew permeates the torch-lit corridors, and you hear a soft squelch as you move across the moss-covered ground. You begin to almost become calm as you round a corner and see glowing red eyes in the darkness. You ready your weapon and prepare for the encounter.</string>
+    <string name="level_2">The sound of your feet sloshing through water echoes on the walls of the cavern. It starts out ankle-deep, then becomes knee-deep. Bright blue flickering lights dance around you. As you’re distracted by them, something rises from the water!</string>
+    <string name="level_3">Flames flicker off the walls ahead. Your face reddens and dampens with sweat. You keep glancing down at the obsidian beneath you, watching for cracks where glowing, pulsating magma seeps through. When you next look up, you see a monster emerge from the flames!</string>
+    <string name="level_4">Your body shivers, more and more with each step you take. Ice coats the floor and walls. You catch your own reflection in a frozen wall… and the reflection of a monster sneaking up behind you! You whip around and draw your weapon.</string>
+    <string name="level_5">This room is filled with stalagmites and stalactites, enough to almost turn it into a maze. The only sound is the consistent dripping of water. At one point, you have to suck in your stomach to squeeze through a pair of pillars… and on the other side, you’re met with a monster!</string>
+    <string name="level_6">There’s no light in this cave. No cracks in the ceiling, no sparkling crystals in the walls, no magical glowing bugs. Just you and your torch. And then, the light of a giant pair of eyes. You throw the torch at the creature’s feet, revealing its full form.</string>
+    <string name="level_7">The first thing you notice upon entering this room is the smell, a strange mix of wet fur and.. Cheese? Milk gone bad? It is not a pleasant smell. And it’s not long before you stumble across the monster responsible for it.</string>
+    <string name="level_8">Not far down the tunnel, you begin hearing a concerning sound. At first it just sounds like nails on a chalkboard, but as you approach its source, it sounds more like metal scratching against stone. You do your best to sneak up on the creature responsible for the racket, but before you can land a sneak attack, it whips around to face you.</string>
+    <string name="level_9">A strained howling echoes from further down, bouncing off the walls. At first it sounds kind of lonely, to the extent you almost want to call out in response. But the closer you get, the deeper and more ferocious it becomes, until you finally see the creature responsible.</string>
+
+    <string name="level_boss">This room is smaller than the others you’ve ventured through, and eerily quiet. Even stranger, there’s a robed figure standing in the center. You step forward, weapon drawn, knowing it must be the dreaded Master Martin. He adjusts his glasses with a smirk and pulls out his Tome of Judgment. It’s boss time!</string>
+    <string name="boss_end">Martin falls to the ground, his power depleted. “You have grown, adventurer. But there is always more to learn.” With that, he casts a final spell, surrounding himself with smoke. You charge through it, but when it clears, he has disappeared, deeper into the dungeon. At least you can claim all the gold he left behind.</string>
+
 
 
 
