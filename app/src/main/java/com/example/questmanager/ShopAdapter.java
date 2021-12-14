@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
         }
         ImageView itemIV = listItemView.findViewById(R.id.itemImageView);
         TextView itemNameTV = listItemView.findViewById(R.id.itemNameTextView);
+        TextView priceTV = listItemView.findViewById(R.id.priceTextView);
         TextView priceValueTV = listItemView.findViewById(R.id.priceValueTextView);
         Button purchaseB = listItemView.findViewById(R.id.purchaseButton);
         Button equipB = listItemView.findViewById(R.id.equipButton);
@@ -51,6 +53,8 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.fancy_sword);
             }
             if (currentItem.getWeaponType().equals("extravagant")) {
+                //PLACEHOLDER
+                itemIV.setImageResource(R.drawable.fancy_sword);
                 //itemIV.setImageResource(R.drawable.extravagant_sword);
             }
         }
@@ -63,6 +67,8 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.fancy_staff);
             }
             if (currentItem.getWeaponType().equals("extravagant")) {
+                //PLACEHOLDER
+                itemIV.setImageResource(R.drawable.fancy_staff);
                 //itemIV.setImageResource(R.drawable.extravagant_staff);
             }
         }
@@ -75,22 +81,48 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.fancy_bow);
             }
             if (currentItem.getWeaponType().equals("extravagant")) {
+                //PLACEHOLDER
+                itemIV.setImageResource(R.drawable.fancy_bow);
                 //itemIV.setImageResource(R.drawable.extravagant_bow);
             }
         }
         //set everything else
         itemNameTV.setText(currentItem.itemName);
-        priceValueTV.setText(String.valueOf(currentItem.getPrice()));
 
 
+        //maybe if purchased we could have it say "owned"?
+        if(currentItem.isPurchased()){
+            if(currentItem.isEquipped()) {
+                priceTV.setText("Equipped");
+                priceValueTV.setText("");
+            }
+            else {
+                priceTV.setText("Owned");
+                priceValueTV.setText("");
+            }
+        }
+        else {
+            priceTV.setText("Price: ");
+            priceValueTV.setText(String.valueOf(currentItem.getPrice()));
+        }
         if (position == mostRecentlyClickedPosition) {
             if(currentItem.isPurchased()) {
+                if(currentItem.isEquipped()) {
+                    priceTV.setText("Equipped");
+                    priceValueTV.setText("");
+                }
+                else {
+                    priceTV.setText("Owned");
+                    priceValueTV.setText("");
+                }
                 equipB.setVisibility(View.VISIBLE);
                 purchaseB.setVisibility(View.GONE);
             }
             else {
                 purchaseB.setVisibility(View.VISIBLE);
                 equipB.setVisibility(View.GONE);
+                priceTV.setText("Price: ");
+                priceValueTV.setText(String.valueOf(currentItem.getPrice()));
             }
         } else {
             purchaseB.setVisibility(View.GONE);

@@ -4,17 +4,38 @@ import androidx.annotation.Nullable;
 
 public class ShopItem {
     private int price;
+    private int weaponmod;
     public String itemName;
     private boolean purchased = false;
+    private boolean equipped = false;
+
+    public int getWeaponmod() {
+        return weaponmod;
+    }
+
+    public void setWeaponmod(int weaponmod) {
+        this.weaponmod = weaponmod;
+    }
+
+    public boolean isEquipped() {
+        return equipped;
+    }
+
+    public void setEquipped(boolean equipped) {
+        this.equipped = equipped;
+    }
+
     private String achievementName;
     private String weaponType; //basic, fancy, extravagant
     private String profession; //Knight, Mage, Ranger
 
-    public ShopItem(int price, String itemName, String weaponType, String profession, @Nullable String achievementName) {
+
+    public ShopItem(int price, String itemName, String weaponType, String profession, int weaponmod, @Nullable String achievementName) {
         this.price = price;
         this.itemName = itemName;
         this.weaponType = weaponType;
         this.profession = profession;
+        this.weaponmod = weaponmod;
         this.achievementName = achievementName;
     }
 

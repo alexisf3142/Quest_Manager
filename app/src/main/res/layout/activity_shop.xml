@@ -29,7 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/medievalsharp"
-        android:text="your gold:"
+        android:text="Gold:"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -100,5 +100,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/nitram_hi" />
+
+    <Button
+        android:id="@+id/cheatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="buttonCheating"
+        android:text="$$$"
+        app:layout_constraintBottom_toTopOf="@+id/shopListView"
+        app:layout_constraintEnd_toEndOf="@+id/backFromShopButton"
+        app:layout_constraintStart_toStartOf="@+id/backFromShopButton"
+        app:layout_constraintTop_toBottomOf="@+id/backFromShopButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
