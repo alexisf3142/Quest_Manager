@@ -19,6 +19,8 @@ import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
+    Character playerCharacter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 FileInputStream fis = this.openFileInput("playerData.txt"); // opens file in read mode
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 // allows us to read an object from the file, according to stack overflow
-                Character playerCharacter = (Character) ois.readObject();
+                playerCharacter = (Character) ois.readObject();
 
                 // reads playerCharacter object from the file.
 
@@ -144,8 +146,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonDungeon(View view) {
-        Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
-        MainActivity.this.startActivity(dungeonScreenIntent);
+        if(playerCharacter.getCurpower() <= 0 ){
+            Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
+            MainActivity.this.startActivity(dungeonScreenIntent);}
+        else{
+            Toast.makeText(getApplicationContext(), "Complete quests to gain power!", Toast.LENGTH_LONG).show();
+        }
     }
 
     //following method takes player to the help screen when they press the help button

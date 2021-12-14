@@ -381,10 +381,13 @@ public class DungeonActivity extends AppCompatActivity {
     private void checkDeath() {
         if (playerCharacter.getCurpower() <= 0) {
             playerCharacter.setCharged(false);
+            playerCharacter.setCurpower(0);
+            updateCharacterFile();
             returnMainScreen();
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         } else if (curMonster.getMonCurPow() <= 0) {
             playerCharacter.setGold(playerCharacter.getGold() + 5);
+            updateCharacterFile(); 
             curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
             TextView header = findViewById(R.id.titleTwoTextView);

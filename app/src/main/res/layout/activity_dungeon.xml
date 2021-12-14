@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/monsterView"
         app:layout_constraintStart_toStartOf="@+id/monsterView"
         app:layout_constraintTop_toBottomOf="@+id/monsterView">
@@ -128,11 +128,13 @@
         android:progress="50"
         android:progressTint="#e51a4c"
         android:scaleY="6"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/actionLinearLayout"
         app:layout_constraintEnd_toEndOf="@+id/monsterView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/monsterView"
-        app:layout_constraintTop_toBottomOf="@+id/monsterView" />
+        app:layout_constraintTop_toBottomOf="@+id/monsterView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
         android:id="@+id/heroHealthBar"
@@ -142,7 +144,7 @@
         android:progress="50"
         android:progressTint="#3C613B"
         android:scaleY="6"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/enemyHealthBar"
         app:layout_constraintStart_toStartOf="@+id/enemyHealthBar"
@@ -154,7 +156,7 @@
         android:layout_height="74dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/monsterView"
         app:layout_constraintStart_toStartOf="@+id/monsterView"
         app:layout_constraintTop_toBottomOf="@+id/monsterView">
