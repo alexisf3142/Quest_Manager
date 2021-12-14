@@ -41,12 +41,12 @@ public class DungeonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon);
-        slime = new Monster("slime", 4, 10);
-        toothBrush = new Monster("goblin", 3, 15);
-        waterCup = new Monster("water cup", 6, 5);
-        dragon = new Monster("dragon", 10, 25);
-        martin = new Monster("martin", 12, 40);
-        washingMachine = new Monster("washingMachine", 5, 10);
+        slime = new Monster("slime", 4, 10,R.drawable.slime_monster,R.drawable.dead_slime_monster);
+        toothBrush = new Monster("goblin", 3, 15,R.drawable.toothbrush_monster,R.drawable.dead_toothbrush_monster);
+        waterCup = new Monster("water cup", 6, 5,R.drawable.water_monster,R.drawable.dead_water_monster);
+        dragon = new Monster("dragon", 10, 25,R.drawable.tiny_dragon_monster,R.drawable.dead_tiny_dragon_monster);
+        martin = new Monster("martin", 12, 40,R.drawable.martin_monster,R.drawable.martin_monster);
+        washingMachine = new Monster("washingMachine", 5, 10,R.drawable.washing_machine_monster,R.drawable.dead_washing_machine_monster);
         curMonster = slime;
         Intent infoIntent = getIntent();
         playerCharacter = (Character) infoIntent.getSerializableExtra("Character");
@@ -56,8 +56,6 @@ public class DungeonActivity extends AppCompatActivity {
         setHerProgress();
 
     }
-
-
 
     public void getMainStat(){
         String profession = playerCharacter.getProfession();
@@ -123,7 +121,6 @@ public class DungeonActivity extends AppCompatActivity {
         }
     }
     
-
     /**
      * Changes from an initial introduction screen into the primary combat screen.
      *
@@ -247,18 +244,18 @@ public class DungeonActivity extends AppCompatActivity {
             returnMainScreen();
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         } else if (curMonster.getMonCurPow() <= 0) {
-            playerCharacter.setGold(playerCharacter.getGold() + 5);
+            double goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;
+            playerCharacter.setGold((int)goldGained);
             updateCharacterFile(); 
             curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
-            TextView header = findViewById(R.id.titleTwoTextView);
-            TextView body = findViewById(R.id.mainTextView);
-            setMain();
+            deathScreen();
 
-            header.setText(String.valueOf(dunLevel));
-            generateMonster();
-            ProgressBar monHealth = findViewById(R.id.enemyHealthBar);
-            monHealth.setProgress(100);
+            //setMain();
+            //header.setText(String.valueOf(dunLevel));
+            //generateMonster();
+            //ProgressBar monHealth = findViewById(R.id.enemyHealthBar);
+            //monHealth.setProgress(100);
 
         }
     }
@@ -393,5 +390,17 @@ public class DungeonActivity extends AppCompatActivity {
             Move = "charge";
         }
         return Move;
+    }
+
+    public void deathScreen(){
+        TextView flavorText = findViewById(R.id.mainTextView);
+        ImageView monIV = findViewById(R.id.monsterView);
+        LinearLayout combatView = findViewById(R.id.actionLinearLayout);
+        LinearLayout initialView = findViewById(R.id.initialLinearLayout);
+        int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
+        flavorText.setText(resourceId);
+
+        monsterIV.setImageResource(R.drawable.slime_monster);
+
     }
 }

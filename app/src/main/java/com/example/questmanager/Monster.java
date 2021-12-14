@@ -4,15 +4,17 @@ import android.media.Image;
 
 public class Monster {
     private String name;
-    private int dmg, curPow, maxPow;
+    private int dmg, curPow, maxPow, pic, deathPic;
     private boolean charged;
 
-    public Monster(String name, int dmg, int maxPow) {
+    public Monster(String name, int dmg, int maxPow,int Pic,int DeathPic) {
         this.name = name;
         this.dmg = dmg;
         this.maxPow = maxPow;
         this.curPow = maxPow;
         this.charged = false;
+        this.pic = Pic;
+        this.deathPic = DeathPic;
     }
 
     public String getMonName() {
