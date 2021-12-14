@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonDungeon(View view) {
-        if(playerCharacter.getCurpower() <= 0 ){
+        if(playerCharacter.getCurpower() > 0 ){
             Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);
             MainActivity.this.startActivity(dungeonScreenIntent);}
         else{
