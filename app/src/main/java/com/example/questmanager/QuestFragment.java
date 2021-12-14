@@ -453,8 +453,8 @@ public class QuestFragment extends Fragment {
         int curpower = playerCharacter.getCurpower();
         int maxpower = playerCharacter.getMaxpower();
         int difficulty = questArray.get(mostRecentElement).getDifficulty();
-
-        experience += difficulty * 5;
+        double experienceGain = (difficulty * 5) + (difficulty * 5 * playerCharacter.getSmt()/20.0);
+        experience += (int) experienceGain;
         curpower += difficulty * 5;
 
         if (experience >= maxexp) {

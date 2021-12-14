@@ -153,7 +153,8 @@ public class DailyQuestFragment extends Fragment{
         int curpower = playerCharacter.getCurpower();
         int maxpower = playerCharacter.getMaxpower();
 
-        experience += 5;
+        double experienceGain = 5 + 5 * playerCharacter.getSmt()/20.0;
+        experience += (int) experienceGain;
         curpower += 5;
 
         if (experience >= maxexp) {
