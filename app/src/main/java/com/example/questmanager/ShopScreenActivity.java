@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class ShopScreenActivity extends AppCompatActivity {
 
 
+    //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
     //important variables
     ArrayList<ShopItem> theList = new ArrayList<ShopItem>(); //list of weapons in shop
     ArrayList<String> weaponsOwned = new ArrayList<String>(); //list of weapons character/user owns
@@ -188,6 +189,9 @@ public class ShopScreenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * this analyzes
+     */
     public void KnightStoreItems() {
         basicSword = new ShopItem(0, "basic sword", "basic", "Knight", 1, null);
         //basic sword will always be purchased since you get it at the start
@@ -210,6 +214,7 @@ public class ShopScreenActivity extends AppCompatActivity {
         }
         theList.add(fancySword);
         theList.add(extravagantSword);
+        itemAdapter.notifyDataSetChanged();
     }
 
     public void MageStoreItems() {
@@ -234,6 +239,7 @@ public class ShopScreenActivity extends AppCompatActivity {
         }
         theList.add(fancyStaff);
         theList.add(extravagantStaff);
+        itemAdapter.notifyDataSetChanged();
     }
 
     public void RangerStoreItems() {
@@ -260,6 +266,7 @@ public class ShopScreenActivity extends AppCompatActivity {
         theList.add(extravagantBow);
         if (playerCharacter.getWeapon().equals("basic")) {
             basicBow.setEquipped(true);
+
         }
         if (playerCharacter.getWeapon().equals("fancy")) {
             fancyBow.setEquipped(true);
@@ -267,6 +274,7 @@ public class ShopScreenActivity extends AppCompatActivity {
         if (playerCharacter.getWeapon().equals("basic")) {
             extravagantBow.setEquipped(true);
         }
+        itemAdapter.notifyDataSetChanged();
     }
 
     public void purchaseButton(View view) {
@@ -311,7 +319,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancySword.setEquipped(false);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantSword.setEquipped(false);
                 }
                 //equip the new weapon and set to true
@@ -322,7 +330,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancySword.setEquipped(true);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantSword.setEquipped(true);
                 }
             }
@@ -334,7 +342,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyStaff.setEquipped(false);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantStaff.setEquipped(false);
                 }
                 //equip the new weapon and set to true
@@ -345,7 +353,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyStaff.setEquipped(true);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantStaff.setEquipped(true);
                 }
             }
@@ -357,7 +365,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyBow.setEquipped(false);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantBow.setEquipped(false);
                 }
                 //equip the new weapon and set to true
@@ -368,7 +376,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyBow.setEquipped(true);
                 }
-                if (playerCharacter.getWeapon().equals("basic")) {
+                if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantBow.setEquipped(true);
                 }
             }

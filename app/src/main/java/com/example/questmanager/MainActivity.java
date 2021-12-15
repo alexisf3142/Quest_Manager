@@ -3,7 +3,6 @@ package com.example.questmanager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 ImageView characterIV = findViewById(R.id.characterImageView);
                 ImageView weaponIV = findViewById(R.id.weaponImageView);
 
-                //KNIGHT
+                //KNIGHT + SWORD
                 if (playerCharacter.getProfession().equals("Knight")) {
                     //we need to save and read in what weapon they have and assign that here
                     characterIV.setImageResource(R.drawable.knight_human_no_weapon);
@@ -67,8 +66,11 @@ public class MainActivity extends AppCompatActivity {
                     else if (playerCharacter.getWeapon().equals("fancy")) {
                         weaponIV.setImageResource(R.drawable.fancy_sword_holding);
                     }
+                    else if (playerCharacter.getWeapon().equals("fancy")) {
+                        weaponIV.setImageResource(R.drawable.extravagant_sword_holding);
+                    }
                 }
-                //MAGE
+                //MAGE + STAFF
                 else if (playerCharacter.getProfession().equals("Mage")) {
                     characterIV.setImageResource(R.drawable.mage_human_no_weapon);
                     //what weapon do they have?
@@ -78,8 +80,12 @@ public class MainActivity extends AppCompatActivity {
                     else if (playerCharacter.getWeapon().equals("fancy")) {
                         weaponIV.setImageResource(R.drawable.fancy_staff_holding);
                     }
+                    else if (playerCharacter.getWeapon().equals("extravagant")) {
+                        weaponIV.setImageResource(R.drawable.extravagant_staff_holding);
+                    }
+
                 }
-                //RANGER
+                //RANGER + BOW
                 else { // since we only have three options this covers the ranger profession
                     characterIV.setImageResource(R.drawable.ranger_elf_no_weapon);
                     //what weapon do they have?
@@ -88,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (playerCharacter.getWeapon().equals("fancy")) {
                         weaponIV.setImageResource(R.drawable.fancy_bow_holding);
+                    }
+                    else if (playerCharacter.getWeapon().equals("extravagant")) {
+                        weaponIV.setImageResource(R.drawable.extravagant_bow_holding);
                     }
                 }
 
@@ -145,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(shopScreenIntent);
     }
 
+    //following method takes player to the dungeon screen when they press the dungeon button
     public void buttonDungeon(View view) {
         if(playerCharacter.getCurpower() > 0 ){
             Intent dungeonScreenIntent = new Intent(MainActivity.this, DungeonActivity.class);

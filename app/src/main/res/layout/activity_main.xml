@@ -65,18 +65,16 @@
         android:id="@+id/weaponImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="220dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guidelineV"
+        app:layout_constraintEnd_toEndOf="@+id/characterImageView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/characterImageView"
         app:layout_constraintTop_toBottomOf="@+id/mainQuestTextView"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/fancy_staff_holding" />
+        app:srcCompat="@drawable/extravagant_staff_holding" />
 
     <TextView
         android:id="@+id/nameTitleTextView"
