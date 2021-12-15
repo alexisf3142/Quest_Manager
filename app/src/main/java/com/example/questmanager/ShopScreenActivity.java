@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class ShopScreenActivity extends AppCompatActivity {
 
 
-    //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
     //important variables
     ArrayList<ShopItem> theList = new ArrayList<ShopItem>(); //list of weapons in shop
     ArrayList<String> weaponsOwned = new ArrayList<String>(); //list of weapons character/user owns
@@ -190,7 +189,7 @@ public class ShopScreenActivity extends AppCompatActivity {
     }
 
     /**
-     * this analyzes
+     * KNIGHT this analyzes the shopData file and adds the weapons to the store list and owned list
      */
     public void KnightStoreItems() {
         basicSword = new ShopItem(0, "basic sword", "basic", "Knight", 1, null);
@@ -217,6 +216,9 @@ public class ShopScreenActivity extends AppCompatActivity {
         itemAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * MAGE this analyzes the shopData file and adds the weapons to the store list and owned list
+     */
     public void MageStoreItems() {
         basicStaff = new ShopItem(0, "basic staff", "basic", "Mage", 1, null);
         //basic staff will always be purchased since you get it at the start
@@ -242,6 +244,9 @@ public class ShopScreenActivity extends AppCompatActivity {
         itemAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * RANGER this analyzes the shopData file and adds the weapons to the store list and owned list
+     */
     public void RangerStoreItems() {
         basicBow = new ShopItem(0, "basic bow", "basic", "Ranger", 1, null);
         //basic bow will always be purchased since you get it at the start
