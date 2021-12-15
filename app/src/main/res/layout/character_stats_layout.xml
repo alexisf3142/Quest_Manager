@@ -87,6 +87,14 @@
             android:textSize="34sp"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/amountOfGold" />
+
+        <Button
+            android:id="@+id/buttonStrengthSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonAddStrengthSkillPoint"
+            android:text="+" />
     </LinearLayout>
 
     <LinearLayout
@@ -110,6 +118,14 @@
             android:layout_height="52dp"
             android:text="0"
             android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/buttonDexSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonAddDexSkillPoint"
+            android:text="+" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,6 +147,14 @@
             android:layout_height="52dp"
             android:text="0"
             android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/buttonLuckSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonAddLuckSkillPoint"
+            android:text="+" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,6 +176,14 @@
             android:layout_height="52dp"
             android:text="0"
             android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/buttonIntelligneceSP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="buttonAddSmtSkillPoint"
+            android:text="+" />
     </LinearLayout>
 
     <LinearLayout
