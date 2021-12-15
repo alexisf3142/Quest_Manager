@@ -144,7 +144,7 @@ public class DungeonActivity extends AppCompatActivity {
         titleOne.setText("Dungeon Level");
         titleTwo.setText(String.valueOf(dunLevel));
         generateMonster();
-
+        setMonProgress();
     }
 
     public void attackButton(View view) {
@@ -195,6 +195,7 @@ public class DungeonActivity extends AppCompatActivity {
                     curMonster.setCharged(false);
                 }
                 curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
+                setMonProgress();
                 checkDeath();
             }
 
@@ -221,6 +222,7 @@ public class DungeonActivity extends AppCompatActivity {
                     curMonster.setCharged(false);
                 }
                 playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
+                setHerProgress();
                 checkDeath();
             }
 
@@ -250,7 +252,6 @@ public class DungeonActivity extends AppCompatActivity {
             curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
             deathScreen();
-            setMonProgress();
 
             //setMain();
             //header.setText(String.valueOf(dunLevel));
@@ -265,34 +266,27 @@ public class DungeonActivity extends AppCompatActivity {
 
         int num = r.nextInt(5);
         ImageView monsterIV = findViewById(R.id.monsterView);
-
+        curMonster.setCharged(false);
+        curMonster.setCurPow(curMonster.getMonMaxPow());
         if (dunLevel % 10 == 0) {
             curMonster = martin;
             setMonProgress();
         } else {
             if (num == 0) {
                 curMonster = slime;
-                monsterIV.setImageResource(R.drawable.slime_monster);
-                setMonProgress();
             } else if (num == 1) {
                 curMonster = toothBrush;
-                monsterIV.setImageResource(R.drawable.toothbrush_monster);
-                setMonProgress();
             } else if (num == 2) {
                 curMonster = waterCup;
-                monsterIV.setImageResource(R.drawable.water_monster);
-                setMonProgress();
             } else if (num == 3) {
                 curMonster = dragon;
-                monsterIV.setImageResource(R.drawable.tiny_dragon_monster);
-                setMonProgress();
             }else if (num == 4) {
                 curMonster = washingMachine;
-                monsterIV.setImageResource(R.drawable.washing_machine_monster);
-                setMonProgress();
             }
             else
                 Toast.makeText(getApplicationContext(), "Something Broke", Toast.LENGTH_SHORT).show();
+            monsterIV.setImageResource(curMonster.getPic());
+            setMonProgress();
         }
 
 
