@@ -1,5 +1,6 @@
 package com.example.questmanager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class CharacterStatsFragment extends Fragment {
 
