@@ -1,16 +1,7 @@
 <resources>
     <string name="app_name">Quest Manager</string>
 
-    <!--Following block of strings are the section headings for the help screen-->
-    <string name="qGeneral">General Information</string>
-    <string name="qHome">Home Screen</string>
-    <string name="qQuest">Quest Screen</string>
-    <string name="qProfile">Profile Screen</string>
-    <string name="qShop">Shop Screen</string>
-    <string name="qDungeon">Dungeon Screen</string>
-    <string name="qCredits">Credits</string>
-
-    <!-- Following is the dungeon screen strings -->
+    <!-- Following block of strings is the level text for the dungeon screen-->
     <string name="introduction_text">In this dungeon you will face many dangerous foes. You will need to use your Power and skills to make it through. While the danger is real and constant, there is also great treasure to be earned for those brave enough to seek it. Shall you continue adventurer?</string>
     <string name="level_end">With the battle over, you press on, further into the dungeon…</string>
 
@@ -26,6 +17,15 @@
 
     <string name="level_boss">This room is smaller than the others you’ve ventured through, and eerily quiet. Even stranger, there’s a robed figure standing in the center. You step forward, weapon drawn, knowing it must be the dreaded Master Martin. He adjusts his glasses with a smirk and pulls out his Tome of Judgment. It’s boss time!</string>
     <string name="boss_end">Martin falls to the ground, his power depleted. “You have grown, adventurer. But there is always more to learn.” With that, he casts a final spell, surrounding himself with smoke. You charge through it, but when it clears, he has disappeared, deeper into the dungeon. At least you can claim all the gold he left behind.</string>
+
+    <!--Following block of strings are the section headings for the help screen-->
+    <string name="qGeneral">General Information</string>
+    <string name="qHome">Home Screen</string>
+    <string name="qQuest">Quest Screen</string>
+    <string name="qProfile">Profile Screen</string>
+    <string name="qShop">Shop Screen</string>
+    <string name="qDungeon">Dungeon Screen</string>
+    <string name="qCredits">Credits</string>
 
     <!--And this is all the explanatory text for the help screen.-->
     <string name="aGeneral"><![CDATA[
