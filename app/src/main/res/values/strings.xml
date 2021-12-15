@@ -27,9 +27,6 @@
     <string name="level_boss">This room is smaller than the others you’ve ventured through, and eerily quiet. Even stranger, there’s a robed figure standing in the center. You step forward, weapon drawn, knowing it must be the dreaded Master Martin. He adjusts his glasses with a smirk and pulls out his Tome of Judgment. It’s boss time!</string>
     <string name="boss_end">Martin falls to the ground, his power depleted. “You have grown, adventurer. But there is always more to learn.” With that, he casts a final spell, surrounding himself with smoke. You charge through it, but when it clears, he has disappeared, deeper into the dungeon. At least you can claim all the gold he left behind.</string>
 
-
-
-
     <!--And this is all the explanatory text for the help screen.-->
     <string name="aGeneral"><![CDATA[
     <p>Thank you for downloading Quest Manager!</p>
@@ -39,9 +36,7 @@
     and simultaneously, thanks to the prior motivation,
     become better at completing your tasks in the real world!</p>
     <p>Below you will find explanations of how each of the screens of this app functions.</p>
-    <p>We wish you luck, hero!</p>
-    <p><i>You guys should let me know if there is anything I should put here
-    that is not covered by the other sections.</i></p>]]></string>
+    <p>We wish you luck, hero!</p>]]></string>
 
     <string name="aHome"><![CDATA[
     <p>The home screen can be thought of as your adventuring hub.</p>
@@ -65,7 +60,7 @@
     <p>The Quest Screen is where you make and view <b>Quests</b>; aka, the tasks you have to complete.
     It is divided into three sections: Current Quests, Daily Quests, and Completed Quests.</p>
     <p>The <b>Current Quests</b> tab lets you see the tasks you have signed up for and have yet to complete.
-    Every Quest has a Name, Description, Due Date, Due Time, and Difficulty (from 1 to 5).
+    Every one of these Quests has a Name, Description, Due Date, Due Time, and Difficulty (from 1 to 5).
     You can make a new Quest by pressing the <b>New Quest</b> button at the bottom of this screen.</p>
     <p>If you click on a Quest in the list,
     you can edit it, delete it, move its position, or mark it as complete.
@@ -74,38 +69,42 @@
     Completing a Quest will earn you EXP (amount depending on its Difficulty)
     and move it to the <b>Completed Quests</b> tab, where you can view everything you have accomplished :)</p>
     <p><b>Daily Tasks</b> are chores that are auto-generated and refresh every day.
-    They are reminders to do things like eat, drink water, take care of your personal hygiene,
-    keep your space clean, and get some rest.
+    They are reminders to do things like eat, drink water,
+    take care of your personal hygiene, get some rest, and socialize.
     You can add some of your own as well with the New Daily Quest button.
     They are a smaller but reliable source of EXP and Power, and they are important to do,
     so be sure to do them and check them off the list!</p>]]></string>
 
     <string name="aProfile"><![CDATA[
     <p>The <b>Profile Screen</b> is where you can view your player stats and achievements.</p>
-    <p>Stats are earned by increasing your Productivity Level via EXP from finished <b>Quests</b>.
-    They improve your performance in the <b>Dungeon</b>, so assign your points wisely!</p>
-    <p><i>Maybe have a description of each stat here? Unless that will be on the profile screen.</i></p>
+    <p>You can increase your stats here via the + buttons if you have <b>Skill Points</b> to spend.
+    You earn Skill Points from leveling up via the EXP you get from finishing <b>Quests</b>.
+    Your stats determine your performance in the <b>Dungeon</b>, so assign your points wisely!</p>
+    <p><i>One line description of the affect of each stat here.</i></p>
     <p><b>Achievements</b> are earned from completing specific tasks, or a certain number of tasks.
     Each achievement gets you a <b>Title</b>
-    that you can set to appear alongside your name on the <b>Home Screen</b>.</p>]]></string>
+    that you can set here to appear alongside your name on the <b>Home Screen</b>.</p>]]></string>
 
     <string name="aShop"><![CDATA[
     <p>The <b>Shop Screen</b> is where you spend the money you earn in the <b>Dungeon</b>.</p>
-    <p>The weapons you buy here can give an additional boost to your stats,
-    which are viewable on the <b>Profile Screen.</b>
-    You can also buy potions that will temporarily boos your stats.</p>]]></string>
+    <p>The weapons you buy here, in addition to being cosmetic upgrades,
+    give a boost to your stats, which are viewable on the <b>Profile Screen</b>.
+    The newest weapon you buy will be automatically equipped,
+    but you can manually switch back to another one by tapping it and pressing the Equip button.</p>]]></string>
 
     <string name="aDungeon"><![CDATA[
     <p>The <b>Dungeon of Responsibilities</b> is where you put your <b>Power</b> to use.
-    Entering will inevitably lead to an encounter with a monster!</p>
+    If you choose to Continue, you will encounter a monster!</p>
     <p>The monster will attack you (or at least try to) on its turn, lowering your Power.
     Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
     <p>On your turn, you can either attack the monster, defend yourself so you take less damage,
     power yourself up to make your next attack hit harder,
     or retreat to save your Power and try again next time.</p>
     <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
-    and it will allow you to progress deeper into the dungeon.</p>
-    <p>The higher you raise your <b>Productivity Level</b> via completing <b>Quests</b>,
+    and will allow you to progress deeper into the dungeon.</p>
+    <p>Every time you flee or are kicked out of the dungeon,
+    you will have to start back at level 1 when you re-enter.
+    The higher you raise your <b>Productivity Level</b> via completing <b>Quests</b>,
     the stronger the foes you face will be.
     And there may be someone extra powerful waiting for you a ways down…</p>]]></string>
 
