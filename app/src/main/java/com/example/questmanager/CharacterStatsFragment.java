@@ -1,6 +1,7 @@
 package com.example.questmanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,11 +73,93 @@ public class CharacterStatsFragment extends Fragment {
         TextView charPower = rootView.findViewById(R.id.amountOfPower);
         charPower.setText(String.valueOf(theCharacter.getCurpower()));
 
-//        Button charStatsButton = rootView.findViewById(R.id.characterStatsButton);
-//        charStatsButton.setOnClickListener(characterStatsButtonListener);
+        Button strButton = rootView.findViewById(R.id.buttonStrengthSP);
+        strButton.setOnClickListener(addStrButtonListener);
+        Button dexButton = rootView.findViewById(R.id.buttonDexSP);
+        dexButton.setOnClickListener(addDexButtonListener);
+        Button luckButton = rootView.findViewById(R.id.buttonLuckSP);
+        luckButton.setOnClickListener(addLuckButtonListener);
+        Button intButton = rootView.findViewById(R.id.buttonIntelligneceSP);
+        intButton.setOnClickListener(addIntButtonListener);
 
         return rootView;
     }
+
+    View.OnClickListener addStrButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonAddStrengthSkillPoint(view);
+        }
+    };
+    View.OnClickListener addDexButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonAddDexSkillPoint(view);
+        }
+    };
+    View.OnClickListener addLuckButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonAddLuckSkillPoint(view);
+        }
+    };
+    View.OnClickListener addIntButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            buttonAddSmtSkillPoint(view);
+        }
+    };
+
+    // following method brings user back to home screen if home button is pressed
+
+    public void buttonAddStrengthSkillPoint(View view){
+        if(theCharacter.getSkillPoints()>0){
+            theCharacter.setStr(theCharacter.getStr()+1);
+            theCharacter.setSkillPoints(theCharacter.getSkillPoints() - 1);
+            TextView charStrength = rootView.findViewById(R.id.amountOfStrength);
+            charStrength.setText(String.valueOf(theCharacter.getStr()));
+            updateCharacterFile();
+        }else{
+            Toast.makeText(getActivity(),"You don't have enough skill points.",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void buttonAddDexSkillPoint(View view){
+        if(theCharacter.getSkillPoints()>0){
+            theCharacter.setDex(theCharacter.getDex()+1);
+            theCharacter.setSkillPoints(theCharacter.getSkillPoints() - 1);
+            TextView charDex = rootView.findViewById(R.id.amountOfDexterity);
+            charDex.setText(String.valueOf(theCharacter.getDex()));
+            updateCharacterFile();
+        }else{
+            Toast.makeText(getActivity(),"You don't have enough skill points.",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void buttonAddLuckSkillPoint(View view){
+        if(theCharacter.getSkillPoints()>0){
+            theCharacter.setLck(theCharacter.getLck()+1);
+            theCharacter.setSkillPoints(theCharacter.getSkillPoints() - 1);
+            TextView charLuck = rootView.findViewById(R.id.amountOfLuck);
+            charLuck.setText(String.valueOf(theCharacter.getLck()));
+            updateCharacterFile();
+        }else{
+            Toast.makeText(getActivity(),"You don't have enough skill points.",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void buttonAddSmtSkillPoint(View view){
+        if(theCharacter.getSkillPoints()>0){
+            theCharacter.setSmt(theCharacter.getSmt()+1);
+            theCharacter.setSkillPoints(theCharacter.getSkillPoints() - 1);
+            TextView charSmt = rootView.findViewById(R.id.amountOfIntelligence);
+            charSmt.setText(String.valueOf(theCharacter.getSmt()));
+            updateCharacterFile();
+        }else{
+            Toast.makeText(getActivity(),"You don't have enough skill points.",Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void readFile() {
         File playerData = getActivity().getBaseContext().getFileStreamPath("playerData.txt");
@@ -96,6 +179,32 @@ public class CharacterStatsFragment extends Fragment {
             } catch (Exception e) { // error message
                 Toast.makeText(this.getActivity(), "Player data was found, but there was an error reading the file", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    public void updateCharacterFile() {
+        File playerData = getActivity().getBaseContext().getFileStreamPath("playerData.txt");
+        //looks for the file to which player character data is saved
+        if (playerData.exists()) {
+            try {
+                FileOutputStream fos = getActivity().openFileOutput("playerData.txt", Context.MODE_PRIVATE);
+                // makes the file and opens it in write mode
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                // allows us to write an object to the file, according to stack overflow
+                os.writeObject(theCharacter);
+                // writes playerCharacter object to the file. next two lines close the write mode file
+                os.close();
+                fos.close();
+
+                // Toast.makeText(this, "It worked!", Toast.LENGTH_SHORT).show();
+                // placeholder to move around and make sure each step works properly
+
+            } catch (IOException e) {
+                Toast.makeText(getActivity(), "Problem with output file", Toast.LENGTH_SHORT).show();
+                // placeholder error message
+            }
+        } else {
+            //CHANGE!!!!!
+            Toast.makeText(getActivity(), "this is impossible what did you do?", Toast.LENGTH_SHORT).show();
         }
     }
 }
