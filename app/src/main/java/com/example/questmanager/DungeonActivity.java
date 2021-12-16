@@ -329,9 +329,12 @@ public class DungeonActivity extends AppCompatActivity {
         ImageView monsterIV = findViewById(R.id.monsterView);
         curMonster.setCharged(false);
         curMonster.setCurPow(curMonster.getMonMaxPow());
-        if (dunLevel % 10 == 0) {
+        if (dunLevel % 3 == 0) {
             curMonster = martin;
             setMonProgress();
+        //if (dunLevel % 10 == 0) {
+            //curMonster = martin;
+            //setMonProgress();
         } else {
             if (num == 0) {
                 curMonster = slime;
