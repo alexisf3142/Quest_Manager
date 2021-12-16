@@ -118,6 +118,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 Toast.makeText(this, "Shop data was found, but there was an error reading the file", Toast.LENGTH_LONG).show();
             }
         }
+        //KNIGHT + SWORD
         if (playerCharacter.getProfession().equals("Knight")) {
             KnightStoreItems();
         }
@@ -140,24 +141,22 @@ public class ShopScreenActivity extends AppCompatActivity {
         if (playerData.exists()) {
             try {
                 FileOutputStream fos = this.openFileOutput("playerData.txt", Context.MODE_PRIVATE);
-                // makes the file and opens it in write mode
+                //makes the file and opens it in write mode
                 ObjectOutputStream os = new ObjectOutputStream(fos);
-                // allows us to write an object to the file, according to stack overflow
+                //allows us to write an object to the file, according to stack overflow
                 os.writeObject(playerCharacter);
-                // writes playerCharacter object to the file. next two lines close the write mode file
+                //writes playerCharacter object to the file. next two lines close the write mode file
                 os.close();
                 fos.close();
 
-                // Toast.makeText(this, "It worked!", Toast.LENGTH_SHORT).show();
-                // placeholder to move around and make sure each step works properly
 
             } catch (IOException e) {
                 Toast.makeText(this, "Problem with output file", Toast.LENGTH_SHORT).show();
                 // placeholder error message
             }
         } else {
-            //CHANGE!!!!!
-            Toast.makeText(this, "this is impossible what did you do?", Toast.LENGTH_SHORT).show();
+            //this should never happen
+            Toast.makeText(this, "Problem with output to playerData, the file does not exist...", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -175,7 +174,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                     //fos.write(theList.get(i).getWeaponType().getBytes());
                     fos.write("\n".getBytes());
                 } catch (Exception e) {
-                    Toast exceptionToast = Toast.makeText(this, "problem with writing to output file, shopData.txt", Toast.LENGTH_LONG);
+                    Toast exceptionToast = Toast.makeText(this, "problem with updating output file, shopData.txt", Toast.LENGTH_LONG);
                     exceptionToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
                     exceptionToast.show();
                 }
@@ -188,7 +187,9 @@ public class ShopScreenActivity extends AppCompatActivity {
     }
 
     /**
-     * KNIGHT this analyzes the shopData file and adds the weapons to the store list and owned list
+     * KNIGHT this analyzes the data from shopData file and adds the weapons to the store list
+     * by going through the array list weaponsOwned we figure out which weapons are still available
+     * for purchase and update the items and their prices/states respectively
      */
     public void KnightStoreItems() {
         basicSword = new ShopItem(0, "basic sword", "basic", "Knight", 1, null);
@@ -196,8 +197,10 @@ public class ShopScreenActivity extends AppCompatActivity {
         basicSword.setPurchased(true);
         weaponsOwned.add(basicSword.itemName);
         theList.add(basicSword);
+        //add the other corresponding knight items to the shop
         fancySword = new ShopItem(200, "fancy sword", "fancy", "Knight", 5, null);
         extravagantSword = new ShopItem(500, "extravagant sword", "extravagant", "Knight", 10,  null);
+        //the data we got from the shopData file is stored in weaponsOwned, now update the items
         if (!weaponsOwned.isEmpty()) {
             for (int i = 0; i < weaponsOwned.size(); i++) {
                 if (weaponsOwned.get(i).equals("fancy")) {
@@ -210,13 +213,16 @@ public class ShopScreenActivity extends AppCompatActivity {
                 }
             }
         }
+        //finally add them to the store
         theList.add(fancySword);
         theList.add(extravagantSword);
         itemAdapter.notifyDataSetChanged();
     }
 
     /**
-     * MAGE this analyzes the shopData file and adds the weapons to the store list and owned list
+     * MAGE this analyzes the data from shopData file and adds the weapons to the store list
+     * by going through the array list weaponsOwned we figure out which weapons are still available
+     * for purchase and update the items and their prices/states respectively
      */
     public void MageStoreItems() {
         basicStaff = new ShopItem(0, "basic staff", "basic", "Mage", 1, null);
@@ -224,8 +230,10 @@ public class ShopScreenActivity extends AppCompatActivity {
         weaponsOwned.add(basicStaff.itemName);
         basicStaff.setPurchased(true);
         theList.add(basicStaff);
+        //add the other corresponding mage items to the shop
         fancyStaff = new ShopItem(200, "fancy staff", "fancy", "Mage", 5, null);
         extravagantStaff = new ShopItem(500, "extravagant staff", "extravagant", "Mage", 10, null);
+        //the data we got from the shopData file is stored in weaponsOwned, now update the items
         if (!weaponsOwned.isEmpty()) {
             for (int i = 0; i < weaponsOwned.size(); i++) {
                 if (weaponsOwned.get(i).equals("fancy")) {
@@ -244,7 +252,9 @@ public class ShopScreenActivity extends AppCompatActivity {
     }
 
     /**
-     * RANGER this analyzes the shopData file and adds the weapons to the store list and owned list
+     * RANGER this analyzes the data from shopData file and adds the weapons to the store list
+     * by going through the array list weaponsOwned we figure out which weapons are still available
+     * for purchase and update the items and their prices/states respectively
      */
     public void RangerStoreItems() {
         basicBow = new ShopItem(0, "basic bow", "basic", "Ranger", 1, null);
@@ -254,6 +264,7 @@ public class ShopScreenActivity extends AppCompatActivity {
         theList.add(basicBow);
         fancyBow = new ShopItem(200, "fancy bow", "fancy", "Ranger", 5, null);
         extravagantBow = new ShopItem(500, "extravagant bow", "extravagant", "Ranger", 10, null);
+        //the data we got from the shopData file is stored in weaponsOwned, now update the items
         if (!weaponsOwned.isEmpty()) {
             for (int i = 0; i < weaponsOwned.size(); i++) {
                 if (weaponsOwned.get(i).equals("fancy")) {
@@ -266,11 +277,11 @@ public class ShopScreenActivity extends AppCompatActivity {
                 }
             }
         }
+        //finally add them to the store
         theList.add(fancyBow);
         theList.add(extravagantBow);
         if (playerCharacter.getWeapon().equals("basic")) {
             basicBow.setEquipped(true);
-
         }
         if (playerCharacter.getWeapon().equals("fancy")) {
             fancyBow.setEquipped(true);
@@ -281,6 +292,12 @@ public class ShopScreenActivity extends AppCompatActivity {
         itemAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * when the purchase button is clicked this will be executed.
+     * this checks if you are able to purchase the item, if not Nitram will let you know, otherwise
+     * it will go through and let you buy it and update your gold, etc.
+     * @param view
+     */
     public void purchaseButton(View view) {
         ImageView nitramIV = findViewById(R.id.nitramImageView);
         itemAdapter.setMostRecentlyClickedPosition(itemAdapter.getMostRecentlyClickedPosition());
@@ -300,6 +317,7 @@ public class ShopScreenActivity extends AppCompatActivity {
             //set their weapon to the new one they just bought
             weaponEquip();
             itemAdapter.notifyDataSetChanged();
+            //update the files
             updateShopFile();
             updateCharacterFile();
         } else {
@@ -308,6 +326,11 @@ public class ShopScreenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * this equips this weapon on to your character. We have to make sure to check if the weapon
+     * is already equipped, as well as take into account all possibilities for each class. The code
+     * is very similar for each, but tailored in regards to the different weapons.
+     */
     public void weaponEquip() {
         if (playerCharacter.getWeapon().equals(itemAdapter.currentItem.getWeaponType())) {
             Toast alreadyEquippedToast = Toast.makeText(this, "this weapon is already equipped", Toast.LENGTH_LONG);
@@ -315,8 +338,9 @@ public class ShopScreenActivity extends AppCompatActivity {
             alreadyEquippedToast.show();
         }
         else {
+            //KNIGHT + SWORD
             if (playerCharacter.getProfession().equals("Knight")) {
-                //set whatever the current weapon equipped to false
+                //set whatever the current weapon equipped to false (unequipped)
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicSword.setEquipped(false);
 
@@ -342,8 +366,9 @@ public class ShopScreenActivity extends AppCompatActivity {
                     playerCharacter.setWeaponmod(10);
                 }
             }
+            //MAGE + STAFF
             if (playerCharacter.getProfession().equals("Mage")) {
-                //set whatever the current weapon equipped to false
+                //set whatever the current weapon equipped to false (unequipped)
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicStaff.setEquipped(false);
                 }
@@ -368,8 +393,9 @@ public class ShopScreenActivity extends AppCompatActivity {
                     playerCharacter.setWeaponmod(10);
                 }
             }
+            //RANGER + BOW
             if (playerCharacter.getProfession().equals("Ranger")) {
-                //set whatever the current weapon equipped to false
+                //set whatever the current weapon equipped to false (unequipped)
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicBow.setEquipped(false);
                 }
@@ -394,6 +420,8 @@ public class ShopScreenActivity extends AppCompatActivity {
                     playerCharacter.setWeaponmod(10);
                 }
             }
+            //let the player know the weapon has successfully been equipped
+            //they will also physically see it on their character on the home screen
             Toast equipToast = Toast.makeText(this, "you equipped the weapon", Toast.LENGTH_LONG);
             equipToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
             equipToast.show();
@@ -401,6 +429,10 @@ public class ShopScreenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * when the equip button is pressed this will call the previous function to equip the item
+     * @param view
+     */
     public void equipButton(View view) {
         itemAdapter.setMostRecentlyClickedPosition(itemAdapter.getMostRecentlyClickedPosition());
         weaponEquip();
@@ -408,7 +440,12 @@ public class ShopScreenActivity extends AppCompatActivity {
 
     }
 
-    // following method brings user back to home screen if home button is pressed
+    /**
+     * when the home button is pressed this will return the user to the home screen. The purpose of this
+     * function is that it will call onCreate again and update the screen rather than just hitting the back
+     * button
+     * @param view
+     */
     public void buttonBackFromHelp(View view) {
         Intent backFromShopIntent = new Intent(ShopScreenActivity.this, MainActivity.class);
         ShopScreenActivity.this.startActivity(backFromShopIntent);

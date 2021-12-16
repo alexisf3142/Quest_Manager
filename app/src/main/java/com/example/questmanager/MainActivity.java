@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+
                 // next two lines set the name and title text to the player's name and title
                 TextView nameTitleTV = findViewById(R.id.nameTitleTextView);
                 nameTitleTV.setText(playerCharacter.getName() + "\nthe\n" + playerCharacter.getTitle());
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 float curexp = playerCharacter.getCurexp();
                 float maxexp = playerCharacter.getMaxexp();
                 expPB.setProgress((int)(curexp/maxexp*100));
+
 
                 // next two lines close the read mode file
                 ois.close();

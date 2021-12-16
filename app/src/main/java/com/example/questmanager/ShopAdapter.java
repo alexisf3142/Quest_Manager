@@ -32,6 +32,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.shop_item_layout, parent, false);
         }
+        //initializing all the views
         ImageView itemIV = listItemView.findViewById(R.id.itemImageView);
         TextView itemNameTV = listItemView.findViewById(R.id.itemNameTextView);
         TextView priceTV = listItemView.findViewById(R.id.priceTextView);
@@ -42,7 +43,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
         //get the current item
         currentItem = getItem(position);
         //set all the UI components to the correct values/images/text
-        //KNIGHT
+        //KNIGHT + SWORD
         if (currentItem.getProfession().equals("Knight")) {
             if (currentItem.getWeaponType().equals("basic")) {
                 itemIV.setImageResource(R.drawable.basic_sword);
@@ -54,7 +55,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.extravagant_sword);
             }
         }
-        //MAGE
+        //MAGE + STAFF
         else if (currentItem.getProfession().equals("Mage")) {
             if (currentItem.getWeaponType().equals("basic")) {
                 itemIV.setImageResource(R.drawable.basic_staff);
@@ -66,7 +67,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.extravagant_staff);
             }
         }
-        //RANGER
+        //RANGER + BOW
         else {
             if (currentItem.getWeaponType().equals("basic")) {
                 itemIV.setImageResource(R.drawable.basic_bow);
@@ -80,10 +81,9 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
         }
         //set everything else
         itemNameTV.setText(currentItem.itemName);
-
-
-        //maybe if purchased we could have it say "owned"?
+        //if purchased show "owned"
         if(currentItem.isPurchased()){
+            //if equipped show "equipped
             if(currentItem.isEquipped()) {
                 priceTV.setText("Equipped");
                 priceValueTV.setText("");
@@ -97,8 +97,11 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
             priceTV.setText("Price: ");
             priceValueTV.setText(String.valueOf(currentItem.getPrice()));
         }
+        //making sure when clicked still updated
         if (position == mostRecentlyClickedPosition) {
+            //if purchased show "owned"
             if(currentItem.isPurchased()) {
+                //if equipped show "equipped"
                 if(currentItem.isEquipped()) {
                     priceTV.setText("Equipped");
                     priceValueTV.setText("");
@@ -107,6 +110,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                     priceTV.setText("Owned");
                     priceValueTV.setText("");
                 }
+                //manage visibilities
                 equipB.setVisibility(View.VISIBLE);
                 purchaseB.setVisibility(View.GONE);
             }
