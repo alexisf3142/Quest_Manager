@@ -84,7 +84,14 @@
     <p><i>One line description of the affect of each stat here.</i></p>
     <p><b>Achievements</b> are earned from completing specific tasks, or a certain number of tasks.
     Each achievement gets you a <b>Title</b>
-    that you can set here to appear alongside your name on the <b>Home Screen</b>.</p>]]></string>
+    that you can set here to appear alongside your name on the <b>Home Screen</b>.</p>
+    <b>Stats</b>
+    <p>Strength: A warriors main combat stat, and will help any combatant better charge their attack</p>
+    <p>Dexterity: A rangers main combat stat, and will make a persons ability to reflect an opponents attack back on them</p>
+    <p>Luck: Will make it more likely for you find more coins.</p>
+    <p>Smarts: Will make you gain experience faster.</p>
+
+    ]]></string>
 
     <string name="aShop"><![CDATA[
     <p>The <b>Shop Screen</b> is where you spend the money you earn in the <b>Dungeon</b>.</p>
