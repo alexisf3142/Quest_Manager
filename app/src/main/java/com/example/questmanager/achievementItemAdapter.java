@@ -35,7 +35,6 @@ public class achievementItemAdapter extends ArrayAdapter<Achievement> {
         TextView achievementText = achievementView.findViewById(R.id.achievementItem);
         String fullDescription = achievement.getAchTitle()+" - "+achievement.getDescription();
         achievementText.setText(fullDescription);
-        //checkmark would be an image that's next to achievementItem in layout
 
         achievementItemButtons = achievementView.findViewById(R.id.achievementItemButtonLayout);
         if(position==mostRecentPositionSelected){

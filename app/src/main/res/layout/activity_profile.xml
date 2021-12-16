@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/cream">
+    android:background="@color/cream"
+    android:orientation="vertical">
 
     <!--    <LinearLayout-->
     <!--        android:layout_width="match_parent"-->
@@ -27,6 +27,14 @@
     <!--            android:text="Achieivements" />-->
     <!--    </LinearLayout>-->
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/profileTabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cream">
+
+    </com.google.android.material.tabs.TabLayout>
+
     <Button
         android:id="@+id/button2"
         android:layout_width="100dp"
@@ -34,17 +42,10 @@
         android:onClick="buttonBackFromProfile"
         android:text="Home" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/profileTabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.google.android.material.tabs.TabLayout>
-
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/profileViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/profileViewPager">
+        android:layout_height="match_parent">
 
     </androidx.viewpager.widget.ViewPager>
 
