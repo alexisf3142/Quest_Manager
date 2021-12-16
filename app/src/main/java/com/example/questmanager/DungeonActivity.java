@@ -150,7 +150,7 @@ public class DungeonActivity extends AppCompatActivity {
     public void attackButton(View view) {
         double herAtt = (r.nextInt(playerCharacter.getDmg()) + .5 * mainStat);
         if (playerCharacter.isCharged()){
-            herAtt = herAtt *2;
+            herAtt = herAtt * (2 + (playerCharacter.getStr()/20.0));
             playerCharacter.setCharged(false);
         }
         int herDmg = (int) herAtt;
@@ -188,8 +188,9 @@ public class DungeonActivity extends AppCompatActivity {
             String move = monsterMove();
 
             if (move.equals("attack")) {
-                int dmg2;
-                dmg2 = r.nextInt(curMonster.getMonDmg());
+                double monDmg = r.nextInt(curMonster.getMonDmg());
+                monDmg = monDmg + monDmg * playerCharacter.getDex()/20.0;
+                int dmg2 = (int) monDmg;
                 if (curMonster.isCharged()){
                     dmg2 = dmg2 * 2;
                     curMonster.setCharged(false);

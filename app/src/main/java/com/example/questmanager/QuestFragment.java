@@ -154,7 +154,9 @@ public class QuestFragment extends Fragment {
             if (!questArray.get(mostRecentElement).isCompletable()){
                 updateCompletable(i);
             }
-            //Button completeButton = mostRecentView.findViewById(R.id.questCompleteButton);
+            else{
+                questAdapter.setMostRecentCompletable(true);
+            }
             questAdapter.setMostRecentlyClickedPosition(i);
             questAdapter.notifyDataSetChanged();
         }
@@ -163,7 +165,34 @@ public class QuestFragment extends Fragment {
     public void updateCompletable(int position){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             String currentTime = getDateTime();
-            /** Compare times */
+            String createTime = questArray.get(position).getCreationDate();
+            boolean diff = true;
+            if (currentTime.substring(0,10).equals(createTime.substring(0,10))){
+                int curHR, createHR;
+                curHR = Integer.parseInt(currentTime.substring(11,13));
+                createHR = Integer.parseInt(createTime.substring(11,13));
+                if (curHR - createHR < 1){
+                    diff = false;
+                }
+                else if (curHR - createHR == 1){
+                    int curMin, createMin;
+                    curMin = Integer.parseInt(currentTime.substring(14,16));
+                    createMin = Integer.parseInt(createTime.substring(14,16));
+                    if (curMin - createMin < 0){
+                        diff = false;
+                    }
+                }
+            }
+            if (diff){
+                questArray.get(position).setCompletable(true);
+                questAdapter.setMostRecentCompletable(true);
+            }
+            else{
+                questAdapter.setMostRecentCompletable(false);
+            }
+        }
+        else{ //If outdated Android version, ignore mechanic
+            questAdapter.setMostRecentCompletable(true);
         }
 
     }
