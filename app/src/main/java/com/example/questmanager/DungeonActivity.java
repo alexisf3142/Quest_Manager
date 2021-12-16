@@ -14,6 +14,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -30,6 +32,10 @@ public class DungeonActivity extends AppCompatActivity {
     Monster dragon; //= new Monster("dragon",10,25);
     Monster washingMachine; //=new Monster("washingMachine",5,10);
     Monster martin; //= new Monster("martin",12,40);
+    Monster ghost;
+    Monster tree;
+    Monster goblin;
+    Monster werewolf;
     Monster curMonster; //= null;
     Character playerCharacter;// = readFile();
     Random r = new Random(System.currentTimeMillis());
@@ -47,6 +53,12 @@ public class DungeonActivity extends AppCompatActivity {
         dragon = new Monster("dragon", 10, 25,R.drawable.tiny_dragon_monster,R.drawable.dead_tiny_dragon_monster);
         martin = new Monster("martin", 12, 40,R.drawable.martin_monster,R.drawable.martin_monster);
         washingMachine = new Monster("washingMachine", 5, 10,R.drawable.washing_machine_monster,R.drawable.dead_washing_machine_monster);
+        ghost = new Monster("ghost",6,20,R.drawable.ghost_monster,R.drawable.dead_ghost_monster);
+        tree = new Monster("tree",8,23,R.drawable.tree_monster,R.drawable.dead_tree_monster);
+        goblin = new Monster("goblin",3,10,R.drawable.goblin_monster,R.drawable.dead_goblin_monster);
+        werewolf = new Monster("werewolf",9,19,R.drawable.werewolf_monster,R.drawable.dead_werewolf_monster);
+
+
         curMonster = slime;
         Intent infoIntent = getIntent();
         playerCharacter = (Character) infoIntent.getSerializableExtra("Character");
@@ -148,6 +160,20 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void attackButton(View view) {
+        TextView flavorText = findViewById(R.id.mainTextView);
+        TextView heroTitle = findViewById(R.id.heroTextView);
+        TextView heroAction = findViewById(R.id.heroAction);
+        TextView monTitle =findViewById(R.id.monsterTextView);
+        TextView monAction = findViewById(R.id.monsterAction);
+
+        flavorText.setVisibility(View.INVISIBLE);
+        heroTitle.setVisibility(View.VISIBLE);
+        heroAction.setVisibility(View.VISIBLE);
+        heroAction.setText("Attack");
+        monTitle.setVisibility(View.VISIBLE);
+        monAction.setVisibility(View.VISIBLE);
+
+
         double herAtt = (r.nextInt(playerCharacter.getDmg()) + .5 * mainStat);
         if (playerCharacter.isCharged()){
             herAtt = herAtt * (2 + (playerCharacter.getStr()/20.0));
@@ -155,39 +181,55 @@ public class DungeonActivity extends AppCompatActivity {
         }
         int herDmg = (int) herAtt;
 
-            String move = monsterMove();
+        String move = monsterMove();
 
-            if (move.equals("attack")) {
-                int monDmg = r.nextInt(curMonster.getMonDmg());
-                if (curMonster.isCharged()){
-                    monDmg = monDmg * 2;
-                    curMonster.setCharged(false);
-                }
-                curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
-                setMonProgress();
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - monDmg);
-                setHerProgress();
-                checkDeath();
+        if (move.equals("attack")) {
+            monAction.setText("Attack");
+            int monDmg = r.nextInt(curMonster.getMonDmg());
+            if (curMonster.isCharged()){
+                monDmg = monDmg * 2;
+                curMonster.setCharged(false);
             }
+            curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
+            setMonProgress();
+            playerCharacter.setCurpower(playerCharacter.getCurpower() - monDmg);
+            setHerProgress();
+            checkDeath();
+        }
 
-            if (move.equals("defend")) {
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - herDmg);
-                setHerProgress();
-                checkDeath();
-            }
-            if (move.equals("charge")) {
-                herDmg = herDmg * 2;
-                curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
-                setMonProgress();
-                checkDeath();
-            }
+        if (move.equals("defend")) {
+            monAction.setText("Defend");
+            playerCharacter.setCurpower(playerCharacter.getCurpower() - herDmg);
+            setHerProgress();
+            checkDeath();
+        }
+        if (move.equals("charge")) {
+            monAction.setText("Charging Attack");
+            herDmg = herDmg * 2;
+            curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
+            setMonProgress();
+            checkDeath();
+        }
     }
 
     public void defendButton(View view) {
+        TextView flavorText = findViewById(R.id.mainTextView);
+        TextView heroTitle = findViewById(R.id.heroTextView);
+        TextView heroAction = findViewById(R.id.heroAction);
+        TextView monTitle =findViewById(R.id.monsterTextView);
+        TextView monAction = findViewById(R.id.monsterAction);
+
+        flavorText.setVisibility(View.INVISIBLE);
+        heroTitle.setVisibility(View.VISIBLE);
+        heroAction.setVisibility(View.VISIBLE);
+        heroAction.setText("Defend");
+        monTitle.setVisibility(View.VISIBLE);
+        monAction.setVisibility(View.VISIBLE);
 
             String move = monsterMove();
 
             if (move.equals("attack")) {
+                monAction.setText("Attack");
                 double monDmg = r.nextInt(curMonster.getMonDmg());
                 monDmg = monDmg + monDmg * playerCharacter.getDex()/20.0;
                 int dmg2 = (int) monDmg;
@@ -200,43 +242,61 @@ public class DungeonActivity extends AppCompatActivity {
                 checkDeath();
             }
 
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You stare at each other", Toast.LENGTH_LONG).show();
-                checkDeath();
-            }
+        if (move.equals("defend")) {
+            monAction.setText("Defend");
+            Toast.makeText(getApplicationContext(), "You stare at each other", Toast.LENGTH_LONG).show();
+            checkDeath();
+        }
 
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                checkDeath();
-            }
+        if (move.equals("charge")) {
+            monAction.setText("Charging Attack");
+            curMonster.setCharged(true);
+            checkDeath();
+        }
     }
 
     public void chargeButton(View view) {
 
-            String move = monsterMove();
-            playerCharacter.setCharged(true);
-            if (move.equals("attack")) {
-                int dmg2;
-                dmg2 = r.nextInt(curMonster.getMonDmg()) * 2;
-                if (curMonster.isCharged()){
-                    dmg2 = dmg2 * 2;
-                    curMonster.setCharged(false);
-                }
-                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
-                setHerProgress();
-                checkDeath();
-            }
+        TextView flavorText = findViewById(R.id.mainTextView);
+        TextView heroTitle = findViewById(R.id.heroTextView);
+        TextView heroAction = findViewById(R.id.heroAction);
+        TextView monTitle =findViewById(R.id.monsterTextView);
+        TextView monAction = findViewById(R.id.monsterAction);
 
-            if (move.equals("defend")) {
-                Toast.makeText(getApplicationContext(), "You watch your opponent defend themselves", Toast.LENGTH_LONG).show();
-                checkDeath();
-            }
+        flavorText.setVisibility(View.INVISIBLE);
+        heroTitle.setVisibility(View.VISIBLE);
+        heroAction.setVisibility(View.VISIBLE);
+        heroAction.setText("Charging Attack");
+        monTitle.setVisibility(View.VISIBLE);
+        monAction.setVisibility(View.VISIBLE);
 
-            if (move.equals("charge")) {
-                curMonster.setCharged(true);
-                Toast.makeText(getApplicationContext(), "You stare at one another", Toast.LENGTH_LONG).show();
-                checkDeath();
+        String move = monsterMove();
+        playerCharacter.setCharged(true);
+        if (move.equals("attack")) {
+            monAction.setText("Attack");
+            int dmg2;
+            dmg2 = r.nextInt(curMonster.getMonDmg()) * 2;
+            if (curMonster.isCharged()){
+                dmg2 = dmg2 * 2;
+                curMonster.setCharged(false);
             }
+            playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
+            setHerProgress();
+            checkDeath();
+        }
+
+        if (move.equals("defend")) {
+            monAction.setText("Defend");
+            Toast.makeText(getApplicationContext(), "You watch your opponent defend themselves", Toast.LENGTH_LONG).show();
+            checkDeath();
+        }
+
+        if (move.equals("charge")) {
+            monAction.setText("Charging Attack");
+            curMonster.setCharged(true);
+            Toast.makeText(getApplicationContext(), "You stare at one another", Toast.LENGTH_LONG).show();
+            checkDeath();
+        }
     }
 
     private void checkDeath() {
@@ -249,7 +309,7 @@ public class DungeonActivity extends AppCompatActivity {
         } else if (curMonster.getMonCurPow() <= 0) {
             double goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;
             playerCharacter.setGold((int)goldGained);
-            updateCharacterFile(); 
+            updateCharacterFile();
             curMonster.setCharged(false);
             dunLevel = dunLevel + 1;
             deathScreen();
@@ -265,7 +325,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     private void generateMonster() {
 
-        int num = r.nextInt(5);
+        int num = r.nextInt(9);
         ImageView monsterIV = findViewById(R.id.monsterView);
         curMonster.setCharged(false);
         curMonster.setCurPow(curMonster.getMonMaxPow());
@@ -283,6 +343,14 @@ public class DungeonActivity extends AppCompatActivity {
                 curMonster = dragon;
             }else if (num == 4) {
                 curMonster = washingMachine;
+            }else if (num == 5) {
+                curMonster = ghost;
+            }else if (num == 6) {
+                curMonster = tree;
+            }else if (num == 7) {
+                curMonster = goblin;
+            }else if (num == 8) {
+                curMonster = werewolf;
             }
             else
                 Toast.makeText(getApplicationContext(), "Something Broke", Toast.LENGTH_SHORT).show();
@@ -328,7 +396,22 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void setMain(){
         TextView mainTextView = findViewById(R.id.mainTextView);
+        TextView heroTitle = findViewById(R.id.heroTextView);
+        TextView monTitle = findViewById(R.id.monsterTextView);
+        TextView heroAction = findViewById(R.id.heroAction);
+        TextView monAction = findViewById(R.id.monsterAction);
+        heroTitle.setVisibility(View.GONE);
+        monTitle.setVisibility(View.GONE);
+        heroAction.setVisibility(View.GONE);
+        monAction.setVisibility(View.GONE);
+
+        mainTextView.setVisibility(View.VISIBLE);
         int num = r.nextInt(9);
+
+        if(curMonster == martin){
+            int resourceId = this.getResources().getIdentifier("@string/level_boss", "string", this.getPackageName());
+            mainTextView.setText(resourceId);
+        }
 
         if(num == 0){
             int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
@@ -389,10 +472,23 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void deathScreen(){
+        TextView heroTitle = findViewById(R.id.heroTextView);
+        TextView monTitle = findViewById(R.id.monsterTextView);
+        TextView heroAction = findViewById(R.id.heroAction);
+        TextView monAction = findViewById(R.id.monsterAction);
+        heroTitle.setVisibility(View.GONE);
+        monTitle.setVisibility(View.GONE);
+        heroAction.setVisibility(View.GONE);
+        monAction.setVisibility(View.GONE);
         TextView flavorText = findViewById(R.id.mainTextView);
+        flavorText.setVisibility(View.VISIBLE);
         ImageView monIV = findViewById(R.id.monsterView);
         LinearLayout combatView = findViewById(R.id.actionLinearLayout);
         LinearLayout initialView = findViewById(R.id.initialLinearLayout);
+        if(curMonster == martin){
+            int resourceId = this.getResources().getIdentifier("@string/boss_end", "string", this.getPackageName());
+            flavorText.setText(resourceId);
+        }
         int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
         flavorText.setText(resourceId);
 
