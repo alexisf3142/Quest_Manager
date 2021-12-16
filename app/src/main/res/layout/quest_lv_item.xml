@@ -122,14 +122,14 @@
             android:layout_marginLeft="8dp"
             android:text="Move to position:"
             android:fontFamily="@font/medievalsharp"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/questMovePosET"
             android:hint="#"
             android:fontFamily="@font/medievalsharp"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginRight="4dp"/>
 
         <Button

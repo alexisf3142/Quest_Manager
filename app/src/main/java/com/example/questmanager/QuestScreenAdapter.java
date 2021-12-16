@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class QuestScreenAdapter extends ArrayAdapter<Quest> {
     QuestFragment parentFragment;
     private int mostRecentlyClickedPosition;
-    boolean mostRecentCompletable;
     /**
      * Constructor for Element Adapter. Calls super constructor and sets MostRecentlyClickedPosition
      * to -1
@@ -78,7 +77,7 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
         if (position == mostRecentlyClickedPosition){
             editButton.setVisibility(View.VISIBLE);
             deselectButton.setVisibility(View.VISIBLE);
-            if (mostRecentCompletable) {
+            if (currentQuest.isCompletable()) {
                 completeButton.setVisibility(View.VISIBLE);
             }
             else{
@@ -111,10 +110,6 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
      */
     public void setMostRecentlyClickedPosition(int mostRecentlyClickedPosition) {
         this.mostRecentlyClickedPosition = mostRecentlyClickedPosition;
-    }
-
-    public void setMostRecentCompletable(boolean completable){
-        this.mostRecentCompletable = completable;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

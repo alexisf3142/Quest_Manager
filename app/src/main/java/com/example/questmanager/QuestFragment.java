@@ -154,9 +154,6 @@ public class QuestFragment extends Fragment {
             if (!questArray.get(mostRecentElement).isCompletable()){
                 updateCompletable(i);
             }
-            else{
-                questAdapter.setMostRecentCompletable(true);
-            }
             questAdapter.setMostRecentlyClickedPosition(i);
             questAdapter.notifyDataSetChanged();
         }
@@ -185,14 +182,10 @@ public class QuestFragment extends Fragment {
             }
             if (diff){
                 questArray.get(position).setCompletable(true);
-                questAdapter.setMostRecentCompletable(true);
-            }
-            else{
-                questAdapter.setMostRecentCompletable(false);
             }
         }
         else{ //If outdated Android version, ignore mechanic
-            questAdapter.setMostRecentCompletable(true);
+            questArray.get(position).setCompletable(true);
         }
 
     }
