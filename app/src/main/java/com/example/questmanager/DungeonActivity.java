@@ -39,7 +39,6 @@ public class DungeonActivity extends AppCompatActivity {
     Monster curMonster; //= null;
     Character playerCharacter;// = readFile();
     Random r = new Random(System.currentTimeMillis());
-    int monsterKills, MartinKills;
     int mainStat = 0;
     int dunLevel = 1; // int counter to keep track of the dungeon level
 
@@ -103,6 +102,7 @@ public class DungeonActivity extends AppCompatActivity {
         }
 
     }
+
     /**
      * this writes to the file that stores all the character data
      */
