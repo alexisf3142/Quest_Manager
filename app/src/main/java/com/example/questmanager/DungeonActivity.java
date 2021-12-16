@@ -132,7 +132,7 @@ public class DungeonActivity extends AppCompatActivity {
             Toast.makeText(this, "this is impossible what did you do?", Toast.LENGTH_SHORT).show();
         }
     }
-    
+
     /**
      * Changes from an initial introduction screen into the primary combat screen.
      *
@@ -226,21 +226,21 @@ public class DungeonActivity extends AppCompatActivity {
         monTitle.setVisibility(View.VISIBLE);
         monAction.setVisibility(View.VISIBLE);
 
-            String move = monsterMove();
+        String move = monsterMove();
 
-            if (move.equals("attack")) {
-                monAction.setText("Attack");
-                double monDmg = r.nextInt(curMonster.getMonDmg());
-                monDmg = monDmg + monDmg * playerCharacter.getDex()/20.0;
-                int dmg2 = (int) monDmg;
-                if (curMonster.isCharged()){
-                    dmg2 = dmg2 * 2;
-                    curMonster.setCharged(false);
-                }
-                curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
-                setMonProgress();
-                checkDeath();
+        if (move.equals("attack")) {
+            monAction.setText("Attack");
+            double monDmg = r.nextInt(curMonster.getMonDmg());
+            monDmg = monDmg + monDmg * playerCharacter.getDex()/20.0;
+            int dmg2 = (int) monDmg;
+            if (curMonster.isCharged()){
+                dmg2 = dmg2 * 2;
+                curMonster.setCharged(false);
             }
+            curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
+            setMonProgress();
+            checkDeath();
+        }
 
         if (move.equals("defend")) {
             monAction.setText("Defend");
@@ -300,6 +300,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void checkDeath() {
+        double goldGained = playerCharacter.getGold() ;
         if (playerCharacter.getCurpower() <= 0) {
             playerCharacter.setCharged(false);
             playerCharacter.setCurpower(0);
@@ -307,21 +308,20 @@ public class DungeonActivity extends AppCompatActivity {
             returnMainScreen();
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         } else if (curMonster.getMonCurPow() <= 0) {
-            double goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;
-            playerCharacter.setGold((int)goldGained);
-            updateCharacterFile();
-            curMonster.setCharged(false);
-            dunLevel = dunLevel + 1;
-            deathScreen();
-
-            //setMain();
-            //header.setText(String.valueOf(dunLevel));
-            //generateMonster();
-            //ProgressBar monHealth = findViewById(R.id.enemyHealthBar);
-            //monHealth.setProgress(100);
-
+            if(curMonster==martin){
+                goldGained = playerCharacter.getGold() + 20 + 5 * playerCharacter.getLck()/20.0;}
+            else{
+                goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;}
         }
+        playerCharacter.setGold((int)goldGained);
+        updateCharacterFile();
+        curMonster.setCharged(false);
+        dunLevel = dunLevel + 1;
+        deathScreen();
+
+
     }
+
 
     private void generateMonster() {
 
@@ -489,8 +489,9 @@ public class DungeonActivity extends AppCompatActivity {
             int resourceId = this.getResources().getIdentifier("@string/boss_end", "string", this.getPackageName());
             flavorText.setText(resourceId);
         }
+        else{
         int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
-        flavorText.setText(resourceId);
+        flavorText.setText(resourceId);}
 
         monIV.setImageResource(curMonster.getDeathPic());
         combatView.setVisibility(View.GONE);
