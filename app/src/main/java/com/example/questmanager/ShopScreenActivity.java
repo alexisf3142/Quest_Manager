@@ -319,6 +319,7 @@ public class ShopScreenActivity extends AppCompatActivity {
                 //set whatever the current weapon equipped to false
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicSword.setEquipped(false);
+
                 }
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancySword.setEquipped(false);
@@ -330,12 +331,15 @@ public class ShopScreenActivity extends AppCompatActivity {
                 playerCharacter.setWeapon(itemAdapter.currentItem.getWeaponType());
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicSword.setEquipped(true);
+                    playerCharacter.setWeaponmod(1);
                 }
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancySword.setEquipped(true);
+                    playerCharacter.setWeaponmod(5);
                 }
                 if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantSword.setEquipped(true);
+                    playerCharacter.setWeaponmod(10);
                 }
             }
             if (playerCharacter.getProfession().equals("Mage")) {
@@ -353,12 +357,15 @@ public class ShopScreenActivity extends AppCompatActivity {
                 playerCharacter.setWeapon(itemAdapter.currentItem.getWeaponType());
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicStaff.setEquipped(true);
+                    playerCharacter.setWeaponmod(1);
                 }
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyStaff.setEquipped(true);
+                    playerCharacter.setWeaponmod(5);
                 }
                 if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantStaff.setEquipped(true);
+                    playerCharacter.setWeaponmod(10);
                 }
             }
             if (playerCharacter.getProfession().equals("Ranger")) {
@@ -376,12 +383,15 @@ public class ShopScreenActivity extends AppCompatActivity {
                 playerCharacter.setWeapon(itemAdapter.currentItem.getWeaponType());
                 if (playerCharacter.getWeapon().equals("basic")) {
                     basicBow.setEquipped(true);
+                    playerCharacter.setWeaponmod(1);
                 }
                 if (playerCharacter.getWeapon().equals("fancy")) {
                     fancyBow.setEquipped(true);
+                    playerCharacter.setWeaponmod(5);
                 }
                 if (playerCharacter.getWeapon().equals("extravagant")) {
                     extravagantBow.setEquipped(true);
+                    playerCharacter.setWeaponmod(10);
                 }
             }
             Toast equipToast = Toast.makeText(this, "you equipped the weapon", Toast.LENGTH_LONG);
