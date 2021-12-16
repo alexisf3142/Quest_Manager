@@ -41,7 +41,7 @@ public class Character implements Serializable {
         this.lvl = 1;
         this.gold = 0;
         this.dmg = 3;
-        this.weaponmod = 0;
+        this.weaponmod = 1;
         this.finQ = 0;
         this.finT = 0;
         this.skillPoints = 0;
