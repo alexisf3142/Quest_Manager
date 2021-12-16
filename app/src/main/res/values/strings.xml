@@ -51,7 +51,7 @@
     Earning enough EXP ups your <b>Level</b>. It represents how much your productivity has increased!</p>
     <p>Power is used to enter the <b>Dungeon</b>.
     To do well in the Dungeon, you will want to increase your stats.
-    This is done by leveling up (see the <b>Profile Screen</b>),
+    This is done by leveling up (see the <b>Profile Screen</b> section),
     and by buying weapons with the money you earn from the Dungeon at the <b>Shop</b>.</p>
     <p>At the bottom are buttons to take you the Quest, Profile, Shop, and Dungeon screens,
     which each have their own sections on this page if you have questions about them.</p>]]></string>
@@ -81,17 +81,14 @@
     <p>You can increase your stats here via the + buttons if you have <b>Skill Points</b> to spend.
     You earn Skill Points from leveling up via the EXP you get from finishing <b>Quests</b>.
     Your stats determine your performance in the <b>Dungeon</b>, so assign your points wisely!</p>
-    <p><i>One line description of the affect of each stat here.</i></p>
-    <p><b>Achievements</b> are earned from completing specific tasks, or a certain number of tasks.
-    Each achievement gets you a <b>Title</b>
-    that you can set here to appear alongside your name on the <b>Home Screen</b>.</p>
     <b>Stats</b>
     <p>Strength: A warriors main combat stat, and will help any combatant better charge their attack</p>
     <p>Dexterity: A rangers main combat stat, and will make a persons ability to reflect an opponents attack back on them</p>
     <p>Luck: Will make it more likely for you find more coins.</p>
     <p>Smarts: Will make you gain experience faster.</p>
-
-    ]]></string>
+    <p><b>Achievements</b> are earned from completing specific tasks, or a certain number of tasks.
+    Each achievement gets you a <b>Title</b>
+    that you can set here to appear alongside your name on the <b>Home Screen</b>.</p>]]></string>
 
     <string name="aShop"><![CDATA[
     <p>The <b>Shop Screen</b> is where you spend the money you earn in the <b>Dungeon</b>.</p>
@@ -107,12 +104,14 @@
     Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
     <p>On your turn, you can either attack the monster, defend to block and reflect damage,
     power yourself up to make your next attack hit harder,
-    or retreat to save your Power and try again next time.</p>
+    or retreat to save your Power and try again next time.
+    The effectiveness of your different options will vary based on your <b>Stats</b>
+    (see the <b>Profile Screen</b> section of this page for more information on them).</p>
     <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
     and will allow you to progress deeper into the dungeon.</p>
     <p>Every time you flee or are kicked out of the dungeon,
-    you will have to start back at level 1 when you re-enter.</p>
-    <p>There may be someone extra powerful waiting for you a ways down…</p>]]></string>
+    you will have to start back at level 1 when you re-enter.
+    Be warned, there may be someone extra powerful waiting for you a ways down…</p>]]></string>
 
     <string name="aCredits"><![CDATA[
     <p>"Quest Manager" application created by

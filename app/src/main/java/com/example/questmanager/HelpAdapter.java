@@ -31,7 +31,7 @@ public class HelpAdapter extends ArrayAdapter<HelpItem> {
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.help_item_layout, parent, false);
-        } // calls the relevant item layout
+        } // calls the help item layout
 
         HelpItem currentHelpItem = getItem(position);
 
@@ -42,13 +42,14 @@ public class HelpAdapter extends ArrayAdapter<HelpItem> {
         // following two lines fill the layout's answer text view with the current help item's aText
         TextView answerTV = listItemView.findViewById(R.id.answerTextView);
         answerTV.setText(currentHelpItem.getAnswer());
+
         // and then this if/else changes the visibility of the answer text
         if (position == mostRecentlyClickedItemPosition) {
             answerTV.setVisibility(View.VISIBLE);
             // makes answer visible if this item was the last one clicked on
         } else {
             answerTV.setVisibility(View.GONE);
-        } // makes answer invisible if this item was not the last one clicked on
+        } // makes answer disappear from layout if this item was not the last one clicked on
 
         return listItemView; // saves the listview
     }

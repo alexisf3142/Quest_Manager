@@ -23,7 +23,7 @@ public class NewPlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newplayer);
+        setContentView(R.layout.activity_newplayer); // sets layout to new player screen
 
         Intent firstTimeIntent = getIntent();
         // this is for the intent that runs this screen from readFile in MainActivity
@@ -73,10 +73,10 @@ public class NewPlayerActivity extends AppCompatActivity {
 
 //  method to make both final textView and the confirm button visible once name and class are chosen
     public void makeConfirmVisible () {
-        TextView confirmTV = findViewById(R.id.textViewConfirmCharacter);
-        Button confirmButton = findViewById(R.id.buttonConfirmCharacter);
-        confirmTV.setVisibility(View.VISIBLE); // makes final textView visible
-        confirmButton.setVisibility(View.VISIBLE); // makes confirm button visible
+        TextView confirmTV = findViewById(R.id.textViewConfirmCharacter); // finds final textView
+        Button confirmButton = findViewById(R.id.buttonConfirmCharacter); // finds confirm button
+        confirmTV.setVisibility(View.VISIBLE); // changes textView from invisible to visible
+        confirmButton.setVisibility(View.VISIBLE); // changes confirm button from invisible to visible
     }
 
 /*
@@ -87,12 +87,12 @@ public class NewPlayerActivity extends AppCompatActivity {
     public void buttonConfirmCharacter (View view) {
         character_name = getCharacterName(); // this may be redundant, but to be safe...
         Character playerCharacter = new Character(character_name, new_profession);
-        playerCharacter.setWeapon("basic");
         // makes new character with the name the user entered and the class they chose
+        playerCharacter.setWeapon("basic"); // sets player's weapon to the base one of their class
 
         try {
             FileOutputStream fos = this.openFileOutput("playerData.txt", Context.MODE_PRIVATE);
-            // makes the file and opens it in write mode
+            // makes file to save character data and opens it in write mode
             ObjectOutputStream os = new ObjectOutputStream(fos);
             // allows us to write an object to the file, according to stack overflow
             os.writeObject(playerCharacter);
@@ -100,12 +100,9 @@ public class NewPlayerActivity extends AppCompatActivity {
             os.close();
             fos.close();
 
-            // Toast.makeText(this, "It worked!", Toast.LENGTH_SHORT).show();
-            // placeholder to move around and make sure each step works properly
-
         } catch (IOException e) {
-            Toast.makeText(this, "Problem with output file", Toast.LENGTH_SHORT).show();
-            // placeholder error message
+            Toast.makeText(this, "Problem saving data to file", Toast.LENGTH_SHORT).show();
+            // error message
         }
 
         // lastly, this intent brings the user to the home screen

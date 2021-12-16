@@ -25,7 +25,7 @@ public class HelpActivity extends AppCompatActivity {
         }
     };
 
-    // following method brings user back to home screen if home button is pressed
+    // following method brings user back to home screen if home button is pressed with an intent
     public void buttonBackFromHelp (View view){
         Intent backFromHelpIntent = new Intent(HelpActivity.this, MainActivity.class);
         HelpActivity.this.startActivity(backFromHelpIntent);
@@ -36,9 +36,6 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help); // sets layout to help screen layout
 
-        Intent startScreen = getIntent();
-        // this catches the intent from when the player presses the help button on the home screen
-
         helpList = new ArrayList<HelpItem>(); // makes new list
         helpAdapter = new HelpAdapter(this, helpList); // makes adapter for the list
         ListView helpListView = findViewById(R.id.helpListView); // calls the listview in the help activity layout
@@ -46,6 +43,7 @@ public class HelpActivity extends AppCompatActivity {
         helpListView.setOnItemClickListener(listener); // attaches onClickListener to the listview
 
         // and then we have the adapter add all the list items to the list
+        // Html.fromhtml is required for aText because they're Spanned, not strings
         helpAdapter.add(new HelpItem(getString(R.string.qGeneral), Html.fromHtml(getString(R.string.aGeneral))));
         helpAdapter.add(new HelpItem(getString(R.string.qHome), Html.fromHtml(getString(R.string.aHome))));
         helpAdapter.add(new HelpItem(getString(R.string.qQuest), Html.fromHtml(getString(R.string.aQuest))));
