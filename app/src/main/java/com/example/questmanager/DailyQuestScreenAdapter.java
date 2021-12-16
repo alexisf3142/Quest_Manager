@@ -70,7 +70,7 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
         deleteButton.setOnClickListener(parentFragment.deleteDailyQuestButtonListener);
         if (position == mostRecentlyClickedPosition){
             deselectButton.setVisibility(View.VISIBLE);
-            if (position > 6) {
+            if (position > 7) {
                 deleteButton.setVisibility(View.VISIBLE);
             }
             completeTV.setVisibility(View.VISIBLE);

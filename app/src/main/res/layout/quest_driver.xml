@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/cream"
     tools:context=".QuestScreenActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/medievalsharp"
+        android:background="@color/cream"
         android:id="@+id/questTabs"/>
 
     <androidx.viewpager.widget.ViewPager
