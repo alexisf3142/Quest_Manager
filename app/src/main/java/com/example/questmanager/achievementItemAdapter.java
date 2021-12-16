@@ -31,11 +31,13 @@ public class achievementItemAdapter extends ArrayAdapter<Achievement> {
             achievementView = LayoutInflater.from(getContext()).inflate(R.layout.achievement_list_item, parent, false);
         }
 
+        //Getting current achievement title and description to display it
         Achievement achievement = getItem(position);
         TextView achievementText = achievementView.findViewById(R.id.achievementItem);
         String fullDescription = achievement.getAchTitle()+" - "+achievement.getDescription();
         achievementText.setText(fullDescription);
 
+        //setting visibility of buttons for an achievement item
         achievementItemButtons = achievementView.findViewById(R.id.achievementItemButtonLayout);
         if(position==mostRecentPositionSelected){
             achievementItemButtons.setVisibility(View.VISIBLE);

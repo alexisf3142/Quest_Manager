@@ -16,6 +16,7 @@ public class FragmentPagerAdapter extends androidx.fragment.app.FragmentPagerAda
         return 2;
     }
 
+    //gets the fragments and choose which to display
     @NonNull
     @Override
     public Fragment getItem(int position) {
@@ -26,6 +27,7 @@ public class FragmentPagerAdapter extends androidx.fragment.app.FragmentPagerAda
         }
     }
 
+    //names the titles for each tab
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

@@ -37,22 +37,12 @@ public class AchievementsFragment extends Fragment {
         }
     };
 
-    //    View.OnClickListener achievementsButtonListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//        }
-//    };
-
     public AchievementsFragment() { }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.achievements_layout, container, false);
-
-//        Button achievementsButton = rootView.findViewById(R.id.achievementsButton);
-//        achievementsButton.setOnClickListener(achievementsButtonListener);
 
         //setting listView adapter
         achievementList = new ArrayList<Achievement>();
@@ -61,19 +51,18 @@ public class AchievementsFragment extends Fragment {
         theListOfAchievements.setAdapter(achievementsAdapter);
         theListOfAchievements.setOnItemClickListener(listener);
 
+        //checks if user has completed enough quests to earn an achievement
         checkForQuestAchievements();
 
         return rootView;
     }
 
-    public void buttonAddTitle(View view){
-
-    }
-
     public void checkForQuestAchievements(){
+        //find completed quest file
         File compQuestFile = this.getActivity().getBaseContext().getFileStreamPath("compQuestList.txt");
         if(compQuestFile.exists()){
             try{
+                //read the first line of it to get the number of completed quests
                 FileInputStream fis = this.getActivity().openFileInput("compQuestList.txt");
                 InputStreamReader isReader = new InputStreamReader(fis);
                 BufferedReader bufferedReader = new BufferedReader(isReader);
@@ -82,29 +71,26 @@ public class AchievementsFragment extends Fragment {
                 bufferedReader.close();
                 isReader.close();
                 fis.close();
+                //making appropriate achievement and adding it to adapter
                 if(numOfCompQuests>=20){
                     Achievement comp20Quests = new Achievement("Expert", "Complete 20 quests.", true);
                     achievementList.add(comp20Quests);
                     achievementsAdapter.notifyDataSetChanged();
-                    //Toast.makeText(this.getActivity(), "You got an achievement!", Toast.LENGTH_SHORT).show();
                 }
                 if(numOfCompQuests>=15){
                     Achievement comp15Quests = new Achievement("Advanced", "Complete 15 quests.", true);
                     achievementList.add(comp15Quests);
                     achievementsAdapter.notifyDataSetChanged();
-                    //Toast.makeText(this.getActivity(), "You got an achievement!", Toast.LENGTH_SHORT).show();
                 }
                 if(numOfCompQuests>=10){
                     Achievement comp10Quests = new Achievement("Skilled", "Complete 10 quests.", true);
                     achievementList.add(comp10Quests);
                     achievementsAdapter.notifyDataSetChanged();
-                    //Toast.makeText(this.getActivity(), "You got an achievement!", Toast.LENGTH_SHORT).show();
                 }
                 if(numOfCompQuests>=5){
                     Achievement comp5Quests = new Achievement("Rookie", "Complete 5 quests.", true);
                     achievementList.add(comp5Quests);
                     achievementsAdapter.notifyDataSetChanged();
-                    //Toast.makeText(this.getActivity(), "You got an achievement!", Toast.LENGTH_SHORT).show();
                 }
             }catch(IOException e){
                 Toast.makeText(this.getActivity(), "Error reading completed quests file", Toast.LENGTH_SHORT).show();

@@ -47,16 +47,12 @@ public class ProfileActivity extends AppCompatActivity {
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager());
         profileVP.setAdapter(fragmentPagerAdapter);
 
+        //setting up tabs with viewPager
         TabLayout tabLayout = findViewById(R.id.profileTabs);
         tabLayout.setupWithViewPager(profileVP);
-
-        //setting listView adapter
-//        achievementList = new ArrayList<Achievement>();
-//        achievementsAdapter = new achievementItemAdapter(this, achievementList);
-//        ListView theListOfAchievements = findViewById(R.id.listOfAchievements);
-//        theListOfAchievements.setAdapter(achievementsAdapter);
-//        theListOfAchievements.setOnItemClickListener(listener);
     }
+
+    // following method brings user back to home screen if home button is pressed
     public void buttonBackFromProfile (View view){
         Intent backFromProfileIntent = new Intent(ProfileActivity.this, MainActivity.class);
         startActivity(backFromProfileIntent);

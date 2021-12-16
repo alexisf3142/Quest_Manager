@@ -25,13 +25,6 @@ public class CharacterStatsFragment extends Fragment {
     View rootView;
     Character theCharacter = new Character("","");
 
-//    View.OnClickListener characterStatsButtonListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//        }
-//    };
-
     public CharacterStatsFragment() { }
 
     @Nullable
@@ -42,7 +35,7 @@ public class CharacterStatsFragment extends Fragment {
         //reading file to get character data
         readFile();
 
-        //changing textviews in charStatLayout
+        //changing TextViews in Character Stats Layout
         TextView charName = rootView.findViewById(R.id.profileName);
         charName.setText(theCharacter.getName());
 
@@ -73,6 +66,7 @@ public class CharacterStatsFragment extends Fragment {
         TextView charPower = rootView.findViewById(R.id.amountOfPower);
         charPower.setText(String.valueOf(theCharacter.getCurpower()));
 
+        //setting onClickListeners for each skill point button
         Button strButton = rootView.findViewById(R.id.buttonStrengthSP);
         strButton.setOnClickListener(addStrButtonListener);
         Button dexButton = rootView.findViewById(R.id.buttonDexSP);
@@ -110,8 +104,7 @@ public class CharacterStatsFragment extends Fragment {
         }
     };
 
-    // following method brings user back to home screen if home button is pressed
-
+    //adds 1 strength skill point
     public void buttonAddStrengthSkillPoint(View view){
         if(theCharacter.getSkillPoints()>0){
             theCharacter.setStr(theCharacter.getStr()+1);
@@ -124,6 +117,7 @@ public class CharacterStatsFragment extends Fragment {
         }
     }
 
+    //adds 1 dexterity skill point
     public void buttonAddDexSkillPoint(View view){
         if(theCharacter.getSkillPoints()>0){
             theCharacter.setDex(theCharacter.getDex()+1);
@@ -136,6 +130,7 @@ public class CharacterStatsFragment extends Fragment {
         }
     }
 
+    //adds 1 luck skill point
     public void buttonAddLuckSkillPoint(View view){
         if(theCharacter.getSkillPoints()>0){
             theCharacter.setLck(theCharacter.getLck()+1);
@@ -148,6 +143,7 @@ public class CharacterStatsFragment extends Fragment {
         }
     }
 
+    //adds 1 intelligence skill point
     public void buttonAddSmtSkillPoint(View view){
         if(theCharacter.getSkillPoints()>0){
             theCharacter.setSmt(theCharacter.getSmt()+1);
@@ -181,6 +177,7 @@ public class CharacterStatsFragment extends Fragment {
             }
         }
     }
+
     public void updateCharacterFile() {
         File playerData = getActivity().getBaseContext().getFileStreamPath("playerData.txt");
         //looks for the file to which player character data is saved

@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AchievementsT extends ProfileActivity {
-    //changed AppCompatActivity to ProfileActivity
 
     View.OnClickListener achievementsButtonListener = new View.OnClickListener() {
         @Override
@@ -19,14 +18,9 @@ public class AchievementsT extends ProfileActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //changed from dummy to activity_profile and dummyLayout to profileViewPager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        //if we put buttons they would go here!
-//        Button achievementsButton = findViewById(R.id.achievementsButton);
-//        achievementsButton.setOnClickListener(achievementsButtonListener);
-
+        //gets the AchievementFragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.profileViewPager, new AchievementsFragment())
                 .commit();

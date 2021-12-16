@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CharacterStatsT extends ProfileActivity {
-    //changed AppCompatActivity to ProfileActivity
 
     View.OnClickListener characterStatsButtonListener = new View.OnClickListener() {
         @Override
@@ -21,14 +20,9 @@ public class CharacterStatsT extends ProfileActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        //changed from dummy to activity_profile and dummyLayout to profileViewPager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        //if we put buttons they would go here!
-//        Button charStatsButton = findViewById(R.id.characterStatsButton);
-//        charStatsButton.setOnClickListener(characterStatsButtonListener);
-
+        //gets the CharacterStatsFragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.profileViewPager, new CharacterStatsFragment())
                 .commit();
