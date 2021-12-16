@@ -64,6 +64,7 @@
     You can make a new Quest by pressing the <b>New Quest</b> button at the bottom of this screen.</p>
     <p>If you click on a Quest in the list,
     you can edit it, delete it, move its position, or mark it as complete.
+    A newly created quest can not be completed for <b>1 hour</b> after creation.
     The Quest you have at the top of your list will be set as your <b>Main Quest</b>
     and appear at the top of the Home Screen.
     Completing a Quest will earn you EXP (amount depending on its Difficulty)
@@ -97,16 +98,14 @@
     If you choose to Continue, you will encounter a monster!</p>
     <p>The monster will attack you (or at least try to) on its turn, lowering your Power.
     Do not let your Power get to <b>0</b>, or you will lose some of your money as you flee!</p>
-    <p>On your turn, you can either attack the monster, defend yourself so you take less damage,
+    <p>On your turn, you can either attack the monster, defend to block and reflect damage,
     power yourself up to make your next attack hit harder,
     or retreat to save your Power and try again next time.</p>
     <p>Defeating a monster will earn you money that can be spent on the <b>Shop Screen</b>,
     and will allow you to progress deeper into the dungeon.</p>
     <p>Every time you flee or are kicked out of the dungeon,
-    you will have to start back at level 1 when you re-enter.
-    The higher you raise your <b>Productivity Level</b> via completing <b>Quests</b>,
-    the stronger the foes you face will be.
-    And there may be someone extra powerful waiting for you a ways down…</p>]]></string>
+    you will have to start back at level 1 when you re-enter.</p>
+    <p>There may be someone extra powerful waiting for you a ways down…</p>]]></string>
 
     <string name="aCredits"><![CDATA[
     <p>"Quest Manager" application created by
