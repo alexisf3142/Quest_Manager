@@ -51,9 +51,7 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.fancy_sword);
             }
             if (currentItem.getWeaponType().equals("extravagant")) {
-                //PLACEHOLDER
-                itemIV.setImageResource(R.drawable.fancy_sword);
-                //itemIV.setImageResource(R.drawable.extravagant_sword);
+                itemIV.setImageResource(R.drawable.extravagant_sword);
             }
         }
         //MAGE
@@ -65,7 +63,6 @@ public class ShopAdapter extends ArrayAdapter<ShopItem> {
                 itemIV.setImageResource(R.drawable.fancy_staff);
             }
             if (currentItem.getWeaponType().equals("extravagant")) {
-
                 itemIV.setImageResource(R.drawable.extravagant_staff);
             }
         }

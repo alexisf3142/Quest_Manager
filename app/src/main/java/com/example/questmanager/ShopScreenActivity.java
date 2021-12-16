@@ -81,7 +81,6 @@ public class ShopScreenActivity extends AppCompatActivity {
                 playerCharacter = (Character) ois.readObject();
                 TextView goldValueTV = findViewById(R.id.goldValueTextView);
                 goldValueTV.setText(String.valueOf(playerCharacter.getGold()));
-
                 //next two lines close the read mode file
                 ois.close();
                 fis.close();
@@ -405,10 +404,5 @@ public class ShopScreenActivity extends AppCompatActivity {
         ShopScreenActivity.this.startActivity(backFromShopIntent);
     }
 
-    public void buttonCheating(View view) {
-        playerCharacter.setGold(playerCharacter.getGold() + 100);
-        TextView goldValueTV = findViewById(R.id.goldValueTextView);
-        goldValueTV.setText(String.valueOf(playerCharacter.getGold()));
-    }
 }
 
