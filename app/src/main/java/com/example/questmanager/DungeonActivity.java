@@ -174,10 +174,11 @@ public class DungeonActivity extends AppCompatActivity {
         monTitle.setVisibility(View.VISIBLE);
         monAction.setVisibility(View.VISIBLE);
 
-
+        boolean chargedAttack = false;
         double herAtt = (r.nextInt(playerCharacter.getDmg()) + .5 * mainStat);
         if (playerCharacter.isCharged()){
             herAtt = herAtt * (2 + (playerCharacter.getStr()/20.0));
+            chargedAttack = true;
             playerCharacter.setCharged(false);
         }
         int herDmg = (int) herAtt;
@@ -200,8 +201,14 @@ public class DungeonActivity extends AppCompatActivity {
 
         if (move.equals("defend")) {
             monAction.setText("Defend");
-            playerCharacter.setCurpower(playerCharacter.getCurpower() - herDmg);
-            setHerProgress();
+            if (chargedAttack){
+                curMonster.setCurPow(curMonster.getMonCurPow() - herDmg);
+                setMonProgress();
+            }
+            else {
+                playerCharacter.setCurpower(playerCharacter.getCurpower() - herDmg);
+                setHerProgress();
+            }
             checkDeath();
         }
         if (move.equals("charge")) {
@@ -230,6 +237,7 @@ public class DungeonActivity extends AppCompatActivity {
         String move = monsterMove();
 
         if (move.equals("attack")) {
+            boolean chargedAttack = false;
             monAction.setText("Attack");
             double monDmg = r.nextInt(curMonster.getMonDmg());
             monDmg = monDmg + monDmg * playerCharacter.getDex()/20.0;
@@ -237,9 +245,16 @@ public class DungeonActivity extends AppCompatActivity {
             if (curMonster.isCharged()){
                 dmg2 = dmg2 * 2;
                 curMonster.setCharged(false);
+                chargedAttack = true;
             }
-            curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
-            setMonProgress();
+            if (chargedAttack){
+                playerCharacter.setCurpower(playerCharacter.getCurpower() - dmg2);
+                setHerProgress();
+            }
+            else {
+                curMonster.setCurPow(curMonster.getMonCurPow() - dmg2);
+                setMonProgress();
+            }
             checkDeath();
         }
 
