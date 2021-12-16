@@ -5,18 +5,17 @@ public class Character implements Serializable {
     private String name,title,profession,weapon;
     private int str,dex,lck,smt,curpower,maxpower,curexp,maxexp,lvl,gold,dmg, weaponmod,finQ,finT,skillPoints;
     private boolean charged;
-    // private ShopItem weapon;
 
     /*
         The name and the professional are the only two things that we need to have entered to create
         the class. The rest I have propagated with placeholders for now we can work on some of the
-        fine tuning later.
+        fine tuning later. - John
 
         KEY
         str = strength
         dex = dexterity
         lck = luck
-        smt = (smarts) or intelligence just couldn't be int
+        smt = (smarts) or intelligence
         power = how much power the player has to spend in dungeons
         exp = experience points
         lvl = level
@@ -25,6 +24,7 @@ public class Character implements Serializable {
         finT = number of finished tasks
         charged = In dun. screen, if the character has a charged attack stored.
      */
+
     public Character(String name, String profession) {
         this.name = name;
         this.profession = profession;
@@ -207,14 +207,18 @@ public class Character implements Serializable {
         this.skillPoints = skillPoints;
     }
 
+    /* following function is used in QuestFragment and DailyQuestFragment
+    if the player earns enough EXP from completing a Quest to increase their level*/
     public void levelUp (int curexp) {
-        this.lvl += 1;
-        int extraEXP = curexp - this.maxexp;
-        curexp = Math.max(extraEXP, 0);
-        this.curexp = curexp;
-        this.maxexp = maxexp + 5;
-        this.maxpower = maxpower + 5;
-        this.skillPoints++;
+        this.lvl += 1; // ups player's level by 1
+
+        int extraEXP = curexp - this.maxexp; // calculates leftover exp from leveling up
+        curexp = Math.max(extraEXP, 0); // sets current exp to the leftover so it doesn't go to waste
+        this.curexp = curexp; // saves current exp
+
+        this.maxexp = maxexp + 5; // increases amount of exp player will need to level up again
+        this.maxpower = maxpower + 5; // increases player's max power
+        this.skillPoints++; // gives the player 2 skill points to use on the profile screen
     }
 }
 
