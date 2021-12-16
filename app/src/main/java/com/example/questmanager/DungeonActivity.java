@@ -151,11 +151,12 @@ public class DungeonActivity extends AppCompatActivity {
         enemyHealth.setVisibility(View.VISIBLE);
         heroHealth.setVisibility(View.VISIBLE);
 
-        setMain();
+
 
         titleOne.setText("Dungeon Level");
         titleTwo.setText(String.valueOf(dunLevel));
         generateMonster();
+        setMain();
         setMonProgress();
     }
 
@@ -308,16 +309,18 @@ public class DungeonActivity extends AppCompatActivity {
             returnMainScreen();
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         } else if (curMonster.getMonCurPow() <= 0) {
+
             if(curMonster==martin){
                 goldGained = playerCharacter.getGold() + 20 + 5 * playerCharacter.getLck()/20.0;}
             else{
                 goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;}
+            playerCharacter.setGold((int)goldGained);
+            updateCharacterFile();
+            curMonster.setCharged(false);
+            dunLevel = dunLevel + 1;
+            deathScreen();
         }
-        playerCharacter.setGold((int)goldGained);
-        updateCharacterFile();
-        curMonster.setCharged(false);
-        dunLevel = dunLevel + 1;
-        deathScreen();
+
 
 
     }
@@ -331,8 +334,9 @@ public class DungeonActivity extends AppCompatActivity {
         curMonster.setCurPow(curMonster.getMonMaxPow());
         if (dunLevel % 3 == 0) {
             curMonster = martin;
+            monsterIV.setImageResource(curMonster.getPic());
             setMonProgress();
-        //if (dunLevel % 10 == 0) {
+            //if (dunLevel % 10 == 0) {
             //curMonster = martin;
             //setMonProgress();
         } else {
@@ -415,46 +419,46 @@ public class DungeonActivity extends AppCompatActivity {
             int resourceId = this.getResources().getIdentifier("@string/level_boss", "string", this.getPackageName());
             mainTextView.setText(resourceId);
         }
-
-        if(num == 0){
-            int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 1){
-            int resourceId = this.getResources().getIdentifier("@string/level_2", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 2){
-            int resourceId = this.getResources().getIdentifier("@string/level_3", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 3){
-            int resourceId = this.getResources().getIdentifier("@string/level_4", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 4){
-            int resourceId = this.getResources().getIdentifier("@string/level_5", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 5){
-            int resourceId = this.getResources().getIdentifier("@string/level_6", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 6){
-            int resourceId = this.getResources().getIdentifier("@string/level_7", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 7){
-            int resourceId = this.getResources().getIdentifier("@string/level_8", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
-        else if(num == 8){
-            int resourceId = this.getResources().getIdentifier("@string/level_9", "string", this.getPackageName());
-            mainTextView.setText(resourceId);
-        }
         else{
-            Toast.makeText(getApplicationContext(), "OH GOD NO", Toast.LENGTH_SHORT).show();
-        }
+            if(num == 0){
+                int resourceId = this.getResources().getIdentifier("@string/level_1", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 1){
+                int resourceId = this.getResources().getIdentifier("@string/level_2", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 2){
+                int resourceId = this.getResources().getIdentifier("@string/level_3", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 3){
+                int resourceId = this.getResources().getIdentifier("@string/level_4", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 4){
+                int resourceId = this.getResources().getIdentifier("@string/level_5", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 5){
+                int resourceId = this.getResources().getIdentifier("@string/level_6", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 6){
+                int resourceId = this.getResources().getIdentifier("@string/level_7", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 7){
+                int resourceId = this.getResources().getIdentifier("@string/level_8", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else if(num == 8){
+                int resourceId = this.getResources().getIdentifier("@string/level_9", "string", this.getPackageName());
+                mainTextView.setText(resourceId);
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "OH GOD NO", Toast.LENGTH_SHORT).show();
+            }}
 
 
 
@@ -493,8 +497,8 @@ public class DungeonActivity extends AppCompatActivity {
             flavorText.setText(resourceId);
         }
         else{
-        int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
-        flavorText.setText(resourceId);}
+            int resourceId = this.getResources().getIdentifier("@string/level_end", "string", this.getPackageName());
+            flavorText.setText(resourceId);}
 
         monIV.setImageResource(curMonster.getDeathPic());
         combatView.setVisibility(View.GONE);
