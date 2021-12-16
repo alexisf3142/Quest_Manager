@@ -35,9 +35,9 @@ public class DailyQuestFragment extends Fragment{
     int size = 0; //Keeps track of the amount of quests
     int mostRecentElement = -1; //Holds position in the ListView of the most recently clicked element;
     View mostRecentView; //Holds the most recently clicked element of the ListView
-    String lastAccessDate = "never";
+    String lastAccessDate = "never"; //Previous date the screen was accessed
     View rootView;
-    Activity fragContext;
+    Activity fragContext; //Activity of the fragment
     Character playerCharacter;
 
     ArrayList<DailyQuest> dailyQuestArray; //Array of the list names
@@ -68,8 +68,9 @@ public class DailyQuestFragment extends Fragment{
         Button backButton = rootView.findViewById(R.id.buttonBackFromDailyQuest);
         backButton.setOnClickListener(homeDailyQuestButtonListener);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String newDate = getDate();
+        //Reset daily quests if it is a new day
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //Only works with API 26 or higher
+            String newDate = getDate();                       //Daily tasks will not reset on lower API
             if (!lastAccessDate.equals(newDate)){
                 lastAccessDate = newDate;
                 resetDailyQuests();
@@ -79,7 +80,7 @@ public class DailyQuestFragment extends Fragment{
         }
         return rootView;
     }
-
+    //set OnClickListener for buttons
     View.OnClickListener newDailyQuestButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -137,12 +138,20 @@ public class DailyQuestFragment extends Fragment{
             dailyQuestAdapter.notifyDataSetChanged();
         }
     };
-
+    /**
+     * Sends the user back to the home screen
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonBackFromDailyQuest (View view){
         Intent backFromHelpIntent = new Intent(fragContext, MainActivity.class);
         startActivity(backFromHelpIntent);
     }
 
+    /**
+     * Function called when the checkBox associated with a daily quest is checked
+     * Marks the quest as completed and updates experience and power gain
+     * @param view the view that was clicked and triggered the method
+     */
     public void checkBoxDQComplete(View view){
         dailyQuestArray.get(mostRecentElement).setCompleted(true);
         updateDQFile();
@@ -175,6 +184,10 @@ public class DailyQuestFragment extends Fragment{
         dailyQuestAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Allows the user to add a new daily quest. Makes the Daily Quest name TV and the add button visible
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonNewDQ(View view){
         EditText DQNameET = rootView.findViewById(R.id.dailyQuestNameET);
         DQNameET.setVisibility(View.VISIBLE);
@@ -184,6 +197,10 @@ public class DailyQuestFragment extends Fragment{
         addDQButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Adds a new daily quest to the list. Makes sure the name is not a repeat.
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonAddDQ(View view){
         EditText DQNameET = rootView.findViewById(R.id.dailyQuestNameET);
         String name = String.valueOf(DQNameET.getText());
@@ -206,6 +223,11 @@ public class DailyQuestFragment extends Fragment{
         }
     }
 
+    /**
+     * Checks that the new daily quest name is not a repeat
+     * @param questName Name entered by user
+     * @return True if not a repeat, false otherwise
+     */
     boolean checkValidInput(String questName){
         for (int i = 0; i < size; i++){ //Check for repeat name
             if (questName.equals(dailyQuestArray.get(i).getName())){
@@ -216,11 +238,19 @@ public class DailyQuestFragment extends Fragment{
         return true;
     }
 
+    /**
+     * Sets the buttons of the most recently clicked item to disappear
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonDQDeselect(View view){
         dailyQuestAdapter.setMostRecentlyClickedPosition(-1);
         dailyQuestAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Removes a daily quest from the list and array. Only available for non-presets
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonDQDelete(View view){
         dailyQuestArray.remove(mostRecentElement);
         size--;
@@ -228,7 +258,11 @@ public class DailyQuestFragment extends Fragment{
         dailyQuestAdapter.notifyDataSetChanged();
         updateDQFile();
     }
-
+    /**
+     * Writes the list of completed quests to file. First line is the amount of quests, the second line
+     * is the last access date of the screen. Each following block of 2 lines is the data of one quest.
+     * (name then isCompleted)
+     */
     public void updateDQFile (){
         String writeString;
         writeString = String.valueOf(size);
@@ -253,7 +287,10 @@ public class DailyQuestFragment extends Fragment{
             Toast.makeText(fragContext,"Problem with output file",Toast.LENGTH_SHORT).show();
         }
     }
-
+    /**
+     * Read the file of Daily Quests. Get the size and last access date from file and put
+     * the daily quests into dailyQuestArray
+     */
     public void getDailyQuestArrayFromFile(){
         File theFile = fragContext.getBaseContext().getFileStreamPath("dailyQuestList.txt");
         if (theFile.exists()){
@@ -282,25 +319,33 @@ public class DailyQuestFragment extends Fragment{
                 Toast.makeText(fragContext,"Error loading quests",Toast.LENGTH_SHORT).show();
             }
         }
-        else{
+        else{//If file does not exist, add presets to the array
             generatePresetDailyQuests();
         }
     }
 
+    /**
+     * Sets the completion status of all daily quest to false
+     */
     public void resetDailyQuests(){
         for(int i  = 0; i < size;i++){
             dailyQuestArray.get(i).setCompleted(false);
         }
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    /**
+     * Function to get the current date and time
+     * @return returns the current date and time
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)//Requires api 26 or greater
     String getDate(){
         Instant date = Instant.now();
         String returnDate = date.toString();
         returnDate = returnDate.substring(0,10);
         return returnDate;
     }
-
+    /**
+     * Read character data from file and save it
+     */
     public void readCharacterFile() {
         File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
         //looks for the file to which player character data is saved
@@ -323,7 +368,9 @@ public class DailyQuestFragment extends Fragment{
         }
 
     }
-
+    /**
+     * Write playerCharacter to file
+     */
     public void updateCharacterFile() {
         File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
         //looks for the file to which player character data is saved
@@ -345,6 +392,9 @@ public class DailyQuestFragment extends Fragment{
         }
     }
 
+    /**
+     * Generate the preset daily quests. Only called the first time the screen is viewed
+     */
     public void generatePresetDailyQuests(){
         DailyQuest makeBed = new DailyQuest("Make Bed",false);
         DailyQuest drinkWater = new DailyQuest("Drink water",false);

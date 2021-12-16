@@ -35,7 +35,7 @@ public class Character implements Serializable {
         this.lck = 5; //Luck affects coins
         this.smt = 5; //Smarts affects Experience
         this.maxpower = 25;
-        this.curpower = 20;
+        this.curpower = 0;
         this.curexp = 0;
         this.maxexp = 100;
         this.lvl = 1;

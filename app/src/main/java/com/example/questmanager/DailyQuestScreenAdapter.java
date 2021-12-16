@@ -14,11 +14,11 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
-    DailyQuestFragment parentFragment;
+    DailyQuestFragment parentFragment; //Fragment which created the adapter
     private int mostRecentlyClickedPosition;
     /**
-     * Constructor for Element Adapter. Calls super constructor and sets MostRecentlyClickedPosition
-     * to -1
+     * Constructor for Element Adapter. Calls super constructor, sets MostRecentlyClickedPosition
+     * to -1, and saves the parent as parentFragment
      * @param context Activity the method is called from
      * @param questList The ArrayList to get the data from for the ArrayAdapter
      */
@@ -53,11 +53,11 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
         questName.setText(currentQuest.getName());
         CheckBox completeCB = questItemView.findViewById(R.id.dailyQuestCompleteCB);
         completeCB.setOnClickListener(parentFragment.completeDailyQuestCBListener);
-        if  (currentQuest.isCompleted()){
+        if  (currentQuest.isCompleted()){ //If quest is completed, make it not clickable
             completeCB.setChecked(true);
             completeCB.setClickable(false);
         }
-        else{
+        else{ //If quest is not completed, make it clickable and uncheck the checkbox if it was checked
             completeCB.setChecked(false);
             completeCB.setClickable(true);
         }
@@ -66,11 +66,12 @@ public class DailyQuestScreenAdapter extends ArrayAdapter<DailyQuest> {
         Button deselectButton = questItemView.findViewById(R.id.dailyQuestDeselectButton);
         Button deleteButton = questItemView.findViewById(R.id.dailyQuestDeleteButton);
         TextView completeTV = questItemView.findViewById(R.id.dailyQuestCompleteTV);
+        //Set onClickListeners
         deselectButton.setOnClickListener(parentFragment.deselectDailyQuestButtonListener);
         deleteButton.setOnClickListener(parentFragment.deleteDailyQuestButtonListener);
         if (position == mostRecentlyClickedPosition){
             deselectButton.setVisibility(View.VISIBLE);
-            if (position > 7) {
+            if (position > 7) { //Delete is only available for non-preset quests
                 deleteButton.setVisibility(View.VISIBLE);
             }
             completeTV.setVisibility(View.VISIBLE);

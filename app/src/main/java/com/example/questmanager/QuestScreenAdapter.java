@@ -17,11 +17,11 @@ import java.time.Instant;
 import java.util.ArrayList;
 
 public class QuestScreenAdapter extends ArrayAdapter<Quest> {
-    QuestFragment parentFragment;
+    QuestFragment parentFragment; //Fragment which created the adapter
     private int mostRecentlyClickedPosition;
     /**
-     * Constructor for Element Adapter. Calls super constructor and sets MostRecentlyClickedPosition
-     * to -1
+     * Constructor for Element Adapter. Calls super constructor, sets MostRecentlyClickedPosition
+     * to -1, and saves the parent as parentFragment
      * @param context Activity the method is called from
      * @param questList The ArrayList to get the data from for the ArrayAdapter
      */
@@ -32,7 +32,7 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
     }
 
     /**
-     * Updates data for the parent ViewGroup (ListView in this case)
+     * Updates data for the parent ViewGroup
      * @param position int, the index within @param parent that @param convertView is located at
      * @param convertView View, element of @param parent to be updated
      * @param parent ViewGroup, the container for the Views that the ArrayAdapter is updating
@@ -69,6 +69,7 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
         TextView movePosTV = questItemView.findViewById(R.id.questMovePosTV);
         TextView movePosET = questItemView.findViewById(R.id.questMovePosET);
         Button deleteButton = questItemView.findViewById(R.id.questDeleteButton);
+        //Set onClickListeners
         editButton.setOnClickListener(parentFragment.editQuestButtonListener);
         deselectButton.setOnClickListener(parentFragment.deselectQuestButtonListener);
         completeButton.setOnClickListener(parentFragment.completeQuestButtonListener);
@@ -77,7 +78,7 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
         if (position == mostRecentlyClickedPosition){
             editButton.setVisibility(View.VISIBLE);
             deselectButton.setVisibility(View.VISIBLE);
-            if (currentQuest.isCompletable()) {
+            if (currentQuest.isCompletable()) { //Check if the quest has existed long enough to allow completion
                 completeButton.setVisibility(View.VISIBLE);
             }
             else{
@@ -97,10 +98,6 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
             movePosET.setText("");
             deleteButton.setVisibility(View.GONE);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String currentTime = getDateTime();
-        }
-
 
         return questItemView ;
     }
@@ -110,13 +107,5 @@ public class QuestScreenAdapter extends ArrayAdapter<Quest> {
      */
     public void setMostRecentlyClickedPosition(int mostRecentlyClickedPosition) {
         this.mostRecentlyClickedPosition = mostRecentlyClickedPosition;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    String getDateTime(){
-        Instant date = Instant.now();
-        String returnDate = date.toString();
-        returnDate = returnDate.substring(0,19);
-        return returnDate;
     }
 }

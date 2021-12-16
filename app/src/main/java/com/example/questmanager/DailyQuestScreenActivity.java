@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.time.Instant;
 import java.util.ArrayList;
 
+//File is no longer used. Replaced with fragments
 public class DailyQuestScreenActivity extends AppCompatActivity {
 
 //    int size = 0; //Keeps track of the amount of quests

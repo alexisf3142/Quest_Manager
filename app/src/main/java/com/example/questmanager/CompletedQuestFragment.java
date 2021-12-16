@@ -50,19 +50,24 @@ public class CompletedQuestFragment extends Fragment {
         compQuestAdapter.notifyDataSetChanged();
         return rootView;
     }
-
+    //Set onClickListener for home button
     View.OnClickListener homeCompQuestButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             buttonBackFromCompQuest(view);
         }
     };
-
+    /**
+     * Sends the user back to the home screen
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonBackFromCompQuest (View view){
         Intent backFromHelpIntent = new Intent(fragContext, MainActivity.class);
         startActivity(backFromHelpIntent);
     }
-
+    /**
+     * Read the file of Completed Quests. Get the size from file and put the quests into compQuestArray
+     */
     public void getCompQuestArrayFromFile(){
         File theFile = fragContext.getBaseContext().getFileStreamPath("compQuestList.txt");
         if (theFile.exists()) {

@@ -19,7 +19,7 @@ public class QuestPagerAdapter extends FragmentPagerAdapter {
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int position) { //Return correct fragment
         switch (position) {
             case 0: return new QuestFragment();
             case 1: return new DailyQuestFragment();
@@ -30,7 +30,7 @@ public class QuestPagerAdapter extends FragmentPagerAdapter {
 
     @Nullable
     @Override
-    public CharSequence getPageTitle(int position) {
+    public CharSequence getPageTitle(int position) { //Set tab names
         switch (position) {
             case 0: return "Quests";
             case 1: return "Daily Quests";

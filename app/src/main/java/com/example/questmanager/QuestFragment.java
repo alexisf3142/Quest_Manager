@@ -35,16 +35,16 @@ import java.util.ArrayList;
 public class QuestFragment extends Fragment {
 
     View rootView;
-    Activity fragContext;
+    Activity fragContext; //Fragments activity
     Character playerCharacter;
 
     int size = 0; //Keeps track of the amount of quests
-    int compSize = 0;
+    int compSize = 0; //Keep track of amount of completed quests
     int mostRecentElement = -1; //Holds position in the ListView of the most recently clicked element;
     View mostRecentView; //Holds the most recently clicked element of the ListView
 
     ArrayList<Quest> compQuestArray;
-    ArrayList<Quest> questArray; //Array of the list names
+    ArrayList<Quest> questArray; //Array of the current quests
     QuestScreenAdapter questAdapter;
 
     public QuestFragment () {}
@@ -76,10 +76,10 @@ public class QuestFragment extends Fragment {
         questListView.setAdapter(questAdapter); //assign questAdapter to the listView
         questListView.setOnItemClickListener(questLVListener); //assign OnItemClickListener to ListView
 
-        readCharacterFile();
+        readCharacterFile(); //Get character data
         return rootView;
     }
-
+    //OnClickListeners for buttons
     View.OnClickListener newQuestButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -151,7 +151,7 @@ public class QuestFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             mostRecentView = view;
             mostRecentElement = i;
-            if (!questArray.get(mostRecentElement).isCompletable()){
+            if (!questArray.get(mostRecentElement).isCompletable()){ //Check if an hour has passed since creation
                 updateCompletable(i);
             }
             questAdapter.setMostRecentlyClickedPosition(i);
@@ -159,7 +159,12 @@ public class QuestFragment extends Fragment {
         }
     };
 
+    /**
+     * Function to check if an hour has passed from creation of a quest
+     * @param position The position of the Quest in the questArray
+     */
     public void updateCompletable(int position){
+        //If API >= 26, compare current time with creation time, otherwise ignore feature and allow completion
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             String currentTime = getDateTime();
             String createTime = questArray.get(position).getCreationDate();
@@ -190,6 +195,10 @@ public class QuestFragment extends Fragment {
 
     }
 
+    /**
+     * Sends the user back to the home screen
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonBackFromQuest (View view){
         Intent backFromHelpIntent = new Intent(fragContext, MainActivity.class);
         startActivity(backFromHelpIntent);
@@ -233,6 +242,7 @@ public class QuestFragment extends Fragment {
             EditText questNameET = rootView.findViewById(R.id.questNameET);
             String name = String.valueOf(questNameET.getText());
             if (checkValidName(name)) {
+                //Grab new quest data from user
                 EditText questDueDateET = rootView.findViewById(R.id.questDueDateET);
                 String dueDate = String.valueOf(questDueDateET.getText());
                 EditText questDueTimeET = rootView.findViewById(R.id.questDueTimeET);
@@ -242,9 +252,10 @@ public class QuestFragment extends Fragment {
                 EditText questDifficultyET = rootView.findViewById(R.id.questDifficultyET);
                 int difficulty = Integer.parseInt(String.valueOf(questDifficultyET.getText()));
                 String createDate = "";
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //If API >= 26
                     createDate = getDateTime();
                 }
+                //Add new quest
                 Quest newQuest = new Quest(name, dueDate, dueTime, description, difficulty,createDate);
                 questArray.add(newQuest);
                 size++;
@@ -268,6 +279,10 @@ public class QuestFragment extends Fragment {
         }
     }
 
+    /**
+     * Checks that all fields are filled in and difficulty is a number from 1 to 5
+     * @return returns true if valid input, false if not
+     */
     public boolean checkValidInput(){
         EditText questNameET = rootView.findViewById(R.id.questNameET);
         String questName = String.valueOf(questNameET.getText());
@@ -313,6 +328,11 @@ public class QuestFragment extends Fragment {
 
     }
 
+    /**
+     * Function to check if a string is empty
+     * @param value String to check
+     * @return true if empty, false if not
+     */
     public boolean isEmpty(String value){
         if (value.equals("")){
             return true;
@@ -338,8 +358,7 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Removes the most recently clicked element(list) of the ListView from the ListView
-     * and deletes it's associated file
+     * Removes the most recently clicked element(quest) of the ListView from the ListView
      * @param view the view that was clicked and triggered the method
      */
     public void buttonDelete(View view){
@@ -365,7 +384,7 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Moves an element(list) of the ListView to the position indicated by the user. If the position
+     * Moves an element of the ListView to the position indicated by the user. If the position
      * is out of bounds or not a number, a toast will be displayed saying so.
      * @param view the view that was clicked and triggered the method
      */
@@ -397,8 +416,8 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Move to the secondary screen which will display the list of elements associated with
-     * the list that was selected
+     * Grabs the data of the most recently clicked quest and puts it into the edit texts to allow
+     * the user to edit the quest
      * @param view the view that was clicked and triggered the method
      */
     public void buttonEdit(View view){
@@ -423,6 +442,10 @@ public class QuestFragment extends Fragment {
         confirmButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Confirm changes from edit. Updates the quest with the new information if it is valid
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonConfirm(View view){
         if (checkValidInput()) { //if input is valid
             EditText questNameET = rootView.findViewById(R.id.questNameET);
@@ -464,6 +487,11 @@ public class QuestFragment extends Fragment {
         }
     }
 
+    /**
+     * Marks a quest as complete. Calculates the power and experience gain, adds the quest to the
+     * completed quests, then removes the quest from the array.
+     * @param view the view that was clicked and triggered the method
+     */
     public void buttonComplete(View view){
         compQuestArray.add(0,questArray.get(mostRecentElement));
         compSize++;
@@ -497,7 +525,7 @@ public class QuestFragment extends Fragment {
 
     /**
      * Writes the list of quests to file. First line is the amount of quests, each following block
-     * of 5 lines is the data of one quest.
+     * of 6 lines is the data of one quest.
      */
     public void updateMainFile (){
         String writeString;
@@ -526,7 +554,7 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Update top line to indicate that there are no lists
+     * Update top line to indicate that there are no quests
      */
     public void topLineNone(){
         TextView topLine = rootView.findViewById(R.id.qsTopLineTV);
@@ -534,7 +562,7 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Update top line to indicate that there are lists
+     * Update top line to indicate that there are quests
      */
     public void topLineAny(){
         TextView topLine = rootView.findViewById(R.id.qsTopLineTV);
@@ -542,7 +570,7 @@ public class QuestFragment extends Fragment {
     }
 
     /**
-     * Read the file of list names. Get the size from file and put the names into questArray
+     * Read the file of Quests. Get the size from file and put the quests into questArray
      */
     public void getQuestArrayFromFile(){
         File theFile = fragContext.getBaseContext().getFileStreamPath("questList.txt");
@@ -582,7 +610,9 @@ public class QuestFragment extends Fragment {
             }
         }
     }
-
+    /**
+     * Read the file of Completed Quests. Get the size from file and put the quests into compQuestArray
+     */
     public void getCompQuestArrayFromFile(){
         File theFile = fragContext.getBaseContext().getFileStreamPath("compQuestList.txt");
         if (theFile.exists()) {
@@ -618,7 +648,10 @@ public class QuestFragment extends Fragment {
             }
         }
     }
-
+    /**
+     * Writes the list of completed quests to file. First line is the amount of quests, each following block
+     * of 6 lines is the data of one quest.
+     */
     public void updateCompFile (){
         String writeString;
         writeString = String.valueOf(compSize);
@@ -645,6 +678,9 @@ public class QuestFragment extends Fragment {
         }
     }
 
+    /**
+     * Read character data from file and save it
+     */
     public void readCharacterFile() {
         File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
         //looks for the file to which player character data is saved
@@ -668,6 +704,9 @@ public class QuestFragment extends Fragment {
 
     }
 
+    /**
+     * Write playerCharacter to file
+     */
     public void updateCharacterFile() {
         File playerData = fragContext.getBaseContext().getFileStreamPath("playerData.txt");
         //looks for the file to which player character data is saved
@@ -689,6 +728,10 @@ public class QuestFragment extends Fragment {
         }
     }
 
+    /**
+     * Function to get the current date and time
+     * @return returns the current date and time
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     String getDateTime(){
         Instant date = Instant.now();
