@@ -370,10 +370,11 @@ public class DungeonActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Nice try adventurer... better luck next time", Toast.LENGTH_LONG).show();
         }
         // if the monster dies gives players gold and gets new monster
+        // Gold gained has + 5% per luck point
         else if (curMonster.getMonCurPow() <= 0) {
 
             if(curMonster==martin){
-                goldGained = playerCharacter.getGold() + 20 + 5 * playerCharacter.getLck()/20.0;}
+                goldGained = playerCharacter.getGold() + 20 + 20 * playerCharacter.getLck()/20.0;}
             else{
                 goldGained = playerCharacter.getGold() + 5 + 5 * playerCharacter.getLck()/20.0;}
             playerCharacter.setGold((int)goldGained);

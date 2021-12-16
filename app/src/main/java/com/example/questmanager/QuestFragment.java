@@ -169,8 +169,8 @@ public class QuestFragment extends Fragment {
             String currentTime = getDateTime();
             String createTime = questArray.get(position).getCreationDate();
             boolean diff = true;
-            if (currentTime.substring(0,10).equals(createTime.substring(0,10))){
-                int curHR, createHR;
+            if (currentTime.substring(0,10).equals(createTime.substring(0,10))){ //If different day, it has been one hour
+                int curHR, createHR;                                             //With one exception
                 curHR = Integer.parseInt(currentTime.substring(11,13));
                 createHR = Integer.parseInt(createTime.substring(11,13));
                 if (curHR - createHR < 1){
@@ -185,7 +185,22 @@ public class QuestFragment extends Fragment {
                     }
                 }
             }
-            if (diff){
+            else { //Check for exception where quest was created in the final hour of a day
+                int curHR, createHR;
+                curHR = Integer.parseInt(currentTime.substring(11,13));
+                createHR = Integer.parseInt(createTime.substring(11,13));
+                if (createHR == 23){
+                    if (curHR == 0){ //If created in final hour of day and current is first hour of day, check minutes
+                        int curMin, createMin;
+                        curMin = Integer.parseInt(currentTime.substring(14,16));
+                        createMin = Integer.parseInt(createTime.substring(14,16));
+                        if (curMin - createMin < 0){
+                            diff = false;
+                        }
+                    }
+                }
+            }
+            if (diff){ //If at least an hour has passed since creation, allow completion
                 questArray.get(position).setCompletable(true);
             }
         }
@@ -504,7 +519,7 @@ public class QuestFragment extends Fragment {
         int maxpower = playerCharacter.getMaxpower();
         int difficulty = questArray.get(mostRecentElement).getDifficulty();
         double experienceGain = (difficulty * 5) + (difficulty * 5 * playerCharacter.getSmt()/20.0);
-        experience += (int) experienceGain;
+        experience += (int) experienceGain; //Experience gain = 5 * difficulty + 5% per intelligence/smarts point
         curpower += difficulty * 5;
 
         if (experience >= maxexp) {

@@ -106,7 +106,7 @@ public class Character implements Serializable {
     }
 
     public int getDmg() {
-        return dmg;
+        return dmg + weaponmod;
     }
 
     public int getWeaponmod() {
