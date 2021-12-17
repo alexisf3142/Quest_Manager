@@ -27,15 +27,6 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
 
     Character theCharacter = new Character("","");
-//    ArrayList<Achievement> achievementList;
-//    achievementItemAdapter achievementsAdapter;
-//
-//    AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            achievementsAdapter.notifyDataSetChanged();
-//        }
-//    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -79,6 +79,7 @@ public class CharacterStatsFragment extends Fragment {
         return rootView;
     }
 
+    //making the onCLickListeners for each button
     View.OnClickListener addStrButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -171,7 +172,6 @@ public class CharacterStatsFragment extends Fragment {
                 // next two lines close the read mode file
                 ois.close();
                 fis.close();
-
             } catch (Exception e) { // error message
                 Toast.makeText(this.getActivity(), "Player data was found, but there was an error reading the file", Toast.LENGTH_SHORT).show();
             }
@@ -191,17 +191,12 @@ public class CharacterStatsFragment extends Fragment {
                 // writes playerCharacter object to the file. next two lines close the write mode file
                 os.close();
                 fos.close();
-
-                // Toast.makeText(this, "It worked!", Toast.LENGTH_SHORT).show();
-                // placeholder to move around and make sure each step works properly
-
             } catch (IOException e) {
                 Toast.makeText(getActivity(), "Problem with output file", Toast.LENGTH_SHORT).show();
                 // placeholder error message
             }
         } else {
-            //CHANGE!!!!!
-            Toast.makeText(getActivity(), "this is impossible what did you do?", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Error accessing player data file", Toast.LENGTH_SHORT).show();
         }
     }
 }
